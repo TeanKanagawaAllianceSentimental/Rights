@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   get "/buy/selectpay" => "sale#selectpay"
   get "/buy/review" => "sale#review"
   get "/orderplaced" => "sale#orderplaced"
+
+  get "/applicant" => "applicants#applicant"
+  get "/application" => "applications#application"
+  get "/selectmusic" => "applications#selectmusic"
+  get "/listofperformedpieces" => "list_of_performed_pieces#listofperformedpieces"
+  get "/application/review" => "applications#review"
+  get "/submitted" => "applications#submitted"
 end
