@@ -1,0 +1,75 @@
+<div class="form-group">
+	<%= form_for @genre, url: admin_genres_path do |f| %>
+		<div class="field row" style="padding-bottom: 20px">
+			<div class='col-xs-6'>
+				<%= f.label :ジャンル%>
+				<%= f.text_field :genre, class: 'form-control' %>
+			</div>
+		</div>
+		<%= f.fields_for :items do |i| %>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :タイトル %>
+					<%= i.text_field :cd_title, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :ジャケット写真 %>
+					<%= i.attachment_field :jacket_image %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :レコードタイプ %>
+					<%= i.number_field :package, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :アーティスト名 %>
+					<%= i.text_field :artist, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :レーベル %>
+					<%= i.text_field :label, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :価格 %>
+					<%= i.number_field :unit_price, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :在庫数 %>
+					<%= i.number_field :stock_quantity, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :見出し %>
+					<%= i.text_field :caption, class: 'form-control'  %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :詳細情報 %>
+					<%= i.text_area :about, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="field row" style="padding-bottom: 20px">
+				<div class='col-xs-6'>
+					<%= i.label :ステータス, class: 'col-xs-6'%>
+					<%= i.select :status, [["未公開","未公開"],["販売中","販売中"],["販売中止","販売中止"]], class: 'col-xs-6' %>
+				</div>
+			</div>
+		<% end %>
+		<div class="action row" style="padding-bottom: 20px">
+			<%= f.submit "Create", class: 'col-md-6' %>
+		</div>
+	<% end %>
+</div>
