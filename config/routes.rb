@@ -10,4 +10,7 @@ Rails.application.routes.draw do
       get :orderplaced
     end
   end
+
+  get '/shippingaddress' => "shipping_address#index"
+  get '/shippingaddress/edit' => "shipping_address#edit"
 end
