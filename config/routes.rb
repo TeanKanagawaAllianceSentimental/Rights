@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :application1
     end
   end
+
   resources :applications, only:[:new, :create, :show, :index] do
     member do
       get :selectmusic
