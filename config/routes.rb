@@ -21,7 +21,8 @@ Rails.application.routes.draw do
       get :application1
     end
   end
-  resources :applications, only:[:new, :create, :show] do
+
+  resources :applications, only:[:new, :create, :show, :index] do
     member do
       get :selectmusic
       get :review
@@ -39,5 +40,4 @@ Rails.application.routes.draw do
       get :orderplaced
     end
   end
-
 end
