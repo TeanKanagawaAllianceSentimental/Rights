@@ -21,4 +21,3 @@ $(function() {
     $(".menu").toggleClass("active");
   });
 });
-
