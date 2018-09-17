@@ -13,6 +13,13 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
-//= require bootstrap-sprockets
 //= require jquery
+//= require bootstrap-sprockets
+//= require_tree .
+
+$(function() {
+  $(".trigger").click(function() {
+    $(".menu").toggleClass("active");
+  });
+});
+
