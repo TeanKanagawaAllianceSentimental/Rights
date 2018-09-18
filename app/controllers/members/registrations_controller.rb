@@ -6,22 +6,22 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-     super
-     @address = Address.new
+     @member = Member.new
+     @member.addresses.build
   end
 
   # POST /resource
   def create
      super
-     address = Address.new(address_params)
-     address.id = current_member.id
-     address.save
+     member = Member.new(member_params)
+     member.id = current_member.id
+     member.save
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+       
+  end
 
   # PUT /resource
   # def update
@@ -64,7 +64,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   private
-  def address_params
-     params.require(:address).permit(:corporate_name)
+  def member_params
+     params.require(:member).permit(addresses_attributes: [:id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :phone)
   end
 end

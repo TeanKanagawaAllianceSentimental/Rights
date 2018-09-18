@@ -16,3 +16,11 @@
 //= require_tree .
 //= require bootstrap-sprockets
 //= require jquery
+$(function() {
+	$(document).on('click','.plus-btn',function(){
+		$('body').toggleClass('menu-open');
+	});
+	$("document").ready(function(){
+		$(".theTarget").skippr()
+	});
+});
