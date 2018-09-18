@@ -65,6 +65,6 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # end
   private
   def member_params
-     params.require(:member).permit(addresses_attributes: [:id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :phone)
+     params.require(:member).permit(addresses_attributes: [:id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :phone])
   end
 end
