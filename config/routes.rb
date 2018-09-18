@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/sale/selectaddress' => "sale#selectaddress"
 
   devise_for :admins, controllers: {
         sessions: 'admins/sessions',

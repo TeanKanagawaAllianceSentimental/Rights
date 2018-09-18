@@ -12,8 +12,6 @@
 
 
 ActiveRecord::Schema.define(version: 2018_09_13_114919) do
-=======
-ActiveRecord::Schema.define(version: 2018_09_12_120502) do
 
   create_table "disks", force: :cascade do |t|
     t.string "disk", null: false

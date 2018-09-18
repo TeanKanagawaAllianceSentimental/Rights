@@ -8,31 +8,80 @@
 			<h2>お届け先住所の選択</h2>
 			<div class="row">
 			  <div class="col-sm-4">
-			    <div class="card">
-			      <div class="card-body">
-			        <h3 class="card-title">@mamber.name 様</h3>
-			        <p class="card-text">150-0002<br>東京都渋谷く本町1-1-1<br>新国立劇場営業部</p>
-			        <a href="#" class="card-link">編集</a>
-   					<a href="#" class="card-link">削除</a><br>
-			        <a href="#" class="btn btn-primary btn-lg">この住所を使う</a>
-			      </div>
-			    </div>
-			  </div>
-			  <!-- 複数ある場合どうすればいい？ -->
-			  <div class="col-sm-4">
-			    <div class="card">
-			      <div class="card-body">
-			        <h3 class="card-title">@mamber.name 様</h3>
-			        <p class="card-text">150-0002<br>東京都渋谷く本町1-1-1<br>新国立劇場営業部</p>
-			        <a href="#" class="card-link">編集</a>
-   					<a href="#" class="card-link">削除</a><br>
-			        <a href="#" class="btn btn-primary btn-lg">この住所を使う</a>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+			  	<% @addresses.each do |address| %>
+				  	<%= form_for(sale) do |f| %>
+				  	<table class="table">
+						  <tbody>
+						    <tr>
+						      <th scope="row">法人名 団体名</th>
+						      <td><% @address.organisation_name %></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">郵便番号</th>
+						      <td><% @address.shipping_postal_code %></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">住所1</th>
+						      <td><% @address.address1 %></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">ビル・マンション名</th>
+						      <td><% @address.address2 %></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">ご担当部署</th>
+						      <td><% @address.department %></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">ご担当者名</th>
+						      <td><% @address.contact_person %></td>
+						    </tr>
+						    <tr>
+						      <th scope="row">電話番号</th>
+						      <td><% @address.user_telephon %></td>
+						    </tr>
+						  </tbody>
+						<% f.submit 'この住所に配送する', class: "btn btn-primary" %>
+						<% link_to "編集", '住所編集_path'(address.member_id) %>
+						<% link_to "削除", '住所削除_path', method: :delete, "data-confirm" => "" %>
+						<% end %>
+					<% end %>
+						</table><br><br><br>
 			<h3>新しい住所の登録</h3>
-			<!-- memberのを拝借しよう -->
+			<div class="form-body">
+				<%= form_for(@address) do |f| %>
+					<div class="form-group">
+						<h4>会社名 団体名</h4>
+            <%= f.text_field :organisation_name %>
+       	 	</div>
+       	 	<div class="form-group">
+       	 		<h4>郵便番号</h4>
+            <%= f.text_field :shipping_postal_code %>
+       	 	</div>
+       	 	<div class="form-group">
+       	 		<h4>住所</h4>
+            <%= f.text_field :address1 %>
+       	 	</div>
+       	 	<div class="form-group">
+       	 		<h4>ビル・マンション名</h4>
+            <%= f.text_field :address2 %>
+       	 	</div>
+       	 	<div class="form-group">
+       	 		<h4>担当部署</h4>
+            <%= f.text_field :department %>
+       	 	</div>
+       	 	<div class="form-group">
+       	 		<h4>担当者</h4>
+            <%= f.text_field :contact_person %>
+       	 	</div>
+       	 	<div class="form-group">
+       	 		<h4>電話番号</h4>
+            <%= f.text_field :user_telephone %>
+       	 	</div>
+       	 	<div class="form-group">
+            <%= f.submit "この住所を使う", class:"btn btn-md btn-primary" %>
+       	 	</div>
+				<br>
 		</div>
 	</div>
 </div>
