@@ -10,51 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2018_09_13_114919) do
-=======
-ActiveRecord::Schema.define(version: 2018_09_12_120502) do
-
-  create_table "disks", force: :cascade do |t|
-    t.string "disk", null: false
-    t.integer "item_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genres", force: :cascade do |t|
-    t.string "genre", null: false
-    t.integer "sequence", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.string "cd_title", null: false
-    t.integer "genre_id", null: false
-    t.integer "package", null: false
-    t.string "artist", null: false
-    t.text "jacket_image_id"
-    t.string "label", null: false
-    t.string "unit_price"
-    t.string "caption"
-    t.text "about"
-    t.integer "stock_quantity"
-    t.string "status", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_items_on_genre_id"
-  end
-
-  create_table "musics", force: :cascade do |t|
-    t.integer "disk_id", null: false
-    t.string "music_title", null: false
-    t.string "songwriter", null: false
-    t.string "composer", null: false
-    t.integer "sequence", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -87,6 +43,37 @@ ActiveRecord::Schema.define(version: 2018_09_12_120502) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "disks", force: :cascade do |t|
+    t.string "disk", null: false
+    t.integer "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre", null: false
+    t.integer "sequence", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "cd_title", null: false
+    t.integer "genre_id", null: false
+    t.integer "package", null: false
+    t.string "artist", null: false
+    t.text "jacket_image_id"
+    t.string "label", null: false
+    t.string "unit_price"
+    t.string "caption"
+    t.text "about"
+    t.integer "stock_quantity"
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -101,6 +88,16 @@ ActiveRecord::Schema.define(version: 2018_09_12_120502) do
     t.string "corporate_name"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "musics", force: :cascade do |t|
+    t.integer "disk_id", null: false
+    t.string "music_title", null: false
+    t.string "songwriter", null: false
+    t.string "composer", null: false
+    t.integer "sequence", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
