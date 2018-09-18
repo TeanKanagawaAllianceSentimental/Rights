@@ -11,7 +11,8 @@
 				<th colspan="3"><h2>ショッピングカート</h2></th>
 				</tr>
 			  </thead>
-				<% @carts.each do |cart| %>
+			    <%= form_for(@sale) do |f| %>
+				<% @sale_items.each do |sale_item| %>
 				<tbody>
 				  <tr>
 					<td><%#= link_to user_path(book.user_id) do %>
@@ -19,20 +20,20 @@
 						<%# end %>
 						<img src="assets/soundtrack01.jpg" width=120 height="120">
 					</td>
-					<td><h4><%= cart.items.cd_title %></h4><br><%= cart.item.status %><br><%= cart.item.artist %>
+					<td><h4><%= sale_item.items.cd_title %></h4><br><%= sale_item.item.status %><br><%= sale_item.item.artist %>
 					</td>
 					<td><h4><%= @sub_total %></h4><br>
 						<div class="btn-group">
-						<%= form_for(cart) do |f| %>
+						<%= form_for(sale_item) do |n| %>
 						  <select class="form-control">
 					 		<%= f.number_field sale_iltem :quantity,min:1,max:10,step:10 %>
 						  </select>
 						</div>
-						<% end %>  
-
+						<% end %> <!-- 必要？ -->
 					</td>
 				  </tr>
 				</tbody>
+				<% end %>
 			</table>
 		</div>
 		<div class="col-md-3">

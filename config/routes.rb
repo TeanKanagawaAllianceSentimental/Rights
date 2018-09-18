@@ -31,6 +31,12 @@ Rails.application.routes.draw do
   end
     resources :list_of_performed_pieces, only:[:new, :create, :show]
 
+  resources :cart, only:[:create, :update, :destroy] do
+    member do
+      get :cart
+    end
+  end
+
   resources :sales, only:[:edit, :update, :create] do
     member do
       get :cart

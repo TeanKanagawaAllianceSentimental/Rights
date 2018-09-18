@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_120502) do
+ActiveRecord::Schema.define(version: 2018_09_16_062148) do
+
+  create_table "carts", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.integer "item_id", null: false
+    t.integer "quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "credit_card_number", null: false
+    t.string "credit_card_holder", null: false
+    t.string "exp_month", null: false
+    t.string "exp_year", null: false
+    t.string "security_code", null: false
+    t.integer "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "disks", force: :cascade do |t|
     t.string "disk", null: false
@@ -49,6 +68,43 @@ ActiveRecord::Schema.define(version: 2018_09_12_120502) do
     t.string "songwriter", null: false
     t.string "composer", null: false
     t.integer "sequence", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_invoices", force: :cascade do |t|
+    t.string "bill_to"
+    t.string "billing_postal_code"
+    t.string "billing_address"
+    t.integer "member_id"
+    t.integer "sale_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_items", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.integer "sub_total", null: false
+    t.integer "sale_id", null: false
+    t.integer "items_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_shippings", force: :cascade do |t|
+    t.string "shipping_postal_code", null: false
+    t.string "shipping_address", null: false
+    t.string "user_telephone", null: false
+    t.integer "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer "total_price", null: false
+    t.integer "member_id", null: false
+    t.integer "delivered", null: false
+    t.datetime "delivered_at", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
