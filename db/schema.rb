@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 2018_09_16_062148) do
 
   create_table "sales", force: :cascade do |t|
     t.integer "total_price", null: false
-    t.integer "member_id", null: false
-    t.integer "delivered", null: false
-    t.datetime "delivered_at", default: false, null: false
+    t.integer "member_id"
+    t.integer "delivered"
+    t.datetime "delivered_at", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

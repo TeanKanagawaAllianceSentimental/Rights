@@ -31,19 +31,10 @@ Rails.application.routes.draw do
   end
     resources :list_of_performed_pieces, only:[:new, :create, :show]
 
-  resources :cart, only:[:create, :update, :destroy] do
-    member do
-      get :cart
-    end
-  end
+  resources :cart, only:[:create, :update, :destroy]
+  resources :sales, except:[:new, :destroy]
+  resources :sale_items, only:[:create]
+  resources :shipping_address, except:[:new]
+  resources :pay_selects, only:[:create, :show]
 
-  resources :sales, only:[:edit, :update, :create] do
-    member do
-      get :cart
-      get :selectaddress
-      get :selectpay
-      get :review
-      get :orderplaced
-    end
-  end
 end

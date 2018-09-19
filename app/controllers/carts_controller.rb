@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
 	def create
-		if @cart = Carts.add_item(params[:item:id], current_member_id, session_id)
+		if @cart = Cart.add_item(params[:item_id], current_member_id, session_id)
       redirect_to item_path(params[:item_id])
     else
       flash[:error] = 'カートに商品を追加することができませんでした。'
