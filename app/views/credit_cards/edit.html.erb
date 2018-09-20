@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>クレジットカード情報編集フォーム</h2>
+      <div class="form-body">
+        <%= form_for (@credit) do |form| %>
+          <div class="form-group">
+            <h4>クレジットカード番号</h4>
+            <%= f.text_field :credit_card_number %>
+          </div>
+          <div class="form-group">
+            <h4>クレジットカード名義</h4>
+            <%= f.text_field :credit_card_holder %>
+          </div>
+          <div class="form-group">
+            <h4>有効期限(月)</h4>
+            <%= f.number_field sale_iltem :exp_month, min:01, max:12, step:10 %>
+          </div>
+          <div class="form-group">
+            <h4>有効期限(年)</h4>
+            <%= f.number_field sale_iltem :exp_year, min:2018, max:2025, step:5 %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "更新", class:"btn btn-md btn-primary" %>
+          </div>
+        <% end %>
+        <br>
+    </div>
+  </div>
+</div>
