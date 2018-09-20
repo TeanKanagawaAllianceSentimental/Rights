@@ -20,13 +20,15 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-       
+    # @member = Address.find(params[:id])
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    # member = Address.find(params[:id])
+    # member.update(address_params)
+    # redirect_to front_members_path
+  end
 
   # DELETE /resource
   # def destroy
@@ -65,6 +67,14 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # end
   private
   def member_params
-     params.require(:member).permit(addresses_attributes: [:id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :phone])
+     params.require(:member).permit(addresses_attributes: [:id, :prefecture_id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :phone])
+  end
+
+  def update_member_params
+     params.require(:member).permit(addresses_attributes: [:id, :prefecture_id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :phone, :id, :_destroy])
+  end
+
+  def account_update_params
+    devise_parameter_sanitizer.sanitize(:account_update, keys:[:corporate_name])
   end
 end

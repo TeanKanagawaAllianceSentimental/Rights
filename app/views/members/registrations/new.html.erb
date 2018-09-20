@@ -1,10 +1,9 @@
+<div class="title" style= "text-align: center;"><h2>ユーザー新規会員登録</h2></div>
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-3">
     </div>
-    <div class="col-xs-4">
-          <h2>ユーザー新規会員登録</h2>
-
+    <div class="col-xs-3">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
 
@@ -12,17 +11,36 @@
               <%= f.fields_for :addresses do |corporate| %>
                <%= corporate.label :corporate_name, "会社名" %><br>
                <%= corporate.text_field :corporate_name, class: "form-control" %>
-               <%= corporate.label :corporate_phonetic, "ふりがな(会社名)" %><br>
-               <%= corporate.text_field :corporate_phonetic, class: "form-control" %>
                <%= corporate.label :contact_person_name, "ご担当者様" %><br>
                <%= corporate.text_field :contact_person_name, class: "form-control" %>
-               <%= corporate.label :contact_person_phonetic, "ふりがな(ご担当者様)" %><br>
+               <%= corporate.label :department, "部署名" %><br>
                <%= corporate.text_field :contact_person_phonetic, class: "form-control" %>
-               <%= corporate.label :phone, "電話番号" %><br>
-               <%= corporate.text_field :phone, class: "form-control" %>
+               <%= corporate.label :postal_code, "郵便番号" %><br>
+               <%= corporate.text_field :postal_code, class: "form-control" %>
+               <%= corporate.label :address2, "市区町村/番地" %><br>
+               <%= corporate.text_field :address2, class: "form-control" %>
                <% end %>
              </div>
-
+           </div>
+           <div class="col-xs-3">
+             <div class="field">
+              <%= f.fields_for :addresses do |corporate| %>
+               <%= corporate.label :corporate_phonetic, "ふりがな(会社名)" %><br>
+               <%= corporate.text_field :corporate_phonetic, class: "form-control" %>
+               <%= corporate.label :contact_person_phonetic, "ふりがな(ご担当者様)" %><br>
+               <%= corporate.text_field :department, class: "form-control" %>
+               <%= corporate.label :phone, "電話番号" %><br>
+               <%= corporate.text_field :phone, class: "form-control" %>
+               <%= corporate.label :prefecture_id, "都道府県" %><br>
+               <%= corporate.select :prefecture_id, Prefecture.all.map{|p| [p.name, p.id]} %>
+               <% end %>
+             </div>
+           </div>
+         </div>
+         <div class="row">
+          <div class="col-xs-4">
+          </div>
+          <div class="col-xs-4">
             <div class="field">
               <%= f.label :メールアドレス %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control",placeholder:"メールアドレスを入力して下さい。" %>
@@ -47,6 +65,8 @@
           <% end %>
 
           <%= render "members/shared/links" %>
+        </div>
+        </div>
       </div>
     </div>
 </div>
