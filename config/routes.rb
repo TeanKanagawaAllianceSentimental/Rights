@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       registrations: 'members/registrations',
       passwords: 'members/passwords'
   }
+
   namespace :admin, path: 'admin' do
   	resources :items
     resources :disk
@@ -21,18 +22,11 @@ Rails.application.routes.draw do
     resources :musics
   end
 
-  namespace :admin do
-  	resources :items, except:[:show]
-    resources :disk, only:[:new, :create, :edit, :update, :destroy]
-    resources :genres, only:[:index, :new, :create, :edit, :update, :destroy]
-    resources :sale_items, only:[:index,:show] do
-      member do
-        get :orderhistory
-      end
-    end
+
+  namespace :front do
+  resources :members, only:[:index, :edit]
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :applicants do
     member do
