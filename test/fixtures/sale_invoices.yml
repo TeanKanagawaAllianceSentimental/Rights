@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill_to: MyString
+  billing_postal_code: MyString
+  billing_address: MyString
+  member_id: 1
+  sale_id: 1
+
+two:
+  bill_to: MyString
+  billing_postal_code: MyString
+  billing_address: MyString
+  member_id: 1
+  sale_id: 1

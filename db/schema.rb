@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_114919) do
+ActiveRecord::Schema.define(version: 2018_09_20_054343) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -41,6 +41,25 @@ ActiveRecord::Schema.define(version: 2018_09_13_114919) do
     t.string "phonetic"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.string "session_id"
+    t.integer "item_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "credit_card_number"
+    t.string "credit_card_holder"
+    t.string "exp_month"
+    t.string "exp_year"
+    t.string "security_code"
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "disks", force: :cascade do |t|
@@ -100,4 +119,51 @@ ActiveRecord::Schema.define(version: 2018_09_13_114919) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sale_invoices", force: :cascade do |t|
+    t.string "bill_to"
+    t.string "billing_postal_code"
+    t.string "billing_address"
+    t.integer "member_id"
+    t.integer "sale_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "sub_total"
+    t.integer "sale_id"
+    t.integer "items_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_shippings", force: :cascade do |t|
+    t.string "shipping_postal_code"
+    t.string "shipping_address"
+    t.string "user_telephone"
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "shipping_address1"
+    t.string "shipping_address2"
+    t.string "organisation_name"
+    t.string "department"
+    t.string "contact_person"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer "total_price"
+    t.integer "member_id"
+    t.integer "delivered"
+    t.datetime "delivered_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "sale_invoice_id"
+    t.integer "credit_card_id"
+    t.integer "shipping_address_id"
+    t.integer "Application"
+  end
+
 end
+
