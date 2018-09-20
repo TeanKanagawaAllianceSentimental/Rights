@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   resources :sale_items, only:[:create]
   resources :shipping_address, except:[:new]
   resources :pay_selects, only:[:create, :show]
+
   namespace :front do
   resources :members, only:[:index, :edit]
   end
