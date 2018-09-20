@@ -32,5 +32,7 @@
       </nav>
     </div>
     <%= yield %>
+     <%#= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+     <!-- undefined local variable or method `destroy_member_session_pathが出たので、コメントアウトhori -->
   </body>
 </html>

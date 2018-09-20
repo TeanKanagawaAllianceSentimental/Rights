@@ -16,8 +16,10 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
 $(function() {
   $(".trigger").click(function() {
     $(".menu").toggleClass("active");
   });
 });
+
