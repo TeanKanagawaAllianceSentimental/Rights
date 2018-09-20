@@ -1,3 +1,4 @@
+
 class Admin::DiskController < Admin::AdminBase
   def index
   	@disks = Disk.all

@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+	<%#= render 'users/frame1', user: @user, book: @book %>
+		<div class="col-md-12">
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			<h2>お届け先住所の選択</h2>
+			<div class="row">
+			  <div class="col-sm-4">
+			    <div class="card">
+			      <div class="card-body">
+			        <h3 class="card-title">@mamber.name 様</h3>
+			        <p class="card-text">150-0002<br>東京都渋谷く本町1-1-1<br>新国立劇場営業部</p>
+			        <a href="#" class="card-link">編集</a>
+   					<a href="#" class="card-link">削除</a><br>
+			        <a href="#" class="btn btn-primary btn-lg">この住所を使う</a>
+			      </div>
+			    </div>
+			  </div>
+			  <!-- 複数ある場合どうすればいい？ -->
+			  <div class="col-sm-4">
+			    <div class="card">
+			      <div class="card-body">
+			        <h3 class="card-title">@mamber.name 様</h3>
+			        <p class="card-text">150-0002<br>東京都渋谷く本町1-1-1<br>新国立劇場営業部</p>
+			        <a href="#" class="card-link">編集</a>
+   					<a href="#" class="card-link">削除</a><br>
+			        <a href="#" class="btn btn-primary btn-lg">この住所を使う</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<h3>新しい住所の登録</h3>
+			<!-- memberのを拝借しよう -->
+		</div>
+	</div>
+</div>

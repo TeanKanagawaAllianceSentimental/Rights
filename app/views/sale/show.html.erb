@@ -44,9 +44,6 @@
 			      <%= form_for(@sale) do |f| %>
 			      <div class="field">
 			      	<%= f.select カラム名, [["楽曲利用申請をします”, "0”], ["登録の申請者で楽曲利用申請をします”, "1”], ["楽曲利用申請をしません”, "2”]] %>
-
-			        <label><%= f.radio_button :,  class: :rd %></label>
-			        <label><%= f.radio_button :, class: :rd %></label>    <!-- salesテーブルに申請の有無カラム追加する -->
 			      </div>
 			      <% end %>
 			    </div>
