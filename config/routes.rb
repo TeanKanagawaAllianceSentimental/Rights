@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   		registrations: 'members/registrations',
   		passwords: 'members/passwords'
   }
-<<<<<<< HEAD
+
   namespace :front do
   resources :members, only:[:index, :edit]
   end
-=======
+
 
   get 'items/index'
   get 'items/show'
@@ -29,9 +29,9 @@ Rails.application.routes.draw do
       end
     end
   end
-  
 
->>>>>>> f729b241544b1856af008eb79c4ba6674a7f7356
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :applicants do
