@@ -1,5 +1,6 @@
-class Admin::MusicsController < ApplicationController
+class Admin::MusicsController < Admin::AdminBase
   def index
+    @musics = Music.all
   end
 
   def new
@@ -8,6 +9,14 @@ class Admin::MusicsController < ApplicationController
   def show
   end
 
+  def create
+  end
+
   def edit
+  end
+
+  private
+  def music_params
+  	params.require(:music).permit(:music_title, :composer, :songwriter)
   end
 end

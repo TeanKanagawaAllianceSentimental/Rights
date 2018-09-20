@@ -1,6 +1,7 @@
 class Genre < ApplicationRecord
 	has_many :items, dependent: :destroy
-	accepts_nested_attributes_for :items
+	has_many :disks, through: :items
+	accepts_nested_attributes_for :items, allow_destroy: true
 
 	def self.create_with_auto_sequence(params)
 		genre = Genre.new(params)
