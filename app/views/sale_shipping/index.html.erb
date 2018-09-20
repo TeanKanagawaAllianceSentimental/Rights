@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>登録住所</h2><br>
+        <table class="table">
+          <% @addresses.each do |address| %>
+          <tbody>
+            <tr>
+              <th scope="row">法人名 団体名</th>
+              <td><% member.corporate_name %></td>
+            </tr>
+            <tr>
+              <th scope="row">郵便番号</th>
+              <td><% member.postal_code %></td>
+            </tr>
+            <tr>
+              <th scope="row">都道府県</th>
+              <td><% member.prefecture.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">住所1</th>
+              <td><% member.address1 %></td>
+            </tr>
+            <tr>
+              <th scope="row">ビル・マンション名</th>
+              <td><% member.address2 %></td>
+            </tr>
+            <tr>
+              <th scope="row">ご担当部署</th>
+              <td><% member.department %></td>
+            </tr>
+            <tr>
+              <th scope="row">ご担当者名</th>
+              <td><% member.contact_person_name %></td>
+            </tr>
+            <tr>
+              <th scope="row">電話番号</th>
+              <td><% member.phone %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>

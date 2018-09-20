@@ -1,0 +1,2 @@
+module SaleShippingHelper
+end
