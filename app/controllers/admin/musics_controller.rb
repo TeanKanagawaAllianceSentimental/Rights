@@ -1,6 +1,5 @@
 class Admin::MusicsController < Admin::AdminBase
   def index
-    @musics = Music.all
   end
 
   def new
