@@ -1,2 +1,41 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<div class="admin-item" style="padding-top: 100px">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-10">
+				<table class="table table-hover table-inverse">
+					<h2>商品管理画面</h2>
+					<thead>
+						<th>商品ID</th>
+						<th>CDタイトル</th>
+						<th>ジャケット</th>
+						<th>在庫数</th>
+						<th>販売状態</th>
+						<th>登録日</th>
+						<th>更新日時</th>
+						<th>編集</th>
+						<th>削除</th>
+					</thead>
+					<tbody>
+						<% @items.each do |item| %>
+							<tr>
+								<td><%= item.id %></td>
+								<td><%= item.cd_title %></td>
+								<td><%= attachment_image_tag item, :jacket_image, :fill, 40, 40, format: 'jpeg'%></td>
+								<td><%= item.stock_quantity %></td>
+								<td><%= item.status %></td>
+								<td><%= japan_time(item.created_at) %></td>
+								<td><%= japan_time(item.updated_at) %></td>
+						<% end %>
+						<% @genres.each do |genre| %>
+								<td><%= link_to "Edit", edit_admin_right_path(genre.id), class: 'btn btn-success' %></td>
+								<td><%= link_to "Destroy", admin_right_path(genre.id), class: 'btn btn-danger', method: :delete, date: {confirm: '本当に消しますか'} %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

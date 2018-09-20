@@ -1,9 +1,13 @@
-<div class="item">
+<div class="item" style="padding-top: 100px;">
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row" style="padding-bottom: 100px;">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-9">
 				<h2 class="title" style="padding-bottom: 20px">商品登録</h2>
-				<%= render 'admin/genres/form', genre: @genre %>
+				<%= form_for @genre, url: admin_rights_path do |f| %>
+					<%= render 'admin/genres/form', f:f %>
+				<% end %>
 			</div>
 		</div>
 	</div>

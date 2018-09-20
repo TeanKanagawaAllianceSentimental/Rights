@@ -68,3 +68,4 @@ gem 'refile-mini_magick'
 gem 'active_hash'
 gem 'kaminari'
 gem 'devise'
+

@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_09_12_120502) do
 
   create_table "disks", force: :cascade do |t|
-    t.string "disk", null: false
+    t.string "disk"
     t.integer "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 2018_09_12_120502) do
 
   create_table "musics", force: :cascade do |t|
     t.integer "disk_id", null: false
-    t.string "music_title", null: false
-    t.string "songwriter", null: false
-    t.string "composer", null: false
+    t.string "music_title"
+    t.string "songwriter"
+    t.string "composer"
     t.integer "sequence", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

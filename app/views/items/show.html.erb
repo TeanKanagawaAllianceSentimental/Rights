@@ -1,2 +1,44 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="show-content" style="padding-top: 180px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-1">
+				<h3 class="title" style="font-size: 50px; padding-bottom: 50px; margin-top: 0;" >
+					Rights <br>ONLINE SHOP</h3>
+				<table class="table table-inverce">
+					<tbody>
+						<tr>
+							<th>Artist</th>
+							<td>ANGEREM</td>
+						</tr>
+						<tr>
+							<th>Title</th>
+							<td>Ulaha=Lover</td>
+						</tr>
+						<tr>
+							<th>Price</th>
+							<td>¥ 1,980</td>
+						</tr>
+						<tr>
+							<th>Release</th>
+							<td>2018/5/15</td>
+						</tr>
+						<tr>
+							<th>Single/Albam</th>
+							<td>シングル</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="action" style="padding-top: 40px;">
+					<span><%= link_to root_path, class: 'btn btn-warning col-md-12' do %>
+						<i class="fas fa-cart-plus"></i>
+						<% end %>
+					</span>
+				</div>
+			</div>
+			<div class="col-md-6 col-md-offset-1">
+				<%= image_tag("img/idol1.jpg", class: "img-thumbnail") %>
+			</li>
+			</div>
+		</div>
+	</div>
+</div>
