@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+
 /*ハンバーガーメニューJS*/
 /*水平ラインJS*/
 $(function() {
@@ -64,5 +65,9 @@ $(function() {
     });
 
     /*追加ボタン*/
+$(function() {
+  $(".trigger").click(function() {
+    $(".menu").toggleClass("active");
+  });
 });
 

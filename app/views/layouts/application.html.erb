@@ -84,5 +84,6 @@
         </nav>
       </div>
     <%= yield %>
+     <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
   </body>
 </html>
