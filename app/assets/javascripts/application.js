@@ -63,13 +63,5 @@ $(function() {
         $(this).next().is(":visible") || $(this).next().slideDown(),
         e.stopPropagation()
     })
-});
 
-$(function() {
-	$(document).on('click','.plus-btn',function(){
-		$('body').toggleClass('menu-open');
-	});
-	$("document").ready(function(){
-		$(".theTarget").skippr()
-	});
 });

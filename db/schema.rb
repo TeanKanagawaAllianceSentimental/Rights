@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_054343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  
+
   create_table "disks", force: :cascade do |t|
     t.string "disk", null: false
     t.integer "item_id", null: false
