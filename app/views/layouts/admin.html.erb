@@ -1,0 +1,81 @@
+<html>
+<head>
+	<%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body class="sidebar-fixed aside-menu-fixed aside-menu-hidden">
+	<header>
+		<div class="nav">
+			<nav class="navbar navbar-fixed-top" id="admin-navbar">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li id="fat-menu" class="dropdown">
+			                   <a href="" class="dropdown-toggle" data-toggle="dropdown">
+			                     商品情報 <b class="caret"></b>
+			                   </a>
+			                   <ul class = "dropdown-menu">
+			                   	  <li><%= link_to "Front Top", root_path %></li>
+			                      <li><%= link_to "管理者登録", root_path %></li>
+			                      <li><%= link_to "管理者情報編集", root_path %></li>
+			                      <li><%= link_to "会員情報編集", root_path %></li>
+			                      <li><%= link_to "sale_items", root_path %></li>
+			                      <li><%= link_to "orderhistory", root_path %></li>
+			                      <li><%= link_to "applicants", root_path %></li>
+			                      <li><%= link_to "applications", root_path %></li>
+			                      <li><%= link_to "cart", root_path%></li>
+			                      <li><%= link_to "sales", root_path%></li>
+			                   </ul>
+			                </li>
+			                <button type="button" id="sidebar" class="btn btn-info">
+				                <span>Toggle Sidebar</span>
+				            </button>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<div class="wrapper">
+		<aside class="sidebar" style="top: 51px;">
+		  <div id="leftside-navigation" class="nano">
+		    <ul class="nano-content">
+		      <li>
+		      	<li><%= link_to "Admin Top", root_path %></li>
+		      </li>
+		      <li class="sub-menu">
+		        <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>Members</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+		        <ul>
+		        	<li><%= link_to "All Members", root_path %></li>
+		        </ul>
+		      </li>
+		      <li class="sub-menu">
+		        <a href="javascript:void(0);"><i class="fas fa-compact-disc"></i><span>Items</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+		        <ul>
+		        	<li><%= link_to "All Items", admin_rights_path %></li>
+		        	<li><%= link_to "Item Post", new_admin_right_path %></li>
+		        	<li><%= link_to "music", admin_musics_path %></li>
+		        </ul>
+		      </li>
+		      <li class="sub-menu">
+		        <a href="javascript:void(0);"><i class="fas fa-shopping-cart"></i><span>Sells</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+		        <ul>
+		        	<li><%= link_to "All Sells Items", admin_rights_path %></li>
+		        </ul>
+		      </li>
+		      <li class="sub-menu">
+		        <a href="javascript:void(0);"><i class="fas fa-users"></i><span>Applicants</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+		        <ul>
+		        	<li><%= link_to "All applicants", admin_rights_path %></li>
+					<li><%= link_to "Members of Applicants", admin_rights_path %></li>
+		        </ul>
+		      </li>
+		    </ul>
+		  </div>
+		</aside>
+	</div>
+	<%= yield %>
+</body>
