@@ -1,2 +1,13 @@
-<h1>Admin::Musics#new</h1>
-<p>Find me in app/views/admin/musics/new.html.erb</p>
+<div class="music" style="padding-top: 100px">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-9">
+				<%= form_for @music, url: admin_musics_path do |music| %>
+				<%= render 'admin/musics/form', music:music %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
