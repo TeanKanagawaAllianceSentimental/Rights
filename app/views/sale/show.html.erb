@@ -25,11 +25,10 @@
 						<div class="btn-group">
 						<%= form_for(cart) do |f| %>
 						  <select class="form-control">
-					 		<%= f.number_field sale_iltem :quantity,min:1,max:10,step:10 %>
+					 		<%= f.number_field sale_iltem :quantity,min:1,max:10,step:5 %>
 						  </select>
 						</div>
-						<% end %>  
-
+						<% end %>
 					</td>
 				  </tr>
 				</tbody>
@@ -43,8 +42,7 @@
 			    <div class="form-check">
 			      <%= form_for(@sale) do |f| %>
 			      <div class="field">
-			        <label><%= f.radio_button :,  class: :rd %>楽曲利用申請をします</label>
-			        <label><%= f.radio_button :, class: :rd %>登録の申請者で楽曲利用申請をします</label>    <!-- salesテーブルに申請の有無カラム追加する -->
+			      	<%= f.select カラム名, [["楽曲利用申請をします”, "0”], ["登録の申請者で楽曲利用申請をします”, "1”], ["楽曲利用申請をしません”, "2”]] %>
 			      </div>
 			      <% end %>
 			    </div>

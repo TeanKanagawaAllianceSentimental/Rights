@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
 	belongs_to :member_id, dependent: :destroy
 
   def self.add_item(item_id, member_id, session_id)
-    if session[:member_id] = member_id
+    if session[:member_id] = current_smember_id
       cart = Cart.find_or_initialize_by(item_id, member_id, session_id)
     else
       render # ログイン画面へ

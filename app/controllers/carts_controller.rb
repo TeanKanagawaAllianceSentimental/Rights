@@ -22,10 +22,8 @@ class CartsController < ApplicationController
 	def destroy
 		@cart.destroy
     flash[:success] = "#{@cart.item.cd_title} をカートから削除しました。"
-    redirect_to 
+    redirect_to
 	end
-
-end
 
 # ec tripからの丸パクリ
   # before_action :find_cart, only: [:update, :destroy]
@@ -87,3 +85,5 @@ end
   #     raise ActiveRecord::RecordNotFound if @cart.nil?
   #   end
   # end
+end
+

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+  </div>
+  <div class="col-xs-4">
+
+          <h2>会員情報編集</h2>
+
+          <%= form_for(@address) do |f| %>
+            <div class="field">
+              <%= f.fields_for :address do |corporate| %>
+               <%= corporate.label :corporate_name, "会社名" %><br>
+               <%= corporate.text_field :corporate_name, class: "form-control" %>
+               <% end %>
+             </div>
+
+            <div class="actions">
+              <%= f.submit "更新する" %>
+            </div>
+          <% end %>
+
+          <%= link_to "Back", :back %>
+      </div>
+    </div>
+</div>
