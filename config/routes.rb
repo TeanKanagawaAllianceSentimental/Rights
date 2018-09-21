@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   get 'items/index'
   get 'items/show'
   root 'top#index'
+
   devise_for :admins, controllers: {
         sessions: 'admins/sessions',
         registrations: 'admins/registrations'
       }
+
   devise_for :members, controllers: {
       sessions: 'members/sessions',
       registrations: 'members/registrations',
@@ -16,9 +18,11 @@ Rails.application.routes.draw do
   }
 
 
+
   namespace :front do
   resources :members, only:[:index, :edit]
   end
+
 
   namespace :admin, path: 'admin' do
   	resources :items
@@ -26,19 +30,6 @@ Rails.application.routes.draw do
     resources :rights, controller: 'genres'
     resources :musics
   end
-
-
-  namespace :admin do
-  	resources :items, except:[:show]
-    resources :disk, only:[:new, :create, :edit, :update, :destroy]
-    resources :genres, only:[:index, :new, :create, :edit, :update, :destroy]
-    resources :sale_items, only:[:index,:show] do
-      member do
-        get :orderhistory
-      end
-    end
-  end
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -55,7 +46,8 @@ Rails.application.routes.draw do
       get :submitted
     end
   end
-    resources :list_of_performed_pieces, only:[:new, :create, :show]
+
+  resources :list_of_performed_pieces, only:[:new, :create, :show]
 
   resources :cart, only:[:create, :update, :destroy]
   resources :sales, except:[:new, :destroy]
@@ -68,5 +60,4 @@ Rails.application.routes.draw do
   end
 
 end
-
 

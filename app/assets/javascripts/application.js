@@ -62,13 +62,7 @@ $(function() {
         $("#leftside-navigation ul ul").slideUp(),
         $(this).next().is(":visible") || $(this).next().slideDown(),
         e.stopPropagation()
-    });
-
-    /*追加ボタン*/
-$(function() {
-  $(".trigger").click(function() {
-    $(".menu").toggleClass("active");
-  });
+    })
 });
 
 $(function() {
