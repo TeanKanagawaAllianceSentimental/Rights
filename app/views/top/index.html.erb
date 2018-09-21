@@ -1,92 +1,95 @@
-<div class="body">
-	<div class="main-visual">
-		<h1 class="main-title">Rights</h1>
-		<div class="menu">
-			<div class="btn trigger">
-				<span class="line"></span>
-			</div>
-			<div class="icons">
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-codepen"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-facebook"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-google-plus"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-twitter"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-dribbble"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-linkedin"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-github"></i>
-			      </div>
-			    </div>
-			    <div class="rotater">
-			      <div class="btn btn-icon">
-			        <i class="fa fa-behance"></i>
-			      </div>
-			    </div>
-			</div>
-		</div>
-	</div>
-
-	<div class="main">
-		<div class="blog-right">
-			<h2 class="right">CD All</h2>
-			<p>CD一覧情報</p>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<table>
-							<% @items.each do |item| %>
-							<tr>
-								<td><%= attachment_image_tag item, :jacket_image, :fill, 100,100, format: 'jpeg' %></td>
-							</tr>
-							<% end %>
-						</table>
+<div class="index-body">
+	<div class="container">
+		<div class="row">
+			<div class="main-visual">
+				<div class="menu">
+					<div class="btn trigger"></div>
+					<div class="icons">
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
+					    <div class="rotater">
+					      <div class="btn btn-icon">
+					      </div>
+					    </div>
 					</div>
+				</div>
+				<div class="col-md-12" id="scroll">
+					<span>SCROLL</span>
+					<div class="line"></div>
 				</div>
 			</div>
 		</div>
-		<div class="blog-left">
-			<h2 class="left">J-POP</h2>
-			<p>日本</p>
-		</div>
-		<div class="blog-right">
-			<h2 class="right">Sound tracks</h2>
-			<p>サウンドトラック</p>
-		</div>
-		<div class="blog-left">
-			<h2 class="left">Anime</h2>
-			<p>アニメ</p>
-		</div>
-		<div class="blog-right">
-			<h2 class="right">Classics/Jazz</h2>
-			<p>クラシック・ジャズ</p>
-		</div>
-		<div class="blog-left">
-			<h2 class="left">World</h2>
-			<p>世界</p>
+
+		<div class="main">
+			<div class="blog-right">
+				<h2 class="right">CD All</h2>
+				<p>CD一覧情報</p>
+				<div id="horizon1"></div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<table>
+								<% @items.each do |item| %>
+								<tr>
+									<td><%= attachment_image_tag item, :jacket_image, :fill, 100,100, format: 'jpeg' %></td>
+								</tr>
+								<% end %>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="blog-left">
+				<h2 class="left">J-POP</h2>
+				<p>日本</p>
+				<div id="horizon2"></div>
+			</div>
+			<div class="blog-right">
+				<h2 class="right">Sound tracks</h2>
+				<p>サウンドトラック</p>
+				<div id="horizon3"></div>
+			</div>
+			<div class="blog-left">
+				<h2 class="left">Anime</h2>
+				<p>アニメ</p>
+				<div id="horizon4"></div>
+			</div>
+			<div class="blog-right">
+				<h2 class="right">Classics/Jazz</h2>
+				<p>クラシック・ジャズ</p>
+				<div id="horizon5"></div>
+			</div>
+			<div class="blog-left">
+				<h2 class="left">World</h2>
+				<p>世界</p>
+				<div id="horizon6"></div>
+			</div>
 		</div>
 	</div>
 </div>

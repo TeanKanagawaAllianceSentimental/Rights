@@ -2,6 +2,10 @@ class Sale < ApplicationRecord
   belongs_to :member_id
   has_many :sale_item_id, dependent: :destroy
 
+# <<<<<<< HEAD
+#   def total_price
+#     sale = Sale.mamber.session_id
+#   end
 end
 
 

@@ -1,2 +1,113 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="item" style="padding-top: 100px;">
+	<div class="container">
+		<div class="row" style="padding-bottom: 100px;">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-9">
+				<h2 class="title" style="padding-bottom: 20px">商品編集</h2>
+					<%= form_for @genre, url: admin_right_path(@genre) do |f| %>
+					<div class="form-group">
+						<div class="field" style="padding-bottom: 20px">
+							<%= f.label :ジャンル%>
+							<%= f.select :genre, [["J-POP","J-POP"],["Soundtracks","Soundtracks"],["Anime","Anime"],["Classics/Jazz","Classics/Jazz"],["World","world"]] %>
+						</div>
+					</div>
+					<%= f.fields_for :items do |item| %>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :タイトル%>
+								<%= item.text_field :cd_title, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :ジャケット写真 %>
+								<%= item.attachment_field :jacket_image %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :販売形態 %>
+								<%= item.select :package, [["シングル","1"],["アルバム","2"]] %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :アーティスト名 %>
+								<%= item.text_field :artist, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :レーベル %>
+								<%= item.text_field :label, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :価格 %>
+								<%= item.number_field :unit_price, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :在庫数 %>
+								<%= item.number_field :stock_quantity, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :見出し %>
+								<%= item.text_field :caption, class: 'form-control'  %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :詳細情報 %>
+								<%= item.text_area :about, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="field" style="padding-bottom: 20px">
+								<%= item.label :ステータス%>
+								<%= item.select :status, [["未公開","未公開"],["販売中","販売中"],["販売中止","販売中止"]], class: 'col-xs-6' %>
+							</div>
+						</div>
+						<%= item.fields_for :disks do |disk| %>
+							<div class="field">
+								<%= disk.label :disk %>
+								<%= disk.select :disk, [["1","1"],["2","2"],["3","3"]] %>
+							</div>
+							<%= disk.fields_for :musics do |music| %>
+								<div class="form-group">
+									<div class="field" style="padding-bottom: 20px">
+										<%= music.label :曲名 %>
+										<%= music.text_field :music_title %>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="field" style="padding-bottom: 20px">
+										<%= music.label :作曲者 %>
+										<%= music.text_field :composer %>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="field" style="padding-bottom: 20px">
+										<%= music.label :作詞者 %>
+										<%= music.text_field :songwriter %>
+									</div>
+								</div>
+							<% end %>
+							<%= link_to_add_fields "追加する", disk, :musics %>
+						<% end %>
+					<% end %>
+					<div class="action" style="padding-bottom: 20px">
+						<div class='col-xs-12'>
+							<%= f.submit "Create", class: 'btn btn-success btn-block' %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
