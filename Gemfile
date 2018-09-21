@@ -69,4 +69,3 @@ gem 'active_hash','~> 1.5.3'
 gem 'kaminari'
 
 gem 'devise'
-

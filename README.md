@@ -23,7 +23,9 @@ Things you may want to cover:
 
 * ...
               <%= f.text_field :corporate_name, autofocus: true, autocomplete: "corporate_name",class: "form-control",placeholder:"会社名を入力して下さい。" %>
-t.string "corporate_name"
+
+
+    t.string "corporate_name"
     t.string "corporate_phonetic"
     t.string "department"
     t.string "contact_person_name"

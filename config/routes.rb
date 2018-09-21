@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
 
+  get 'sale/show' => 'sale#show'
+
+  get 'items/index'
+  get 'items/show'
+  root 'top#index'
 
   devise_for :admins, controllers: {
         sessions: 'admins/sessions',
         registrations: 'admins/registrations'
       }
-  devise_for :members, controllers: {
-  		sessions: 'members/sessions',
-  		registrations: 'members/registrations',
-  		passwords: 'members/passwords'
-  }
 
-  get 'items/index'
-  get 'items/show'
-  root 'top#index'
+  devise_for :members, controllers: {
+      sessions: 'members/sessions',
+      registrations: 'members/registrations',
+      passwords: 'members/passwords'
+  }
 
   namespace :admin, path: 'admin' do
   	resources :items
@@ -35,7 +37,8 @@ Rails.application.routes.draw do
       get :submitted
     end
   end
-    resources :list_of_performed_pieces, only:[:new, :create, :show]
+
+  resources :list_of_performed_pieces, only:[:new, :create, :show]
 
   resources :cart, only:[:create, :update, :destroy]
   resources :sales, except:[:new, :destroy]
@@ -43,4 +46,9 @@ Rails.application.routes.draw do
   resources :shipping_address, except:[:new]
   resources :pay_selects, only:[:create, :show]
 
+  namespace :front do
+  resources :members, only:[:index, :edit]
+  end
+
 end
+

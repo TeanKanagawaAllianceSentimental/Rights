@@ -65,3 +65,11 @@ $(function() {
     })
 });
 
+$(function() {
+	$(document).on('click','.plus-btn',function(){
+		$('body').toggleClass('menu-open');
+	});
+	$("document").ready(function(){
+		$(".theTarget").skippr()
+	});
+});
