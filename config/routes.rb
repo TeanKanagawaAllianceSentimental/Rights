@@ -20,20 +20,7 @@ Rails.application.routes.draw do
     resources :disk
     resources :rights, controller: 'genres'
     resources :musics
-
-  namespace :admin do
-  	resources :items, except:[:show]
-    resources :disk, only:[:new, :create, :edit, :update, :destroy]
-    resources :genres, only:[:index, :new, :create, :edit, :update, :destroy]
-    resources :sale_items, only:[:index,:show] do
-      member do
-        get :orderhistory
-      end
-    end
   end
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :applicants do
     member do
