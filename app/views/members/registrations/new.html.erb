@@ -17,8 +17,8 @@
                <%= corporate.text_field :contact_person_phonetic, class: "form-control" %>
                <%= corporate.label :postal_code, "郵便番号" %><br>
                <%= corporate.text_field :postal_code, class: "form-control" %>
-               <%= corporate.label :address2, "市区町村/番地" %><br>
-               <%= corporate.text_field :address2, class: "form-control" %>
+               <%= corporate.label :address1, "市区町村/番地" %><br>
+               <%= corporate.text_field :address1, class: "form-control" %>
                <% end %>
              </div>
            </div>
@@ -31,8 +31,9 @@
                <%= corporate.text_field :department, class: "form-control" %>
                <%= corporate.label :phone, "電話番号" %><br>
                <%= corporate.text_field :phone, class: "form-control" %>
-               <%= corporate.label :prefecture_id, "都道府県" %><br>
-               <%= corporate.select :prefecture_id, Prefecture.all.map{|p| [p.name, p.id]} %>
+               
+               <%= corporate.label :address2, "その他" %><br>
+               <%= corporate.text_field :address2, class: "form-control" %>
                <% end %>
              </div>
            </div>

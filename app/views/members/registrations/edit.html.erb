@@ -13,6 +13,8 @@
               <%= f.fields_for :address do |corporate| %>
                <%= corporate.label :corporate_name, "会社名" %><br>
                <%= corporate.text_field :corporate_name, class: "form-control" %>
+               <%= corporate.label :corporate_phonetic, "ふりがな" %><br>
+               <%= corporate.text_field :corporate_phonetic, class: "form-control" %>
                <% end %>
              </div>
 

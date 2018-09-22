@@ -1,26 +1,8 @@
 class ApplicationController < ActionController::Base
-
-	# protect_from_forgery with: :exception
-
-	def after_sign_up_path_for(resource)
-		edit_member_registration_path
-	end
-	def after_sign_out_path_for(resource)
-		new_member_registration_path
-	end
-
-	private
-	def sign_in_required
-		redirect_to new_member_registration_url unless member_signed_in?
-	end
-	def sign_up_required
-		redirect_to new_member_registration_url unless member_signed_up?
-	end
-	def sign_in_required
-		redirect_to admin_members_url unless admin_signed_in?
-	end
-	def sign_up_required
-		redirect_to admin_members_url unless admin_signed_up?
-	end
-
+before_action :configure_permitted_parameters, if: :devise_controller?
+  def configure_permitted_parameters
+    added_attrs = [addresses_attributes: [:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic,:department, :phone, :postal_code, :address1, :address2, :email, :password, :password_confirmation]]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    # devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
 end
