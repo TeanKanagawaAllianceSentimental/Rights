@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
 
-	protect_from_forgery with: :exception
+	# protect_from_forgery with: :exception
 
-	# def after_sign_in_path_for(resource)
-	# 	edit_front_member_path
-	# end
 	def after_sign_up_path_for(resource)
 		edit_member_registration_path
 	end
@@ -19,4 +16,11 @@ class ApplicationController < ActionController::Base
 	def sign_up_required
 		redirect_to new_member_registration_url unless member_signed_up?
 	end
+	def sign_in_required
+		redirect_to admin_members_url unless admin_signed_in?
+	end
+	def sign_up_required
+		redirect_to admin_members_url unless admin_signed_up?
+	end
+
 end
