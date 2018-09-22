@@ -68,7 +68,7 @@
 	<%= item.fields_for :disks do |disk| %>
 		<div class="field">
 			<%= disk.label :disk %>
-			<%= disk.select :disk, [["1","1"],["2","2"],["3","3"]] %>
+			<%= disk.select :disk, [["1","1"],["2","2"],["3","3"]], class: 'select_action' %>
 		</div>
 		<%= disk.fields_for :musics do |music| %>
 			<%= render 'admin/musics/form', music: music %>

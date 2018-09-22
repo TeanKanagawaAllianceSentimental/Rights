@@ -1,20 +1,32 @@
 <fieldset>
-	<div class="form-group">
-		<div class="field" style="padding-bottom: 20px">
-			<%= music.label :曲名 %>
-			<%= music.text_field :music_title %>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="field" style="padding-bottom: 20px">
-			<%= music.label :作曲者 %>
-			<%= music.text_field :composer %>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="field" style="padding-bottom: 20px">
-			<%= music.label :作詞者 %>
-			<%= music.text_field :songwriter %>
-		</div>
-	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="field" style="padding-right: 20px;">
+						<%= music.label :曲名 %>
+						<%= music.text_field :music_title %>
+					</div>
+				</td>
+				<td>
+					<div class="field" style="padding-right: 20px;">
+						<%= music.label :作曲者 %>
+						<%= music.text_field :composer %>
+					</div>
+				</td>
+				<td>
+					<div class="field" style="padding-right: 20px;">
+						<%= music.label :作詞者 %>
+						<%= music.text_field :songwriter %>
+					</div>
+				</td>
+				<td>
+					<div class="field">
+						<%= music.hidden_field :_destroy %>
+						<%= link_to "削除", '#', class: "remove_fields"%>
+					</div>
+				</td>
+			</tr>
+		</td>
+	</table>
 </fieldset>
