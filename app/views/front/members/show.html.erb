@@ -1,0 +1,50 @@
+<div class="container" style="padding-top: 100px;">
+	<div class="row">
+		<div class="col-xs-4">
+		</div>
+		<div class="col-xs-4">
+			<h1>会員情報詳細画面だよー</h1>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>会社名</th>
+					<td><%= @address.corporate_name %></td>
+				</tr><br>
+				<tr>
+					<th>ふりがな(会社名)</th>
+					<td><%= @address.corporate_phonetic %></td>
+				</tr>
+				<tr>
+					<th>ご担当者様</th>
+					<td><%= @address.contact_person_name %></td>
+				</tr><br>
+				<tr>
+					<th>ふりがな(ご担当者様)</th>
+					<td><%= @address.contact_person_phonetic %></td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td><%= @address.phone %></td>
+				</tr><br>
+				<tr>
+					<th>郵便番号</th>
+					<td><%= @address.postal_code %></td>
+				</tr>
+				<tr>
+					<th>市区町村/番地</th>
+					<td><%= @address.address1 %></td>
+				</tr><br>
+				<tr>
+					<th>その他</th>
+					<td><%= @address.address2 %></td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td><%= @member.email %></td>
+				</tr>
+			</tbody>
+		</table>
+		<%= link_to "会員情報編集", edit_front_member_path %>
+	  </div>
+	</div>
+</div>

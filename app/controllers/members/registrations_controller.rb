@@ -4,7 +4,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   def after_sign_up_path_for(resource)
-    edit_member_registration_path
+    front_member_path(resource)
   end
 
   # GET /resource/sign_up
@@ -42,16 +42,17 @@ class Members::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+
   # GET /resource/edit
   def edit
-    # @member = Address.find(params[:id])
+
   end
 
   # PUT /resource
   def update
-    # member = Address.find(params[:id])
-    # member.update(address_params)
-    # redirect_to front_members_path
+    @address = Address.find(params[:id])
+    @address.update(address_params)
+    redirect_to front_members_path
   end
 
   # DELETE /resource
