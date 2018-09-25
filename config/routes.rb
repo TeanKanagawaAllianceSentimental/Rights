@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   resources :members, only:[:index, :show, :edit]
   end
 
-
   namespace :admin, path: 'admin' do
     resources :members, only:[:index, :show]
   	resources :items
@@ -30,7 +29,6 @@ Rails.application.routes.draw do
     resources :musics
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :applicants do
     member do
