@@ -1,0 +1,14 @@
+<fieldset>
+	<div class="field">
+		<%= disk.label :disk %>
+		<%= disk.select :disk, [["1","1"],["2","2"],["3","3"]] %>
+	</div>
+	<%= disk.fields_for :musics do |music| %>
+		<%= render 'admin/musics/form', music: music %>
+	<% end %>
+	<%= link_to_add_fields "追加する", disk, :musics %>
+	<div class="field">
+		<%= disk.hidden_field :_destroy %>
+		<%= link_to "disk削除", '#', class: "remove_disk_fields"%>
+	</div>
+<fieldset>

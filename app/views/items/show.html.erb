@@ -8,23 +8,23 @@
 					<tbody>
 						<tr>
 							<th>Artist</th>
-							<td>ANGEREM</td>
+							<td><%= @item.artist %></td>
 						</tr>
 						<tr>
 							<th>Title</th>
-							<td>Ulaha=Lover</td>
+							<td><%= @item.cd_title %></td>
 						</tr>
 						<tr>
 							<th>Price</th>
-							<td>¥ 1,980</td>
+							<td>¥<%= @item.unit_price %></td>
 						</tr>
 						<tr>
 							<th>Release</th>
-							<td>2018/5/15</td>
+							<td><%= japan_time(@item.created_at) %></td>
 						</tr>
 						<tr>
 							<th>Single/Albam</th>
-							<td>シングル</td>
+							<td><%= @item.package %></td>
 						</tr>
 					</tbody>
 				</table>
@@ -36,8 +36,7 @@
 				</div>
 			</div>
 			<div class="col-md-6 col-md-offset-1">
-				<%= image_tag("img/idol1.jpg", class: "img-thumbnail") %>
-			</li>
+				<%= attachment_image_tag @item, :jacket_image, :fill, 500, 440, format: 'jpeg', class: "thumbnail" %>
 			</div>
 		</div>
 	</div>

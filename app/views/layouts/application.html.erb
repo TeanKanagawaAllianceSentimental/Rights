@@ -15,8 +15,18 @@
         <nav class="nav navbar-default navbar-fixed-top">
           <div class="container">
             <ul class="pull-left">
-              <h3>Rights</h3>
+              <%= link_to root_path, :style => "text-decoration: none;" do %>
+                <h3>Rights</h3>
+              <% end %>
             </ul>
+            <form class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
+              <div class="form-group">
+                <%= form_tag genres_path, :method => 'get' do %>
+                  <%= text_field_tag :search, params[:search] %>
+                  <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+                <% end %>
+              </div>
+            </form>
             <ul class="nav navbar-nav navbar-right" style="padding-top: 5px;">
               <% if member_signed_in? %>
                 <li><%= link_to 'My Page', front_members_path, class: "my_page" %></li>
@@ -45,7 +55,7 @@
                   <i class="fab fa-expeditedssl fa-2x"></i>
                   <% end %>
                 </li>
-                <li><%= link_to items_show_path do %>
+                <li><%= link_to root_path do %>
                   <i class="fas fa-shopping-cart fa-2x"></i>
                   <% end %>
                 </li>
@@ -64,27 +74,12 @@
                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
                      フロント画面作業用リンク <b class="caret"></b></a>
                    <ul class = "dropdown-menu">
-                      <li><%= link_to "商品一覧", items_index_path %></li>
-                      <li><%= link_to "商品詳細", items_show_path%></li>
-                      <li><%= link_to "会員登録", root_path %></li>
-                      <li><%= link_to "ログイン", root_path %></li>
-                      <li><%= link_to "会員情報編集", root_path %></li>
-                      <li><%= link_to "sale_items", root_path %></li>
-                      <li><%= link_to "orderhistory", root_path %></li>
-                      <li><%= link_to "applicants", root_path %></li>
-                      <li><%= link_to "applications", root_path %></li>
-                      <li><%= link_to "cart", root_path%></li>
-                      <li><%= link_to "sales", root_path%></li>
-                      <li><%= link_to "shipping_address", root_path%></li>
-                      <li><%= link_to "pay_select", root_path%></li>
+                      <li><%= link_to "商品一覧", items_path %></li>
                    </ul>
-                 </li>
               <% end %>
             </ul>
         </nav>
       </div>
     <%= yield %>
-     <%#= link_to "ログアウト", destroy_member_session_path, method: :delete %>
-     <!-- undefined local variable or method `destroy_member_session_pathが出たので、コメントアウトhori -->
   </body>
 </html>

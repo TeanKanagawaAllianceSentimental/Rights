@@ -1,89 +1,105 @@
 <div class="container">
   <div class="row">
+    <div class="main-visual">
   <%#= render 'users/frame1', user: @user, book: @book %>
-    <div class="col-md-12">
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <h2>お届け先住所の選択</h2>
-        <% @addresses.each do |address| %>
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">法人名 団体名</th>
-              <td><% @address.organisation_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">郵便番号</th>
-              <td><% @address.shipping_postal_code %></td>
-            </tr>
-            <tr>
-              <th scope="row">住所1</th>
-              <td><% @address.address1 %></td>
-            </tr>
-            <tr>
-              <th scope="row">ビル・マンション名</th>
-              <td><% @address.address2 %></td>
-            </tr>
-            <tr>
-              <th scope="row">ご担当部署</th>
-              <td><% @address.department %></td>
-            </tr>
-            <tr>
-              <th scope="row">ご担当者名</th>
-              <td><% @address.contact_person %></td>
-            </tr>
-            <tr>
-              <th scope="row">電話番号</th>
-              <td><% @address.user_telephon %></td>
-            </tr>
-          </tbody>
-        <%= form_for(@sale) do |f| %>
-          <% f.submit 'この住所に配送する', class: "btn btn-primary" %>
-        <% end %>
-        <% link_to "編集", '住所編集_path'(address.member_id) %>
-        <% link_to "削除", '住所削除_path', method: :delete, "data-confirm" => "" %>
-        </table>
-        <% end %>
-        <br><br><br>
-      <h3>新しい配送先の登録</h3>
-      <div class="form-body">
-        <%= form_for (@address) do |form| %>
-          <%= fields_for(@sale) do |i| %>
-            <div class="form-group">
-              <h4>会社名 団体名</h4>
-              <%= f.text_field :organisation_name %>
-            </div>
-            <div class="form-group">
-              <h4>郵便番号</h4>
-              <%= f.text_field :shipping_postal_code %>
-            </div>
-            <div class="form-group">
-              <h4>住所</h4>
-              <%= f.text_field :address1 %>
-            </div>
-            <div class="form-group">
-              <h4>ビル・マンション名</h4>
-              <%= f.text_field :address2 %>
-            </div>
-            <div class="form-group">
-              <h4>担当部署</h4>
-              <%= f.text_field :department %>
-            </div>
-            <div class="form-group">
-              <h4>担当者</h4>
-              <%= f.text_field :contact_person %>
-            </div>
-            <div class="form-group">
-              <h4>電話番号</h4>
-              <%= f.text_field :user_telephone %>
-            </div>
-            <div class="form-group">
-              <%= f.submit "この住所を使う", class:"btn btn-md btn-primary" %>
-            </div>
+      <div class="col-md-12">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <h2>お届け先住所の選択</h2><br>
+          <% @addresses.each do |address| %>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">法人名 団体名</th>
+                <td><% @address.organisation_name %></td>
+              </tr>
+              <tr>
+                <th scope="row">郵便番号</th>
+                <td><% @address.shipping_postal_code %></td>
+              </tr>
+              <tr>
+                <th scope="row">住所1</th>
+                <td><% @address.shipping_address1 %></td>
+              </tr>
+              <tr>
+                <th scope="row">ビル・マンション名</th>
+                <td><% @address.shipping_address2 %></td>
+              </tr>
+              <tr>
+                <th scope="row">ご担当部署</th>
+                <td><% @address.department %></td>
+              </tr>
+              <tr>
+                <th scope="row">ご担当者名</th>
+                <td><% @address.contact_person %></td>
+              </tr>
+              <tr>
+                <th scope="row">電話番号</th>
+                <td><% @address.user_telephone %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to "編集", 'edit_sale_shipping(sale_shipping.id)', class: "btn btn-link" %>
+          <%= link_to "削除", '#', class: "btn btn-link", method: :delete, "data-confirm" => "" %>
+          <%= form_for @sale, url: {controller: :sale_shipping, action: :create} do |f| %>
+            <% f.submit 'この住所に配送する', class: "btn btn-md btn-info" %>
           <% end %>
-        <% end %>
-        <br>
+          <% end %>
+          <br><br><br>
+        <h3>新しい配送先の登録</h3><br>
+        <div class="form-body">
+          <%= form_for @address, url: {controller: :sale_shipping, action: :create}, class: "form-horizontal" do |f| %>
+            <%#= fields_for(@sale) do |i| %>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">会社名 団体名</label>
+                <div class="col-sm-10">
+                <%= f.text_field :organisation_name, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">郵便番号</label>
+                <div class="col-sm-10">
+                <%= f.text_field :shipping_postal_code, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">住所</label>
+                <div class="col-sm-10">
+                <%= f.text_field :shipping_address1, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">ビル・マンション名</label>
+                <div class="col-sm-10">
+                <%= f.text_field :shipping_address2, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">担当部署</label>
+                <div class="col-sm-10">
+                <%= f.text_field :department, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">担当者</label>
+                <div class="col-sm-10">
+                <%= f.text_field :contact_person, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">電話番号</label>
+                <div class="col-sm-10">
+                <%= f.text_field :user_telephone, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.submit "この住所を使う", class:"btn btn-md btn-info" %>
+              </div>
+            <%# end %>
+          <% end %>
+          <br>
+        </div>
     </div>
   </div>
 </div>

@@ -13,9 +13,9 @@
 					<tbody>
 						<% @musics.each do |m| %>
 						<tr>
-							<td><%= music.music_title %></td>
-							<td><%= music.composer %></td>
-							<td><%= music.songwriter %></td>
+							<td><%= m.music_title %></td>
+							<td><%= m.composer %></td>
+							<td><%= m.songwriter %></td>
 						</tr>
 						<% end %>
 					</tbody>

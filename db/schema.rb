@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 2018_09_20_054343) do
 
-
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
     t.string "corporate_name"
@@ -45,13 +44,14 @@ ActiveRecord::Schema.define(version: 2018_09_20_054343) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-
   create_table "carts", force: :cascade do |t|
     t.string "session_id"
     t.integer "item_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.integer "unit_price"
   end
 
   create_table "credit_cards", force: :cascade do |t|
@@ -104,10 +104,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_054343) do
     t.datetime "remember_created_at"
     t.datetime "deleted_at"
     t.string "member_name"
-    t.integer "main_address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "corporate_name"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
@@ -121,7 +119,6 @@ ActiveRecord::Schema.define(version: 2018_09_20_054343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
   create_table "sale_invoices", force: :cascade do |t|
     t.string "bill_to"
@@ -168,6 +165,5 @@ ActiveRecord::Schema.define(version: 2018_09_20_054343) do
     t.integer "shipping_address_id"
     t.integer "Application"
   end
-
 
 end

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'sale/show' => 'sale#show'
 
   get 'items/index'
   get 'items/show'
@@ -30,6 +29,9 @@ Rails.application.routes.draw do
   end
 
 
+  resources :genres
+  resources :items
+
   resources :applicants do
     member do
       get :application1
@@ -46,11 +48,23 @@ Rails.application.routes.draw do
 
   resources :list_of_performed_pieces, only:[:new, :create, :show]
 
-  resources :cart, only:[:create, :update, :destroy]
-  resources :sales, except:[:new, :destroy]
+  resources :carts, only:[:create, :update, :destroy]
+  resources :sale, except:[:new, :destroy] do
+    member do
+      get :orderplaced
+      patch :continue_purchase
+      put :continue_purchase
+      post :continue_purchase
+      patch :confirm_purchase
+      put :confirm_purchase
+      post :confirm_purchase
+    end
+  end
   resources :sale_items, only:[:create]
-  resources :shipping_address, except:[:new]
+  resources :sale_shipping, except:[:new]
   resources :pay_selects, only:[:create, :show]
+  resources :credit_cards
+  resources :sele_invoices
 
 end
 
