@@ -2,7 +2,6 @@ class Admin::GenresController < Admin::AdminBase
   before_action :set_genre, only: [:edit, :update, :destroy]
   def index
     @genres = Genre.all
-    @items = Item.all
   end
 
   def show
@@ -42,7 +41,7 @@ class Admin::GenresController < Admin::AdminBase
   end
 
   def genre_params
-  	params.require(:genre).permit(:id, :genre, items_attributes:[:cd_title, :genre_id, :package, :artist, :jacket_image, :label, :unit_price, :caption, :about, :stock_quantity, :status, :id], disks_attributes:[:id, :disk, :item_id], musics_attributes:[:id, :disk_id, :muscic_title, :songwriter, :composer])
+  	params.require(:genre).permit(:id, :genre, items_attributes:[:cd_title, :genre_id, :package, :artist, :jacket_image, :label, :unit_price, :caption, :about, :stock_quantity, :status, :id, disks_attributes:[:id, :disk, :item_id, musics_attributes:[:id, :disk_id, :music_title, :songwriter, :composer]]])
   end
 
   def update_genre_params
