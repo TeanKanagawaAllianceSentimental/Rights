@@ -1,14 +1,20 @@
 class PaySelectsController < ApplicationController
 
   def show # お支払い方法選択
-    @member = Member.find(session[:member_id])
-    @credit = @member.credit_card
+    # @member = Member.find(session[:member_id])
+    @member = current_member
+    @credits = @member.credit_cards
+    @credit = @credits.find(params[:mumber_id])
     @sale = @member.sales
-    @invoice = @menber.sale_invoice
+    @invoices = @member.sale_invoices
+    @invoice = @invoices.find(params[:mumber_id])
   end
 
   def create # お支払い方法選択 確定
+    if sale.credit_card.nill?
+      
     @sale.save
+  end
   end
 
 

@@ -5,145 +5,34 @@
 			  <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 			<h2>申請楽曲選択</h2><br>
+			<% form_for(@musiclist) do %>
+			<% @musics.each do |music| %>
 			<table class="table table-sm">
 			  <thead>
 			    <tr>
-			      <th scope="col">@sale_items.items.cd_title</th>
+			      <th scope="col"><%= items.cd_title %></th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <tr>
 			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
+				      <div class="form-check">
+				      	<label>
+				      		<!-- 謎。どうやって全曲表示させる？ -->
+						      <%= f.check_box  :music_id, {multiple: true}, language, nil %>
+						      <%= music.title %>
+						    </label>
+					  	</div>
 			      </td>
 			    </tr>
 			  </tbody>
 			</table>
-			<table class="table table-sm">
-			  <thead>
-			    <tr>
-			      <th scope="col">@sale_items.items.cd_title</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>
-			      <div class="form-check">
-				    <input class="form-check-input" type="checkbox" value="" id="">
-				    <label class="form-check-label" for="defaultCheck1">
-				      @sale_items.items.cd_title.music_title
-				    </label>
-				  </div>
-			      </td>
-			    </tr>
-			  </tbody>
-			</table><br>
-			  <button type="submit" class="btn btn-primary btn-lg">演奏利用明細入力へ進む</button>
+			<% end %>
+			<% end %>
+			<br>
+			<div class="form-group">
+        <%= f.submit "演奏利用明細入力へ進む", class:"btn btn-md btn-primary" %>
+      </div>
 		</div>
 	</div>
 </div>

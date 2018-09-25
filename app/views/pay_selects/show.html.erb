@@ -3,12 +3,13 @@
   <%#= render 'users/frame1', user: @user, book: @book %>
     <div class="col-md-12">
       <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar" role="progressbar progress-bar-info" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <h2>お支払方法の選択</h2><br>
         <h3>クレジットカード</h3>
-          <% link_to "クレジットカードを登録する", 'クレジットカード編集_path'() %>
-          <% if @credit.present? %>
+          <%= link_to "クレジットカードを登録する", new_credit_card_path %>
+          <% if @credits.present? %>
+          <% @credits.each do |credit| %>
             <table class="table">
               <thead>
                 <tr>
@@ -29,56 +30,58 @@
                   <td><% @credit.exp_month + "/" + @credit.exp_year %></td>
                 </tr>
               </tbody>
-            <%= form_for(@sale) do |f| %>
-              <% f.submit 'このクレジットカードで支払う', class: "btn btn-primary" %>
-            <% end %>
-            <% link_to "編集", '住所編集_path'() %>
-            <% link_to "削除", '住所削除_path', method: :delete, "data-confirm" => "" %>
             </table>
+            <%= link_to "編集", edit_credit_card_path(credit_card.id) %>
+            <%= link_to "削除", method: :delete, "data-confirm" => "" %>
+            <%= form_for @sale, url: {controller: :pay_selects, action: :create} do |f| %>
+              <%= f.submit 'このクレジットカードで支払う', class: "btn btn-info" %>
             <% end %>
+            <% end %>
+          <% end %>
         <br><br><br>
         <h3>請求書</h3>
-          <% link_to "請求書の送付先をを登録する", '請求書編集_path'() %>
-          <% if sale_invoice_id.present? %>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th colspan="2" scope="col">登録のご請求先</th>
+          <%= link_to "請求書の送付先をを登録する", new_sele_invoice_path %>
+          <% if @invoices.present? %>
+            <% @invoices.each do |invoice| %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="2" scope="col">登録のご請求先</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  <th scope="row" class="col-md-2">請求書の宛名</th>
+                  <td class="col-md-5">@invoice.bill_to</td>
                 </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <th scope="row" class="col-md-2">請求書の宛名</th>
-                <td class="col-md-5">@invoice.bill_to</td>
-              </tr>
-               <tr>
-                <th scope="row" class="col-md-2">郵便番号</th>
-                <td class="col-md-5">@invoice.billing_postal_code</td>
-              </tr>
-               <tr>
-                <th scope="row" class="col-md-2">住所</th>
-                <td class="col-md-5">@invoice.billing_postal_code</td>
-              </tr>
-               <tr>
-                <th scope="row" class="col-md-2">ご担当者名</th>
-                <td class="col-md-5">@invoice.contact_person</td>
-              </tr>
-               <tr>
-                <th scope="row" class="col-md-2">ご担当部署</th>
-                <td class="col-md-5">@invoice.department</td>
-              </tr>
-              </tbody>
-            <%= form_for(@sale) do |f| %>
-              <% f.submit '上記宛先に請求書を財布する', class: "btn btn-primary" %>
+                 <tr>
+                  <th scope="row" class="col-md-2">郵便番号</th>
+                  <td class="col-md-5">@invoice.billing_postal_code</td>
+                </tr>
+                 <tr>
+                  <th scope="row" class="col-md-2">住所</th>
+                  <td class="col-md-5">@invoice.billing_postal_code</td>
+                </tr>
+                 <tr>
+                  <th scope="row" class="col-md-2">ご担当者名</th>
+                  <td class="col-md-5">@invoice.contact_person</td>
+                </tr>
+                 <tr>
+                  <th scope="row" class="col-md-2">ご担当部署</th>
+                  <td class="col-md-5">@invoice.department</td>
+                </tr>
+                </tbody>
+              </table>
+            <%= form_for @sale, url: {controller: :pay_selects, action: :create} do |f| %>
+              <%= f.submit '上記宛先に請求書を送付する', class: "btn btn-info" %>
             <% end %>
-            <% link_to "編集", '住所編集_path'() %>
-            <% link_to "削除", '住所削除_path', method: :delete, "data-confirm" => "" %>
-            </table>
+            <%= link_to "編集", edit_sele_invoic_path(sale_invoice.id) %>
+            <%= link_to "削除", method: :delete, "data-confirm" => "" %>
           <% end %>
     <div class="col-md-3">
       <div class="card" style="width: 30rem;">
         <div class="card-body">
-          <a href="#" class="btn btn-primary btn-block">ご注文の最終確認へ進む</a>
+          <a href="#" class="btn btn-info btn-block">ご注文の最終確認へ進む</a>
         </div>
       </div>
     </div>
