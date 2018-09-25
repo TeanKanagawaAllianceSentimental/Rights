@@ -11,17 +11,12 @@ class Admin::MusicsController < Admin::AdminBase
   def show
   end
 
-  def create
-    @music = Music.new(music_params)
-    @music.save
-    redirect_to admin_musics_path
-  end
 
   def edit
   end
 
   private
   def music_params
-  	params.require(:music).permit(:id, :music_title, :composer, :songwriter)
+  	params.require(:music).permit(:id, :disk_id, :music_title, :composer, :songwriter)
   end
 end

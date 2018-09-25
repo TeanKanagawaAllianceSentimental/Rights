@@ -29,6 +29,20 @@ $(function() {
         $(".theTarget").skippr();
     });
 
+    $(".theTarget").skippr({
+        transition : 'fade',
+        speed : 1000,
+        easing : 'easeOutQuart',
+        navType : 'block',
+        childrenElementType : 'div',
+        arrows : true,
+        autoPlay : false,
+        autoPlayDuration : 5000,
+        keyboardOnAlways : true,
+        hidePrevious : false
+
+    });
+
     winW = $(window).width();
     $('#horizon1').css('left', winW/2);
     speed = 2500;
@@ -63,13 +77,5 @@ $(function() {
         $(this).next().is(":visible") || $(this).next().slideDown(),
         e.stopPropagation()
     })
-});
 
-$(function() {
-	$(document).on('click','.plus-btn',function(){
-		$('body').toggleClass('menu-open');
-	});
-	$("document").ready(function(){
-		$(".theTarget").skippr()
-	});
 });

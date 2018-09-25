@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   get 'sale/show' => 'sale#show'
 
-  get 'items/index'
-  get 'items/show'
   root 'top#index'
 
   devise_for :admins, controllers: {
@@ -31,7 +29,9 @@ Rails.application.routes.draw do
     resources :musics
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :genres
+
+  resources :items
 
   resources :applicants do
     member do
