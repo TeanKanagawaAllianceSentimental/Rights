@@ -11,4 +11,10 @@ module ApplicationHelper
 	def japan_time(time)
 		time.strftime("%Y-%m-%d　%H:%M　")
 	end
+
+	def sub_total_update
+		cart = Cart.find(params[:id])
+		sub_total = cart.quantity.to_i * cart.item.unit_price.to_i
+    sub_total.update
+	end
 end

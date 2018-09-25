@@ -18,110 +18,21 @@
 			    <tr>
 			      <td>@sale_items.items.cd_title.music_title</td>
 			      <td>
-			      	<select class="form-control" id="exampleFormControlSelect1">
-				      <option selected>演奏回数を選択してください</option>
-				      <option>1回</option>
-				      <option>2回</option>
-				      <option>3回</option>
-				      <option>4回</option>
-				      <option>5回</option>
-				      <option>6回</option>
-				      <option>7回</option>
-				      <option>8回</option>
-				      <option>9回</option>
-				      <option>10回</option>
-				      <option>10回以上</option>
-				    </select>
+			      	<select class="form-control">
+					 		<%= f.number_field list_of_performed_pieces :play_frequency,min:1,max:10,step:10 %>
+						  </select>
 				  </td>
-			      <td><input class="form-control form-control-sm" type="time" placeholder=".form-control-sm"></td>
-			      <td><button type="button" class="btn btn-outline-dark">削除</button></td>
+			      <td><div class="form-group">
+            <%= f.text_field :play_duration %>
+          </div></td>
+			      <td><button type="button" class="btn btn-outline-dark"><% link_to "削除" %></button></td>
 			    </tr>
-			    <tr>
-			      <td>@sale_items.items.cd_title.music_title</td>
-			      <td>
-			      	<select class="form-control" id="exampleFormControlSelect1">
-				      <option selected>演奏回数を選択してください</option>
-				      <option>1回</option>
-				      <option>2回</option>
-				      <option>3回</option>
-				      <option>4回</option>
-				      <option>5回</option>
-				      <option>6回</option>
-				      <option>7回</option>
-				      <option>8回</option>
-				      <option>9回</option>
-				      <option>10回</option>
-				      <option>10回以上</option>
-				    </select>
-				  </td>
-			      <td><input class="form-control form-control-sm" type="time" placeholder=".form-control-sm"></td>
-			      <td><button type="button" class="btn btn-outline-dark">削除</button></td>
-			    </tr><tr>
-			      <td>@sale_items.items.cd_title.music_title</td>
-			      <td>
-			      	<select class="form-control" id="exampleFormControlSelect1">
-				      <option selected>演奏回数を選択してください</option>
-				      <option>1回</option>
-				      <option>2回</option>
-				      <option>3回</option>
-				      <option>4回</option>
-				      <option>5回</option>
-				      <option>6回</option>
-				      <option>7回</option>
-				      <option>8回</option>
-				      <option>9回</option>
-				      <option>10回</option>
-				      <option>10回以上</option>
-				    </select>
-				  </td>
-			      <td><input class="form-control form-control-sm" type="time" placeholder=".form-control-sm"></td>
-			      <td><button type="button" class="btn btn-outline-dark">削除</button></td>
-			    </tr><tr>
-			      <td>@sale_items.items.cd_title.music_title</td>
-			      <td>
-			      	<select class="form-control" id="exampleFormControlSelect1">
-				      <option selected>演奏回数を選択してください</option>
-				      <option>1回</option>
-				      <option>2回</option>
-				      <option>3回</option>
-				      <option>4回</option>
-				      <option>5回</option>
-				      <option>6回</option>
-				      <option>7回</option>
-				      <option>8回</option>
-				      <option>9回</option>
-				      <option>10回</option>
-				      <option>10回以上</option>
-				    </select>
-				  </td>
-			      <td><input class="form-control form-control-sm" type="time" placeholder=".form-control-sm"></td>
-			      <td><button type="button" class="btn btn-outline-dark">削除</button></td>
-			    </tr><tr>
-			      <td>@sale_items.items.cd_title.music_title</td>
-			      <td>
-			      	<select class="form-control" id="exampleFormControlSelect1">
-				      <option selected>演奏回数を選択してください</option>
-				      <option>1回</option>
-				      <option>2回</option>
-				      <option>3回</option>
-				      <option>4回</option>
-				      <option>5回</option>
-				      <option>6回</option>
-				      <option>7回</option>
-				      <option>8回</option>
-				      <option>9回</option>
-				      <option>10回</option>
-				      <option>10回以上</option>
-				    </select>
-				  </td>
-			      <td><input class="form-control form-control-sm" type="time" placeholder=".form-control-sm"></td>
-			      <td><button type="button" class="btn btn-outline-dark">削除</button></td>
-			    </tr>  
-
 			  </tbody>
 			</table>
 			<br>
-			  <button type="submit" class="btn btn-primary btn-lg">申請内容を確認する</button>
+			  <div class="form-group">
+        	<%= f.submit "入力内容を確認する", class:"btn btn-md btn-primary" %>
+      	</div>
 		</div>
 	</div>
 </div>

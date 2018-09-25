@@ -6,7 +6,7 @@ class SaleInvoicesController < ApplicationController
   end
 
   def update
-    @credit.save(credit_card_params)
+    @credit.update(credit_card_params)
     redirect_to _path
   end
 
