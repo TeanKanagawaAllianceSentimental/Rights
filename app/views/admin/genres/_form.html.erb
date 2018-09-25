@@ -66,15 +66,9 @@
 		</div>
 	</div>
 	<%= item.fields_for :disks do |disk| %>
-		<div class="field">
-			<%= disk.label :disk %>
-			<%= disk.select :disk, [["1","1"],["2","2"],["3","3"]], class: 'select_action' %>
-		</div>
-		<%= disk.fields_for :musics do |music| %>
-			<%= render 'admin/musics/form', music: music %>
-		<% end %>
-		<%= link_to_add_fields "追加する", disk, :musics %>
+		<%= render 'admin/disk/form', disk:disk %>
 	<% end %>
+	<%= link_to_add_disk_fields "diskを追加する", item, :disks %>
 <% end %>
 <div class="action" style="padding-bottom: 20px">
 	<div class='col-xs-12'>

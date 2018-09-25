@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   get 'sale/show' => 'sale#show'
 
-  get 'items/index'
-  get 'items/show'
   root 'top#index'
 
   devise_for :admins, controllers: {
@@ -30,6 +28,10 @@ Rails.application.routes.draw do
     resources :rights, controller: 'genres'
     resources :musics
   end
+
+  resources :genres
+
+  resources :items
 
   resources :applicants do
     member do
