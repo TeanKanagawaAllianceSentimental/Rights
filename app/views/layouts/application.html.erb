@@ -19,14 +19,12 @@
                 <h3>Rights</h3>
               <% end %>
             </ul>
-            <form class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
-              <div class="form-group">
-                <%= form_tag genres_path, :method => 'get' do %>
-                  <%= text_field_tag :search, params[:search] %>
-                  <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+            <div class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
+                <%= form_tag search_index_path, method: :get do %>
+                  <%= text_field_tag :search %>
+                  <%= submit_tag "Search", :genre => nil, class: 'btn btn-default' %>
                 <% end %>
-              </div>
-            </form>
+            </div>
             <ul class="nav navbar-nav navbar-right" style="padding-top: 5px;">
               <% if member_signed_in? %>
                 <li><%= link_to 'My Page', front_members_path, class: "my_page" %></li>

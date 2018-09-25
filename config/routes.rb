@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :genres
+  resources :search, controller: 'genres', only:[:index]
   resources :items
 
   resources :applicants do

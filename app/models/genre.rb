@@ -4,11 +4,7 @@ class Genre < ApplicationRecord
 	accepts_nested_attributes_for :items, allow_destroy: true
 
 	def self.search(search)
-		if search
-			Genre.where(['genre LIKE ? OR artist LIKE ?', "%#{search}%","%#{search}%"])
-		else
-			Genre.all
-		end
+		search = Genre.joins(:items).where(['cd_title LIKE ? OR artist LIKE ?', "%#{search}%", "%#{search}%"]).uniq
 	end
 
 	def self.create_with_auto_sequence(params)
