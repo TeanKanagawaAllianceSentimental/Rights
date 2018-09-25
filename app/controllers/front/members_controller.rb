@@ -2,14 +2,18 @@ class Front::MembersController < ApplicationController
 	def index
 	end
 	def show
-	end
-	def edit
+		@address = Address.find(params[:id])
+		@member = Member.find(params[:id])
 	end
 	def create
 	end
+	def edit
+		@member = Member.find(params[:id])
+		@address = Address.find(params[:id])
+	end
 	def update
-		@member = Member.find(current_member.id)
-		@member.update(member_params)
-		redirect_to front_members
+		@address = Address.find(params[:id])
+		@address.update(address_params)
+		redirect_to front_member_path(resource)
 	end
 end

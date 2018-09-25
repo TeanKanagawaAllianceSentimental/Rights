@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-9">
+			<h1>memberAll</h1>
+			<table class="table table-striped">
+				<caption>Members</caption>
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>会社名</th>
+						<th>担当者名</th>
+						<th>電話番号</th>
+					</tr>
+				</thead>
+				<% @member.each do |m| %>
+				<tbody>
+					<tr>
+						<td><%= m.id %></td>
+						<td><%= m.corporate_name %></td>
+						<td><%= m.contact_person_name %></td>
+						<td><%= m.phone %></td>
+						<td><%= link_to "Show", admin_member_path(:id) %>
+					</tr>
+				</tbody>
+			</div>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

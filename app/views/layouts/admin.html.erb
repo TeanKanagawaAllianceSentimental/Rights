@@ -28,6 +28,7 @@
 			                      <li><%= link_to "applications", root_path %></li>
 			                      <li><%= link_to "cart", root_path%></li>
 			                      <li><%= link_to "sales", root_path%></li>
+			                      <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: "logout" %></li>
 			                   </ul>
 			                </li>
 			                <button type="button" id="sidebar" class="btn btn-info">
@@ -39,17 +40,18 @@
 			</nav>
 		</div>
 	</header>
+	<% if admin_signed_in? %>
 	<div class="wrapper">
 		<aside class="sidebar" style="top: 51px;">
 		  <div id="leftside-navigation" class="nano">
 		    <ul class="nano-content">
 		      <li>
-		      	<li><%= link_to "Admin Top", root_path %></li>
+		      	<li><%= link_to "Admin Top", admin_members_path %></li>
 		      </li>
 		      <li class="sub-menu">
 		        <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>Members</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 		        <ul>
-		        	<li><%= link_to "All Members", root_path %></li>
+		        	<li><%= link_to "All Members", admin_members_path %></li>
 		        </ul>
 		      </li>
 		      <li class="sub-menu">
@@ -77,5 +79,6 @@
 		  </div>
 		</aside>
 	</div>
+	<% end %>
 	<%= yield %>
 </body>
