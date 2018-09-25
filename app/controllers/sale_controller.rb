@@ -1,4 +1,4 @@
-class SaleController < ApplicationController
+sclass SaleController < ApplicationController
 
   def index #　購入一覧(マイページ)
     @member = current_member
