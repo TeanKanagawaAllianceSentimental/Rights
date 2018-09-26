@@ -26,16 +26,25 @@
 						</tr>
 						<tr>
 							<th>Single/Albam</th>
-							<td><%= @item.package %></td>
+							<td><%= @item.package_i18n %></td>
 						</tr>
+						<% if @item.end_of_sell? %>
+						<tr>
+							<td>現在販売されていません</td>
+						</tr>
+						<% elsif @item.stock_quantity == 0 %>
+						<tr>
+							<td>在庫切れです</td>
+						</tr>
+						<% end %>
 					</tbody>
 				</table>
-				<div class="action" style="padding-top: 40px;">
-					<span><%= link_to root_path, class: 'btn btn-warning col-md-12' do %>
-						<i class="fas fa-cart-plus"></i>
-						<% end %>
-					</span>
-				</div>
+					<div class="action" style="padding-top: 40px;">
+						<span><%= link_to root_path, class: 'btn btn-warning col-md-12' do %>
+							<i class="fas fa-cart-plus"></i>
+							<% end %>
+						</span>
+					</div>
 			</div>
 			<div class="col-md-6 col-md-offset-1">
 				<%= attachment_image_tag @item, :jacket_image, :fill, 500, 440, format: 'jpeg', class: "thumbnail" %>

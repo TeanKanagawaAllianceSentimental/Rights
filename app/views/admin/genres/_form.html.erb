@@ -20,7 +20,7 @@
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
 			<%= item.label :販売形態 %>
-			<%= item.select :package, [["シングル","1"],["アルバム","2"]] %>
+			<%= item.select :package, Item.packages_i18n.keys.map{|k| [Item.packages_i18n[k],k]}, class: 'col-xs-6' %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -62,7 +62,7 @@
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
 			<%= item.label :ステータス%>
-			<%= item.select :status, [["未公開","未公開"],["販売中","販売中"],["販売中止","販売中止"]], class: 'col-xs-6' %>
+			<%= item.select :status, Item.statuses_i18n.keys.map{|k| [Item.statuses_i18n[k],k]}, class: 'col-xs-6' %>
 		</div>
 	</div>
 	<%= item.fields_for :disks do |disk| %>

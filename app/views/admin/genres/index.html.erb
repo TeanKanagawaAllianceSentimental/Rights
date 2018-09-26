@@ -26,7 +26,7 @@
 								<td><%= item.cd_title %></td>
 								<td><%= attachment_image_tag item, :jacket_image, :fill, 40, 40, format: 'jpeg'%></td>
 								<td><%= item.stock_quantity %></td>
-								<td><%= item.status %></td>
+								<td><%= item.status_i18n %></td>
 							<% end %>
 							<td><%= japan_time(genre.created_at) %></td>
 							<td><%= japan_time(genre.updated_at) %></td>
