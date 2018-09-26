@@ -12,8 +12,11 @@ class Front::MembersController < ApplicationController
 		@address = Address.find(params[:id])
 	end
 	def update
-		@address = Address.find(params[:id])
-		@address.update(address_params)
-		redirect_to front_member_path(resource)
+	    @address = Address.find(params[:id])
+	    if @address.update(update_address_params)
+	 	  redirect_to front_member_path(current_member.id)
+	    else
+		  render :edit
+		end
 	end
 end

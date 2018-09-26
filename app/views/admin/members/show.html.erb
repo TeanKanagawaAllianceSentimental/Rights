@@ -1,1 +1,54 @@
-<h1>Show</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4">
+		</div>
+		<div class="col-xs-4">
+		<table class="table">
+			<div class="title">
+				<h2>会員情報詳細画面</h2>
+			</div>
+			<tbody>
+				<tr>
+					<th>会社名</th>
+					<td><%= @address.corporate_name %></td>
+				</tr>
+				<tr>
+					<th>ふりがな(会社名)</th>
+					<td><%= @address.corporate_phonetic %></td>
+				</tr>
+				<tr>
+					<th>ご担当者様</th>
+					<td><%= @address.contact_person_name %></td>
+				</tr>
+				<tr>
+					<th>ふりがな(ご担当者様)</th>
+					<td><%= @address.contact_person_phonetic %></td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td><%= @address.phone %></td>
+				</tr>
+				<tr>
+					<th>郵便番号</th>
+					<td><%= @address.postal_code %></td>
+				</tr>
+				<tr>
+					<th>市区町村/番地</th>
+					<td><%= @address.address1 %></td>
+				</tr>
+				<tr>
+					<th>その他</th>
+					<td><%= @address.address2 %></td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td><%= @member.email %></td>
+				</tr>
+			</tbody>
+		</table>
+		<%= link_to "Back", :back %>
+		<%= link_to "会員情報編集", edit_admin_member_path, class: "btn btn-info" %>
+		<%= link_to "強制退会", { :controller => :members, :action => :destroy }, method: :delete, class: "btn btn-danger destroy_member_#{@member.id}", data: {confirm: "本当に強制退会させますか？"} %>
+	  </div>
+	</div>
+</div>

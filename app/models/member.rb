@@ -9,4 +9,13 @@ class Member < ApplicationRecord
          has_many :sales
          has_many :applicants, dependent: :destroy
          accepts_nested_attributes_for :addresses
+	 def soft_delete
+	 	update(deleted_at: Time.now)
+	 end
+	 def active_for_authentication?
+	 	!deleted_at
+	 end
+	 def inactive_message
+	 	!deleted_at ? super : :deleted_account
+	 end
 end

@@ -1,8 +1,8 @@
 class SaleShippingController < ApplicationController
 
   def index # マイページ
-    @member = Member.find(params[:id])
-    @addresses = @mamber.sale_shipping
+    @member = Member.find(current_member[:id])
+    @addresses = @member.id
   end
 
   def show # 配送先指定

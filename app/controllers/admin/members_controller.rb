@@ -7,6 +7,24 @@ class Admin::MembersController < Admin::AdminBase
 		@member = Address.all
 	end
 	def show
-		@member = Address.find(params[:id])
+		@address = Address.find(params[:id])
+		@member = Member.find(params[:id])
+	end
+	def edit
+		@member = Member.find(params[:id])
+		@address = Address.find(params[:id])
+	end
+	def update
+		@address = Address.find(params[:id])
+	    if @address.update(update_address_params)
+	 	  redirect_to admin_member_path
+	    else
+		  render :edit
+		end
+	end
+	def destroy
+		@member = Member.find(params[:id])
+		@member.soft_delete
+		redirect_to admin_members_path
 	end
 end

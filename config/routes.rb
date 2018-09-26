@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   }
 
   namespace :front do
-  resources :members, only:[:index, :show, :edit]
+  resources :members
   end
 
   namespace :admin, path: 'admin' do
-    resources :members, only:[:index, :show]
+    resources :members
   	resources :items
     resources :disk
     resources :rights, controller: 'genres'

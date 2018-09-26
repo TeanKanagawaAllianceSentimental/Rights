@@ -11,7 +11,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 	    front_members_path(resource)
 	  when Admin
 	  	admin_members_path(resource)
-	end
+	  end
   end
 
   def after_sign_out_path_for(resource)
@@ -22,6 +22,8 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   def configure_permitted_parameters
     added_attrs = [addresses_attributes: [:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic,:department, :phone, :postal_code, :address1, :address2, :email, :password, :password_confirmation]]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-    # devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+  def update_address_params
+    params.require(:address).permit(:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic,:department, :phone, :postal_code, :address1, :address2, members_attributes: [:email, :_destroy, :id])
   end
 end
