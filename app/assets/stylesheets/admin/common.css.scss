@@ -1,31 +1,14 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-/* @import "bootstrap-sprockets";
- @import "bootstrap";
- @import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');*/
-
-
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
 
 /*アドミンナビバー*/
-/*#admin-navbar{
+#admin-navbar{
   background-color: #F1EFE4;
-}*/
+}
 
 /*アドミンサイドバー*/
-/*@font-face {
+@font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -42,14 +25,14 @@
   font-style: normal;
   font-weight: 700;
   src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
-}*/
+}
 
-/*.wrapper {
+.wrapper {
     display: flex;
     width: 100%;
 }
-*/
-/*.sidebar-toggle {
+
+.sidebar-toggle {
   margin-left: -240px;
 }
 .sidebar {
@@ -62,8 +45,8 @@
   height: 100vh;
   z-index: 999;
   transition: all 0.3s;
-}*/
-/*.sidebar #leftside-navigation ul,
+}
+.sidebar #leftside-navigation ul,
 .sidebar #leftside-navigation ul ul {
   margin: -2px 0 0;
   padding: 0;
@@ -96,8 +79,8 @@
 }
 .sidebar #leftside-navigation ul li a span {
   display: inline-block;
-}*/
-/*.sidebar #leftside-navigation ul li a i {
+}
+.sidebar #leftside-navigation ul li a i {
   width: 20px;
 }
 .sidebar #leftside-navigation ul li a i .fa-angle-left,
@@ -121,4 +104,3 @@
   color: #aeb2b7;
 }
 
-*/
