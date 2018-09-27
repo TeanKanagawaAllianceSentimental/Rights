@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :genres
+  resources :search, controller: 'genres', only:[:index]
   resources :items
 
   resources :applicants do
@@ -61,12 +61,23 @@ Rails.application.routes.draw do
       put :confirm_purchase
       post :confirm_purchase
     end
+    resources :sale_shippings, except:[:new] do
+      get :proceed_purchase
+      patch :proceed_purchase
+      put :proceed_purchase
+    end
+    resource :pay_selects, only:[:create, :show] do
+      get :proceed_purchase
+      patch :proceed_purchase
+      put :proceed_purchase
+    end
   end
+
   resources :sale_items, only:[:index, :create]
   resources :sale_shipping, except:[:new]
   resources :pay_selects, only:[:create, :show]
   resources :credit_cards
-  resources :sele_invoices
+  resources :sale_invoices
 
 end
 

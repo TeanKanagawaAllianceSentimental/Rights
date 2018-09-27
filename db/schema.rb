@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_09_26_085611) do
+
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -86,11 +88,11 @@ ActiveRecord::Schema.define(version: 2018_09_26_085611) do
     t.string "artist", null: false
     t.text "jacket_image_id"
     t.string "label", null: false
-    t.string "unit_price"
+    t.integer "unit_price"
     t.string "caption"
     t.text "about"
     t.integer "stock_quantity"
-    t.string "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
@@ -124,16 +126,17 @@ ActiveRecord::Schema.define(version: 2018_09_26_085611) do
   create_table "sale_invoices", force: :cascade do |t|
     t.string "bill_to"
     t.string "billing_postal_code"
-    t.string "billing_address"
     t.integer "member_id"
-    t.integer "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "billing_address1"
+    t.string "billing_address2"
+    t.string "contact_person"
+    t.string "department"
   end
 
   create_table "sale_items", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "sub_total"
     t.integer "sale_id"
     t.integer "items_id"
     t.datetime "created_at", null: false
@@ -142,7 +145,6 @@ ActiveRecord::Schema.define(version: 2018_09_26_085611) do
 
   create_table "sale_shippings", force: :cascade do |t|
     t.string "shipping_postal_code"
-    t.string "shipping_address"
     t.string "user_telephone"
     t.integer "member_id"
     t.datetime "created_at", null: false
@@ -152,6 +154,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_085611) do
     t.string "organisation_name"
     t.string "department"
     t.string "contact_person"
+    t.integer "sale_id"
   end
 
   create_table "sales", force: :cascade do |t|
@@ -161,10 +164,9 @@ ActiveRecord::Schema.define(version: 2018_09_26_085611) do
     t.datetime "delivered_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sale_invoice_id"
-    t.integer "credit_card_id"
-    t.integer "shipping_address_id"
     t.integer "Application"
+    t.integer "credit_card_id"
+    t.integer "sale_invoice_id"
   end
 
 end

@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
 	belongs_to :member
   belongs_to :item
 
-  def self.add_item(item_id, member_id, session_id)
+  def self.add_item(session_id, item_id, quantity, member_id, unit_price)
     if session[:member_id] = current_member_id
       cart = Cart.find_or_initialize_by(item_id, member_id, session_id)
     else
@@ -19,11 +19,17 @@ class Cart < ApplicationRecord
 
   def update_quantity(quantity)
     self.quantity = quantity
-    if self.item_error.present?
-      return false
-    else
-      self.save
-    end
+    self.save
+  end
+
+  private
+
+  def add_item_params
+    params.require(:cart).permit(:session_id, :item_id, :quantity, :member_id, :unit_price)
+  end
+
+  def quantity_params
+    params.require(:cart).permit(:quantity)
   end
 
 end
