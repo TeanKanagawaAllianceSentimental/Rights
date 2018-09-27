@@ -5,7 +5,7 @@
         <div class="menu-list1">
             <div class="menu-box">
               <div class="menu1">
-                <%= link_to "購入履歴" %>
+                <%= link_to "購入履歴", sale_items_path(current_member.id) %>
                 </div>
               <div class="menu1">
                 <%= link_to "会員情報編集", edit_front_member_path(current_member.id) %>
@@ -25,10 +25,10 @@
                 <%= link_to "クレジットカード情報" %>
                 </div>
               <div class="menu1">
-                <%= link_to "配送先一覧" %>
+                <%= link_to "配送先一覧", sale_shipping_index_path(current_member.id) %>
                 </div>
               <div class="menu1">
-                <%= link_to "退会" %>
+                <%= link_to "退会", front_delete_path %>
                 </div>
             </div>
         </div>

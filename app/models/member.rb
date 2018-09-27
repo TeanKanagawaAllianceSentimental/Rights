@@ -1,6 +1,8 @@
 class Member < ApplicationRecord
  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+ validates_acceptance_of :agreement, allow_nil: false, on: :create
+
          has_many :addresses
          has_many :sale_shippings
          has_many :sale_invoices
@@ -9,4 +11,13 @@ class Member < ApplicationRecord
          has_many :sales
          has_many :applicants, dependent: :destroy
          accepts_nested_attributes_for :addresses
+	 def soft_delete
+	 	update(deleted_at: Time.now)
+	 end
+	 def active_for_authentication?
+	 	!deleted_at
+	 end
+	 def inactive_message
+	 	!deleted_at ? super : :deleted_account
+	 end
 end

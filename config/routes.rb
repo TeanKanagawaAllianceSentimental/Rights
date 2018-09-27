@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'items/index'
   get 'items/show'
   root 'top#index'
+  get 'front/delete' => 'front/members#delete'
 
   devise_for :admins, controllers: {
         sessions: 'admins/sessions',
@@ -17,15 +18,16 @@ Rails.application.routes.draw do
   }
 
   namespace :front do
-  resources :members, only:[:index, :show, :edit]
+  resources :members
   end
 
   namespace :admin, path: 'admin' do
-    resources :members, only:[:index, :show]
+    resources :members
   	resources :items
     resources :disk
     resources :rights, controller: 'genres'
     resources :musics
+    resources :sale_items
   end
 
 
@@ -60,7 +62,7 @@ Rails.application.routes.draw do
       post :confirm_purchase
     end
   end
-  resources :sale_items, only:[:create]
+  resources :sale_items, only:[:index, :create]
   resources :sale_shipping, except:[:new]
   resources :pay_selects, only:[:create, :show]
   resources :credit_cards

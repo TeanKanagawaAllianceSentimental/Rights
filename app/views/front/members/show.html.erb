@@ -4,12 +4,12 @@
 		</div>
 		<div class="col-xs-4">
 		<table class="table">
-			<h1>会員情報詳細画面</h1>
+			<h1 class="title">会員情報詳細画面</h1>
 			<tbody>
 				<tr>
 					<th>会社名</th>
 					<td><%= @address.corporate_name %></td>
-				</tr><br>
+				</tr>
 				<tr>
 					<th>ふりがな(会社名)</th>
 					<td><%= @address.corporate_phonetic %></td>
@@ -17,7 +17,7 @@
 				<tr>
 					<th>ご担当者様</th>
 					<td><%= @address.contact_person_name %></td>
-				</tr><br>
+				</tr>
 				<tr>
 					<th>ふりがな(ご担当者様)</th>
 					<td><%= @address.contact_person_phonetic %></td>
@@ -25,7 +25,7 @@
 				<tr>
 					<th>電話番号</th>
 					<td><%= @address.phone %></td>
-				</tr><br>
+				</tr>
 				<tr>
 					<th>郵便番号</th>
 					<td><%= @address.postal_code %></td>
@@ -33,7 +33,7 @@
 				<tr>
 					<th>市区町村/番地</th>
 					<td><%= @address.address1 %></td>
-				</tr><br>
+				</tr>
 				<tr>
 					<th>その他</th>
 					<td><%= @address.address2 %></td>

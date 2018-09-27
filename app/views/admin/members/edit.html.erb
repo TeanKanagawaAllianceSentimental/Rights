@@ -7,7 +7,7 @@
         <div class="title">
           <h2>会員情報編集</h2>
         </div>
-          <%= form_for(@address, url: front_member_path(current_member.id)) do |f| %>
+          <%= form_for(@address, url: admin_member_path) do |f| %>
             <div class="field">
                <%= f.label :corporate_name, "会社名" %><br>
                <%= f.text_field :corporate_name, class: "form-control" %>
@@ -26,10 +26,9 @@
                <%= f.label :phone, "電話番号" %><br>
                <%= f.text_field :phone, class: "form-control" %>
              </div>
-                <%= f.fields_for(@member) do |t| %>
-                <%= t.label :メールアドレス %><br />
-                <%= t.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
-
+               <%= f.fields_for(@member) do |t| %>
+               <%= t.label :メールアドレス %><br />
+               <%= t.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
             <% end %>
             <div class="actions">
               <%= f.submit "更新する" %>
