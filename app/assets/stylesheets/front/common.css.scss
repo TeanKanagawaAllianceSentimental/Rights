@@ -1,0 +1,32 @@
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+
+
+/*フロントナビバー*/
+.navbar-default
+.navbar-nav li a{
+	color: black;
+	font-weight: bold;
+}
+.navbar-default{
+	background-color: #d93600;
+}
+
+/*Rights*/
+
+h3{
+  color: black;
+}
+
+
+/*TOP画面テキスト*/
+
+h2{
+  color: black;
+}
+
+p{
+  color: black;
+}
+

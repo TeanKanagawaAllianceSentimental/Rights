@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_253903) do
+ActiveRecord::Schema.define(version: 2018_09_24_092829) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -85,11 +85,11 @@ ActiveRecord::Schema.define(version: 2018_09_26_253903) do
     t.string "artist", null: false
     t.text "jacket_image_id"
     t.string "label", null: false
-    t.string "unit_price"
+    t.integer "unit_price"
     t.string "caption"
     t.text "about"
     t.integer "stock_quantity"
-    t.string "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
