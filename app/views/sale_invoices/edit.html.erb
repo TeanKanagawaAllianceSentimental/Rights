@@ -3,29 +3,33 @@
     <div class="col-md-12">
       <h2>請求書送付先の編集</h2>
       <div class="form-body">
-        <%= form_for (@credit) do |form| %>
+        <%= form_for (@invoice) do |f| %>
           <div class="form-group">
             <h4>請求書の宛名</h4>
-            <%= f.text_field :bill_to %>
+            <%= f.text_field :bill_to, class: "form-control col-ms-7" %>
           </div>
           <div class="form-group">
             <h4>ご担当者名</h4>
-            <%= f.text_field :contact_person %>
+            <%= f.text_field :contact_person, class: "form-control col-ms-7" %>
           </div>
           <div class="form-group">
             <h4>部署名</h4>
-            <%= f.text_field :department %>
+            <%= f.text_field :department, class: "form-control col-ms-7" %>
           </div>
           <div class="form-group">
             <h4>郵便番号</h4>
-            <%= f.text_field :billing_postal_code %>
+            <%= f.text_field :billing_postal_code, class: "form-control col-ms-7" %>
           </div>
           <div class="form-group">
             <h4>住所</h4>
-            <%= f.text_field :billing_address %>
+            <%= f.text_field :billing_address1, class: "form-control col-ms-7" %>
           </div>
           <div class="form-group">
-            <%= f.submit "更新", class:"btn btn-md btn-primary" %>
+            <h4>ビル・マンション名</h4>
+            <%= f.text_field :billing_address2, class: "form-control col-ms-7" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "更新", class: "btn btn-md btn-info" %>
           </div>
         <% end %>
         <br>

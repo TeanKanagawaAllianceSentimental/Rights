@@ -15,6 +15,8 @@ Item.create(cd_title: 'aaa', genre_id: 1, package: 1, artist: 'artist', jacket_i
 Music.create(disk_id: 1, music_title: 'bbb', songwriter: 'abcde', composer: 'wxyg')
 Cart.create(member_id: 3, item_id: 1, quantity: 1)
 Sale.create(member_id: 3, total_price: 10000,)
-SaleInvoice.create(member_id: 3, bill_to: 'にんにん株式会社', billing_postal_code: '000-0000', billing_address: '東京都千代田区千代田1-1', sale_id: 1)
-SaleShipping.create(member_id: 3, shipping_postal_code: '000-0000', user_telephone: '03-0000-0000', shipping_address1: '東京都千代田区千代田', shipping_address2: '', organisation_name: 'にんにん株式会社', department: '営業部', contact_person: '二階堂')
-
+SaleInvoice.create(member_id: 3, bill_to: 'にんにん株式会社', billing_postal_code: '000-0000', billing_address1: '東京都千代田区千代田1-1', sale_id: 1)
+SaleShipping.create(member_id: 3, shipping_postal_code: '000-0000', user_telephone: '03-0000-0000', shipping_address1: '東京都千代田区千代田', shipping_address2: '', organisation_name: 'にんにん株式会社', department: '営業部', contact_person: '二階堂', sale_id: 1)
+CreditCard.create(credit_card_number: 0000-0000-0000-0000, credit_card_holder: "MITAKA", exp_month: 05, exp_year: 2020, member_id: 3, sale_id: 1)
+CreditCard.create(credit_card_number: 2222222222222222, credit_card_holder: "MITAKA", exp_month: 12, exp_year: 2020, member_id: 3, sale_id: 1)
+CreditCard.create(credit_card_number: 3333333333333333, credit_card_holder: "MITAKA", exp_month: 11, exp_year: 2020, member_id: 3, sale_id: 3)
