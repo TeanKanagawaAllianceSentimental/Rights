@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_09_26_085611) do
-
+ActiveRecord::Schema.define(version: 2018_09_26_253903) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"

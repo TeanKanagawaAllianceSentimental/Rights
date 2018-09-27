@@ -68,9 +68,10 @@
 	<%= item.fields_for :disks do |disk| %>
 		<%= render 'admin/disk/form', disk:disk %>
 	<% end %>
+	<div style="padding-top: 50px;">
 	<%= link_to_add_disk_fields "diskを追加する", item, :disks %>
 <% end %>
-<div class="action" style="padding-bottom: 20px">
+<div class="action" style="padding-bottom: 20px; padding-top: 40px;">
 	<div class='col-xs-12'>
 		<%= f.submit "Create", class: 'btn btn-success btn-block' %>
 	</div>
