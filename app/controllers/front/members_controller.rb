@@ -19,4 +19,12 @@ class Front::MembersController < ApplicationController
 		  render :edit
 		end
 	end
+	def delete
+
+	end
+	def destroy
+		@member = current_member.id
+		@member.soft_delete
+		redirect_to new_member_registration_path
+	end
 end

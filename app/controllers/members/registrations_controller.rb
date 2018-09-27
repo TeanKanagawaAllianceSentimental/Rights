@@ -91,7 +91,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
   private
   def member_params
-     params.require(:member).permit(:email, :password, :password_confirmation, addresses_attributes: [:id, :prefecture_id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :department, :phone, :postal_code, :address1, :address2])
+     params.require(:member).permit(:email, :password, :password_confirmation, :agreement, addresses_attributes: [:id, :prefecture_id, :corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :department, :phone, :postal_code, :address1, :address2])
   end
 
   def account_update_params

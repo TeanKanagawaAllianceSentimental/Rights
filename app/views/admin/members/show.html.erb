@@ -46,7 +46,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<%= link_to "Back", :back %>
+		<%= link_to "Back", admin_members_path %>
 		<%= link_to "会員情報編集", edit_admin_member_path, class: "btn btn-info" %>
 		<%= link_to "強制退会", { :controller => :members, :action => :destroy }, method: :delete, class: "btn btn-danger destroy_member_#{@member.id}", data: {confirm: "本当に強制退会させますか？"} %>
 	  </div>

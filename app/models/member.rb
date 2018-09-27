@@ -1,6 +1,8 @@
 class Member < ApplicationRecord
  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+ validates_acceptance_of :agreement, allow_nil: false, on: :create
+
          has_many :addresses
          has_many :sale_shippings
          has_many :sale_invoices
