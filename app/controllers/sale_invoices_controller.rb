@@ -1,25 +1,42 @@
 class SaleInvoicesController < ApplicationController
 
+  def create
+    invoice = SaleInvoice.new
+    sale = Sale.where(member_id: current_member).last
+    if invoice.save(sale_invoice_params)
+      redirect_to sale_pay_select(sale.id)
+    else
+      @member = current_member
+      @invoices = @member.sale_invoices
+      render 'sale_invoice/edit'
+    end
+  end
+
   def edit
-    @member = Member.find(params[:id])
-    @credit = @member.find(params[:credit_card_id])
+    @member = current_member
+    @invoices = @member.sale_invoices
+    @invoice = @invoices.find(params[:id])
   end
 
   def update
-    @credit.update(credit_card_params)
-    redirect_to _path
+    member = current_member
+    sale = Sale.where(member_id: current_member).last
+    invoices = member.sale_invoices
+    invoice = invoices.find(params[:id])
+    invoice.update(sale_invoice_params)
+    redirect_to sale_pay_select_path(sale.id)
   end
 
   def destroy
-    credit = CreditCard.find(params[:id])
-    credit.destroy
+    invoice = SaleInvoice.find(params[:id])
+    invoice.destroy
     redirect_to _path
   end
 
   private
 
-  def credit_card_params
-    require(:credit_card).permit(:credit_card_number :credit_card_holder :exp_month :exp_year)
+  def sale_invoice_params
+    params.require(:sale_invoice).permit(:bill_to, :billing_postal_code, :billing_address1, :billing_address2, :contact_person, :department)
   end
 
 end

@@ -1,89 +1,91 @@
 <div class="container">
   <div class="row">
-  <%#= render 'users/frame1', user: @user, book: @book %>
-    <div class="col-md-12">
-      <div class="progress">
-        <div class="progress-bar" role="progressbar progress-bar-info" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <h2>お支払方法の選択</h2><br>
-        <h3>クレジットカード</h3>
-          <%= link_to "クレジットカードを登録する", new_credit_card_path %>
-          <% if @credits.present? %>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <!-- <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar progress-bar-info" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      </div> -->
+      <h2 class="text-center">お支払方法の選択</h2><br>
+        <h3>クレジットカード</h3><br>
+          <%= form_for @sale, url: {controller: :pay_selects, action: :proceed_purchase} do |f| %>
           <% @credits.each do |credit| %>
             <table class="table">
-              <thead>
+              <thead class="bg-info">
                 <tr>
-                  <th colspan="2" scope="col">登録のクレジットカード</th>
+                  <tr>
+                  <th scope="col">
+                    <label><%= f.radio_button :credit_card_id, credit.id %>  このクレジットカードで支払う</label>
+                  </th>
+                  <th class="text-right" scope="col">
+                    <%= link_to "編集", edit_credit_card_path(credit.id) %> |
+                    <%= link_to "削除", method: :delete, "data-confirm" => "" %>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">クレジットカード名義人</th>
-                  <td><% @credit.credit_card_holder %></td>
+                  <th scope="row" class="col-md-3">クレジットカード名義人</th>
+                  <td class="col-md-5"><%= credit.credit_card_holder %></td>
                 </tr>
                 <tr>
-                  <th scope="row">クレジットカード番号（下4桁）</th>
-                  <td><% @credit.credit_card_number %></td>
+                  <th scope="row" class="col-md-3">クレジットカード番号（下4桁）</th>
+                  <td class="col-md-5"><%= credit.credit_card_number.to_s %></td>
                 </tr>
                 <tr>
-                  <th scope="row">有効期限</th>
-                  <td><% @credit.exp_month + "/" + @credit.exp_year %></td>
+                  <th scope="row" class="col-md-3">有効期限</th>
+                  <td class="col-md-5"><%= credit.exp_month.to_s + "/" + credit.exp_year.to_s %></td>
                 </tr>
               </tbody>
             </table>
-            <%= link_to "編集", edit_credit_card_path(credit_card.id) %>
-            <%= link_to "削除", method: :delete, "data-confirm" => "" %>
-            <%= form_for @sale, url: {controller: :pay_selects, action: :create} do |f| %>
-              <%= f.submit 'このクレジットカードで支払う', class: "btn btn-info" %>
-            <% end %>
-            <% end %>
           <% end %>
+            <%#= form_for @sale, url: {controller: :pay_selects, action: :create} do |f| %>
+              <%#= f.submit 'このクレジットカードで支払う', class: "btn btn-info" %>
+            <%# end %>
         <br><br><br>
-        <h3>請求書</h3>
-          <%= link_to "請求書の送付先をを登録する", new_sele_invoice_path %>
-          <% if @invoices.present? %>
+        <h3>請求書</h3><br>
+          <%#= link_to "新しい請求書の送付先をを登録する", new_sele_invoice_path %>
             <% @invoices.each do |invoice| %>
               <table class="table">
-                <thead>
+                <thead class="bg-info">
                   <tr>
-                    <th colspan="2" scope="col">登録のご請求先</th>
+                    <th scope="col">
+                      <label><%= f.radio_button :sale_invoice_id, invoice.id %>この宛先に請求書を送る</label>
+                    </th>
+                    <th class="text-right" scope="col">
+                      <%= link_to "編集", edit_sale_invoice_path(invoice.id) %> |
+                      <%= link_to "削除", method: :delete, "data-confirm" => "" %>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                  <th scope="row" class="col-md-2">請求書の宛名</th>
-                  <td class="col-md-5">@invoice.bill_to</td>
+                  <th scope="row" class="col-md-3">請求書の宛名</th>
+                  <td class="col-md-5"><%= invoice.bill_to %></td>
                 </tr>
                  <tr>
-                  <th scope="row" class="col-md-2">郵便番号</th>
-                  <td class="col-md-5">@invoice.billing_postal_code</td>
+                  <th scope="row" class="col-md-3">郵便番号</th>
+                  <td class="col-md-5"><%= invoice.billing_postal_code %></td>
                 </tr>
                  <tr>
-                  <th scope="row" class="col-md-2">住所</th>
-                  <td class="col-md-5">@invoice.billing_postal_code</td>
+                  <th scope="row" class="col-md-3">住所</th>
+                  <td class="col-md-5"><%= invoice.billing_address1 %> <%= invoice.billing_address2 %></td>
                 </tr>
                  <tr>
-                  <th scope="row" class="col-md-2">ご担当者名</th>
-                  <td class="col-md-5">@invoice.contact_person</td>
+                  <th scope="row" class="col-md-3">ご担当者名</th>
+                  <td class="col-md-5"><%= invoice.contact_person %></td>
                 </tr>
                  <tr>
-                  <th scope="row" class="col-md-2">ご担当部署</th>
-                  <td class="col-md-5">@invoice.department</td>
+                  <th scope="row" class="col-md-3">ご担当部署</th>
+                  <td class="col-md-5"><%= invoice.department %></td>
                 </tr>
                 </tbody>
               </table>
-            <%= form_for @sale, url: {controller: :pay_selects, action: :create} do |f| %>
-              <%= f.submit '上記宛先に請求書を送付する', class: "btn btn-info" %>
             <% end %>
-            <%= link_to "編集", edit_sele_invoic_path(sale_invoice.id) %>
-            <%= link_to "削除", method: :delete, "data-confirm" => "" %>
-          <% end %>
-    <div class="col-md-3">
-      <div class="card" style="width: 30rem;">
-        <div class="card-body">
-          <a href="#" class="btn btn-info btn-block">ご注文の最終確認へ進む</a>
-        </div>
-      </div>
+            <div class="text-center">
+            <%= f.submit "お支払方法確定", class: "btn btn-info btn-lg" %>
+            </div>
+            <% end %>
     </div>
+    <div class="col-md-2"></div>
   </div>
 </div>

@@ -1,18 +1,9 @@
 class Sale < ApplicationRecord
   belongs_to :member
   has_many :sale_items, dependent: :destroy
-
-  # def total_price
-  #   @total = Cart.where().each do |total|
-  #   @total.sum
-  # end
+  belongs_to :sale_invoice, optional: true
+  has_many :sale_shippings, through: :members
+  accepts_nested_attributes_for :sale_shippings, allow_destroy: true
+  belongs_to :credit_card, optional: true
 end
 
-#   def total_price
-#     sale = Sale.mamber.session_id
-#   end
-
-
-# def total_price
-#     line_items.to_a.sum { |item| item.total_price }
-# end
