@@ -6,6 +6,31 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      genre: ジャンル
+      item: 商品
+      disk: ディスク
+      music: 楽曲
+    attributes:
+      genre:
+        genre: ジャンル
+      item:
+        cd_title: CDタイトル
+        package: シングル/アルバム
+        artist: アーティスト名
+        jacket_image: ジャンケット写真
+        label: レーベル
+        unit_price: 価格
+        caption: 見出し
+        about: 詳細情報
+        stock_quantity: 在庫数
+        status: 販売ステータス
+      disk:
+        disk: ディスク
+      music:
+        music_title: 楽曲名
+        composer: 作曲者
+        songwriter: 作詞者
   date:
     abbr_day_names:
     - 日
@@ -214,4 +239,5 @@ ja:
       package:
         single: シングル
         album: アルバム
+
 

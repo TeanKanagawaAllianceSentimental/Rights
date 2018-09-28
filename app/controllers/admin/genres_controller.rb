@@ -18,21 +18,39 @@ class Admin::GenresController < Admin::AdminBase
 
   def create
   	@genre = Genre.new(genre_params)
-    @genre.save(genre_params)
-    redirect_to admin_rights_path
+    if @genre.invalid?
+      flash.now[:error] = '入力内容を再度ご確認ください'
+      render :new
+    else
+      @genre.save(genre_params)
+      flash[:success] = 'ご登録ありがとうございます'
+      redirect_to admin_rights_path
+    end
   end
 
   def edit
   end
 
   def update
-    @genre.update(update_genre_params)
-    redirect_to admin_rights_path
+    if @genre.invalid?
+      flash.now[:error] = '入力内容を再度ご確認ください'
+      render :edit
+    else
+      @genre.update(update_genre_params)
+      flash[:success] = '編集が完了いたしました'
+      redirect_to admin_rights_path
+    end
   end
 
   def destroy
-    @genre.destroy
-    redirect_to admin_rights_path
+    if @genre.items.end_of_sell?
+      @genre.destroy
+      flash[:success] = '削除が完了いたしました'
+      redirect_to admin_rights_path
+    else
+      flash[:error] = '選択された商品は現在公開中です。ステータスを販売終了にしてください'
+      redirect_to admin_rights_path
+    end
   end
 
   private

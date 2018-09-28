@@ -23,9 +23,7 @@
           <div class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
               <%= form_tag search_index_path, method: :get do %>
                 <%= text_field_tag :search %>
-                <%= submit_tag "", :genre => nil, class: 'btn btn-default' do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
+                <%= submit_tag "Search", :genre => nil, class: 'btn btn-default' %>
               <% end %>
           </div>
           <ul class="nav navbar-nav navbar-right" style="padding-top: 5px;">
