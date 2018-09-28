@@ -4,103 +4,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="main-visual">
-				<div class="menu">
-					<div class="btn trigger">
-						<%= image_tag('img/Rights-logo.png', :class => "logo") %>
-					</div>
-					<div class="icons">
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<%= link_to root_path do %>
-								<i class="fas fa-building fa-3x my-black"></i>
-						    <% end %>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<% if member_signed_in? %>
-						      	<%= link_to root_path do %>
-							      	<i class="fas fa-lock-open fa-3x my-black"></i>
-				                <% end %>
-				            <% else %>
-						      	<%= link_to new_member_registration_path do %>
-						      		<i class="fas fa-sign-in-alt fa-3x my-black"></i>
-					      		<% end %>
-					      	<% end %>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<% if member_signed_in? %>
-						      	<%= link_to root_path do %>
-							      	<i class="fas fa-user fa-3x my-black"></i>
-							    <% end %>
-							<% else %>
-						      	<%= link_to new_member_session_path do %>
-							      	<i class="fas fa-user-plus fa-3x my-black"></i>
-				                <% end %>
-				            <% end %>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<% if member_signed_in? %>
-						      	<%= link_to root_path do %>
-				                  <i class="fas fa-shopping-cart fa-3x my-black"></i>
-				                <% end %>
-				            <% else %>
-					            <%= link_to root_path do %>
-						          <i class="fas fa-at fa-3x my-black"></i>
-					            <% end %>
-				            <% end %>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<%= link_to items_path do %>
-						      	<i class="fas fa-music fa-3x my-black"></i>
-						    <% end %>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<i class="far fa-comments fa-3x my-black"></i>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<i class="fab fa-twitter fa-3x my-black"></i>
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      	<i class="fab fa-instagram fa-3x my-black"></i>
-					      </div>
-					    </div>
-					</div>
-				</div>
+				<%= render 'top/menu' %>
 				<div class="col-md-12" id="scroll">
 					<span>SCROLL</span>
 					<div class="line"></div>
 				</div>
 			</div>
-		</div>
-		<%= render 'top/topic' %>
-		<div class="item-box">
-			<div class="box-center">
-				<%= link_to items_path, :style => 'text-decoration: none;' do %>
-					<h2 class="right">
-						Rights<br>
-						ONLINE SHOP
-					</h2>
-				<% end %>
-				<div id="horizon2"></div>
-				<div class="container">
-					<div class="row">
-						<%= render 'top/slide', items: @items %>
-					</div>
-				</div>
-			</div>
+			<%= render 'top/topic' %>
 		</div>
 	</div>
 </div>
