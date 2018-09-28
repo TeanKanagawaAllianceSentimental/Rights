@@ -53,7 +53,7 @@ class SaleShippingsController < ApplicationController
     if shipping.present?
       shipping.update(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
-    elsif shippings.nil?
+    elsif shipping.nil?
       shipping = SaleShipping.new
       shipping.save(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
@@ -75,7 +75,7 @@ class SaleShippingsController < ApplicationController
   private
 
     def sale_shipping_params
-      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :sale_id)
+      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :sale_id, :member_id)
     end
 
     def sale_params

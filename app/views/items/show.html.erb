@@ -42,7 +42,7 @@
 					</tbody>
 				</table>
 				<div class="action">
-					<span><%= link_to root_path, class: 'square_btn col-md-12' do %>
+					<span><%= link_to carts_path, cart: {:item_id, :quantity, :member_id, :unit_price}, method: :post, class: 'square_btn col-md-12' do %>
 						<i class="fas fa-cart-plus fa-lg"></i>
 						<% end %>
 					</span>
