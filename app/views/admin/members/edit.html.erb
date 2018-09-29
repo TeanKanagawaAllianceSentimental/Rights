@@ -34,10 +34,10 @@
                <%= t.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
             <% end %>
             <div class="actions">
-              <%= f.submit "更新する" %>
+              <%= f.submit "更新する", class: "edit-submit btn btn-info" %>
             </div>
             <% end %>
-          <%= link_to "Back", :back %>
+          <%= link_to "Back", :back, class: "edit-back btn btn-default" %>
       </div>
     </div>
 </div>

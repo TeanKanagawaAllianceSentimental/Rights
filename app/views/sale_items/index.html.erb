@@ -2,82 +2,24 @@
 	<div class="row">
 		<div class="col-md-9">
 			<h2>購入履歴</h2>
-			  <%# @sale_items.each do |sale.item| %>
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th colspan="3"><h3>@sale.created_at</h3></th>
+							<th></th>
+							<th>商品名</th>
 						</tr>
 					</thead>
+					<% @sale.each do |sale_item| %>
 					<tbody>
 						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack01.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack05.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-								</div>
+							<td><img src="assets/soundtrack01.jpg" width=120 height="120"></td>
+							<td><%= sale_item.total_price %><br>
+								<p><%= sale_item.delivered %></p><br><p><%= sale_item.delivered_at %></p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th colspan="3"><h3>@sale.created_at</h3></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack01.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack05.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			  <%# end %>
+				<% end %>
 		</div>
 	</div>
 </div>
