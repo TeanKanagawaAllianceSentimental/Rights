@@ -45,13 +45,13 @@ ActiveRecord::Schema.define(version: 2018_09_29_031547) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.string "session_id"
+    t.integer "member_id"
     t.integer "item_id"
-    t.integer "quantity", default: 0, null: false
+    t.integer "quantity"
+    t.integer "unit_price"
+    t.string "session"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "unit_price"
   end
 
   create_table "credit_cards", force: :cascade do |t|
@@ -87,11 +87,11 @@ ActiveRecord::Schema.define(version: 2018_09_29_031547) do
     t.string "artist", null: false
     t.text "jacket_image_id"
     t.string "label", null: false
-    t.string "unit_price"
+    t.integer "unit_price"
     t.string "caption"
     t.text "about"
     t.integer "stock_quantity"
-    t.string "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"

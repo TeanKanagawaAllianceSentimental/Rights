@@ -1,5 +1,0 @@
-class AddUnitPriceToCart < ActiveRecord::Migration[5.2]
-  def change
-    add_column :carts, :unit_price, :integer
-  end
-end
