@@ -3,33 +3,34 @@
     <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 100px;">
       <div class="col-md-2"></div>
         <div class="col-md-8">
-          <h2>クレジットカード情報編集フォーム</h2>
-          <div class="form-body">
+          <h3>クレジットカード情報登録フォーム</h3><br>
+           <div class="form-body">
             <%= form_for (@credit) do |f| %>
               <div class="form-group">
-                <h4>クレジットカード番号</h4>
+                <h5>クレジットカード番号</h5>
                 <%= f.text_field :credit_card_number, class: "form-control" %>
               </div>
               <div class="form-group">
-                <h4>クレジットカード名義</h4>
+                <h5>クレジットカード名義</h5>
                 <%= f.text_field :credit_card_holder, class: "form-control" %>
               </div>
               <div class="form-group">
-                <h4>有効期限(月)</h4>
+                <h5>有効期限(月)</h5>
                 <%= f.select :exp_month, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10], ["11", 11], ["12", 12]] %>
               </div>
               <div class="form-group">
-                <h4>有効期限(年)</h4>
+                <h5>有効期限(年)</h5>
                 <%= f.select :exp_year, [["2018", 2018], ["2019", 2019], ["2020", 2020], ["2021", 2021], ["2022", 2022], ["2023", 2023], ["2024", 2024], ["2025", 2025]] %>
               </div>
-              <div class="form-group">
-                <%= f.submit "更新", class:"btn btn-md btn-info" %>
+              <div class="form-group text-center">
+                <%= f.submit "Register", class:"btn btn-md btn-info btn-lg" %>
               </div>
             <% end %>
             <br>
           </div>
         </div>
-      <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+      </div>
     </div>
   </div>
 </div>

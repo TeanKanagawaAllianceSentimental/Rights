@@ -4,7 +4,7 @@ class SaleInvoicesController < ApplicationController
     invoice = SaleInvoice.new
     sale = Sale.where(member_id: current_member).last
     if invoice.save(sale_invoice_params)
-      redirect_to sale_pay_select(sale.id)
+      redirect_to sale_pay_selects(sale.id)
     else
       @member = current_member
       @invoices = @member.sale_invoices
@@ -24,7 +24,7 @@ class SaleInvoicesController < ApplicationController
     invoices = member.sale_invoices
     invoice = invoices.find(params[:id])
     invoice.update(sale_invoice_params)
-    redirect_to sale_pay_select_path(sale.id)
+    redirect_to sale_pay_selects_path(sale.id)
   end
 
   def destroy

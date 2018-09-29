@@ -50,32 +50,43 @@ Rails.application.routes.draw do
 
   resources :list_of_performed_pieces, only:[:new, :create, :show]
 
-  resources :carts, only:[:create, :update, :destroy]
+  resources :carts, only:[:create, :update, :destroy] do
+    member do
+      delete :destroy_item
+      delete :destroy_cart
+    end
+  end
+
   resources :sale, except:[:new, :destroy] do
     member do
+      get :update_total_price
+      patch :update_total_price
+      post :update_total_price
       get :orderplaced
-      patch :continue_purchase
-      put :continue_purchase
-      post :continue_purchase
+      patch :proceed_purchase
+      put :proceed_purchase
+      post :proceed_purchase
       patch :confirm_purchase
       put :confirm_purchase
       post :confirm_purchase
     end
     resources :sale_shippings, except:[:new] do
-      get :proceed_purchase
-      patch :proceed_purchase
-      put :proceed_purchase
+      member do
+        get :proceed_purchase
+        patch :proceed_purchase
+        put :proceed_purchase
+      end
     end
-    resource :pay_selects, only:[:create, :show] do
-      get :proceed_purchase
-      patch :proceed_purchase
-      put :proceed_purchase
+    resources :pay_selects, only:[:create, :show] do
+      member do
+        get :proceed_purchase
+        patch :proceed_purchase
+        put :proceed_purchase
+      end
     end
+    resources :sale_items, only:[:index, :create, :show]
   end
 
-  resources :sale_items, only:[:index, :create]
-  resources :sale_shipping, except:[:new]
-  resources :pay_selects, only:[:create, :show]
   resources :credit_cards
   resources :sale_invoices
 

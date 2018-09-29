@@ -7,10 +7,11 @@ class SaleShippingsController < ApplicationController
 
   def show # 配送先指定
     # @member = Member.find(session[:member_id])
-    # @member = current_member
+    @member = current_member
     @shippings = current_member.sale_shippings
     @sale = Sale.where(member_id: current_member).last
-    @shippinga = @shippings.find(current_member.id)
+    @shippinga = @shippings.(current_member.id)
+    # @shippinga = Sale.weher(member_id: current_member)
     @shipping = SaleShipping.new
   end
 
@@ -53,7 +54,7 @@ class SaleShippingsController < ApplicationController
     if shipping.present?
       shipping.update(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
-    elsif shippings.nil?
+    elsif shipping.nil?
       shipping = SaleShipping.new
       shipping.save(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
@@ -75,7 +76,7 @@ class SaleShippingsController < ApplicationController
   private
 
     def sale_shipping_params
-      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :sale_id)
+      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :sale_id, :member_id)
     end
 
     def sale_params

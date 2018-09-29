@@ -8,6 +8,7 @@
       <h2 class="text-center">お支払方法の選択</h2><br>
         <h3>クレジットカード</h3><br>
           <%= form_for @sale, url: {controller: :pay_selects, action: :proceed_purchase} do |f| %>
+          <% if @cresit.present? %>
           <% @credits.each do |credit| %>
             <table class="table">
               <thead class="bg-info">
@@ -38,10 +39,12 @@
               </tbody>
             </table>
           <% end %>
+          <% end %>
             <%#= form_for @sale, url: {controller: :pay_selects, action: :create} do |f| %>
               <%#= f.submit 'このクレジットカードで支払う', class: "btn btn-info" %>
             <%# end %>
         <br><br><br>
+        <% if @invoice.present? %>
         <h3>請求書</h3><br>
           <%#= link_to "新しい請求書の送付先をを登録する", new_sele_invoice_path %>
             <% @invoices.each do |invoice| %>
@@ -85,6 +88,7 @@
             <%= f.submit "お支払方法確定", class: "btn btn-info btn-lg" %>
             </div>
             <% end %>
+          <% end %>
     </div>
     <div class="col-md-2"></div>
   </div>
