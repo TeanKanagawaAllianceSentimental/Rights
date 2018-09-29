@@ -240,4 +240,21 @@ ja:
         single: シングル
         album: アルバム
 
-
+  activerecord:
+    models:
+      member: メンバー
+    attributes:
+      member:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        email: "メールアドレス"
+        password: "パスワード"
+        agreement: "規約"
+        corporate_phonetic: "ふりがな"
+      addresses:
+        prefecture_id: "都道府県"
+        address1: "住所"
+      admin:
+        email: "メールアドレス"
+        password: "パスワード"

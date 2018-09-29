@@ -25,6 +25,75 @@
                 <%= text_field_tag :search %>
                 <%= submit_tag "Search", :genre => nil, class: 'btn btn-default' %>
               <% end %>
+
+            </ul>
+            <div class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
+                <%= form_tag search_index_path, method: :get do %>
+                  <%= text_field_tag :search %>
+                  <%= submit_tag "Search", :genre => nil, class: 'btn btn-default' %>
+                <% end %>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="padding-top: 5px;">
+              <% if member_signed_in? %>
+                <li><%= link_to 'My Page', front_members_path, class: "my_page" %></li>
+                <li><%= link_to 'Logout', destroy_member_session_path, method: :delete, class: "logout" %></li>
+                <li><%= link_to root_path do %>
+                  <i class="fas fa-user fa-2x"></i>
+                  <% end %>
+                </li>
+                <li id="fat-menu" class="dropdown">
+                   <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                     商品情報 <b class="caret"></b>
+                   <ul class = "dropdown-menu">
+                      <li><%= link_to "管理者　商品一覧", admin_rights_path %></li>
+                      <li><%= link_to "商品登録", new_admin_right_path %></li>
+                      <li><%= link_to "ジャンル一覧", admin_rights_path %></li>
+                      <li><%= link_to "会員 商品一覧", items_index_path %></li>
+                      <li><%= link_to "会員 商品詳細", items_show_path %></li>
+                   </ul>
+                </li>
+              <% else %>
+                <li><%= link_to new_member_registration_path do %>
+                  <i class="fas fa-sign-in-alt fa-2x"></i>
+                  <% end %>
+                </li>
+                <li><%= link_to new_member_session_path do %>
+                  <i class="fab fa-expeditedssl fa-2x"></i>
+                  <% end %>
+                </li>
+                <li><%= link_to root_path do %>
+                  <i class="fas fa-shopping-cart fa-2x"></i>
+                  <% end %>
+                </li>
+                <li><%= link_to root_path do %>
+                  <i class="fas fa-user fa-2x"></i>
+                  <% end %>
+                </li>
+                <li id="fat-menu" class="dropdown">
+                   <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                     管理画面リンク <b class="caret"></b></a>
+                   <ul class = "dropdown-menu">
+                      <li><%= link_to "管理者　商品一覧", admin_rights_path %></li>
+                   </ul>
+                 </li>
+                 <li id="fat-menu" class="dropdown">
+                   <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                     フロント画面作業用リンク <b class="caret"></b></a>
+                   <ul class = "dropdown-menu">
+                      <li><%= link_to "商品一覧", items_path %></li>
+                   </ul>
+              <% end %>
+            </ul>
+        </nav>
+      </div>
+      <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>">
+            <div class="container">
+              <%= value %>
+            </div>
+          </div>
+        <% end %>
+
           </div>
           <ul class="nav navbar-nav navbar-right" style="padding-top: 5px;">
               <li id="fat-menu" class="dropdown">
@@ -41,6 +110,7 @@
           </ul>
       </nav>
     </div>
+
     <%= yield %>
   </body>
 </html>
