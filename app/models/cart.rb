@@ -3,23 +3,21 @@ class Cart < ApplicationRecord
 	belongs_to :member
   belongs_to :item
 
-  def self.add_item(session_id, item_id, quantity, member_id, unit_price)
-    if session[:member_id] = current_member_id
+  def self.add_item(item_id, quantity, member_id, unit_price) # session_id,
+    if member_id = current_member_id
       cart = Cart.find_or_initialize_by(item_id, member_id, session_id)
-    else
-      render new_member_session_path
     end
     cart.quantity += 1
     if cart.item_error.present?
       return false
     else
-      cart.save && cart
+      cart.save && cart(add_item_params)
     end
   end
 
   def update_quantity(quantity)
     self.quantity = quantity
-    self.save
+    self.update
   end
 
   private

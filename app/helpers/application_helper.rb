@@ -26,4 +26,25 @@ module ApplicationHelper
 		sub_total = cart.quantity.to_i * cart.item.unit_price.to_i
     sub_total.update
 	end
+
+	def bootstrap_class_for(flash_type)
+	    { success: 'alert-primary', error: 'alert-danger',
+	      alert: 'alert-warning', notice: 'alert-primary' }[flash_type.to_sym] || flash_type.to_s
+	end
+
+	def flash_messages
+	    flash.each do |flash_type, message|
+	    	concat(
+	    		content_tag(:div, message, class: "alert #{bootstrap_class_for(flash_type)}") do
+	    			concat message
+	    		end
+	        )
+	    end
+	end
+
+	def hidden_label_tag(object, field)
+		if object.errors.present? && object.errors[field].present?
+	      content_tag :p, object.errors.full_messages_for(field)[0], class: 'text-danger mt-1 small'
+	    end
+	end
 end

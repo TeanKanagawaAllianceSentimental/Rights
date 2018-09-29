@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
 	def create
-		if @cart = Cart.add_item(params[:item_id],session_id)
+		if @cart = Cart.add_item(add_item_params)# ,session_id
       redirect_to item_path(params[:item_id], cart_added: true)
     else
       flash[:error] = 'カートに商品を追加することができませんでした。'
@@ -12,18 +12,42 @@ class CartsController < ApplicationController
 	def update
     cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
-		if cart.update_quantity(quantity: params[:quantity].to_i)
+		if cart.update(quantity: quantity_params[:quantity].to_i)
       redirect_to sale_path(sale.id)
     else
-      render "items/show"
+      @member = current_member
+      @sale = Sale.where(member_id: current_member).last
+      @carts = @member.carts
+      @cart = Cart.find(params[:id])
+      @item = @cart.item
+      @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
+      render "sales/show"
     end
 	end
 
-	def destroy
-		@cart.destroy
-    flash[:success] = "#{@cart.item.cd_title} をカートから削除しました。"
+	def destroy_item
+    cart = Cart.find(params[:id])
+    sale = Sale.where(member_id: current_member).last
+		cart.destroy
     redirect_to sale_path(sale.id)
 	end
+
+  def destroy_cart
+    sale = Sale.where(member_id: current_member).last
+    carts = Cart.where(sale_id: sale).all
+    carts.destroy
+    redirect_to edit_sale_path(sale.id)
+  end
+
+  private
+
+  def add_item_params
+    params.require(:cart).permit(:session_id, :item_id, :quantity, :member_id, :unit_price)
+  end
+
+  def quantity_params
+    params.require(:cart).permit(:quantity)
+  end
 
 end
 
