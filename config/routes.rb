@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   end
 
   resources :sale, except:[:new, :destroy] do
-    collection do
+    member do
       get :update_total_price
       patch :update_total_price
       post :update_total_price
@@ -70,15 +70,15 @@ Rails.application.routes.draw do
       put :confirm_purchase
       post :confirm_purchase
     end
-    resource :sale_shippings, except:[:new] do
-      collection do
+    resources :sale_shippings, except:[:new] do
+      member do
         get :proceed_purchase
         patch :proceed_purchase
         put :proceed_purchase
       end
     end
-    resource :pay_selects, only:[:create, :show] do
-      collection do
+    resources :pay_selects, only:[:create, :show] do
+      member do
         get :proceed_purchase
         patch :proceed_purchase
         put :proceed_purchase

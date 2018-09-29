@@ -9,7 +9,7 @@ class SaleController < ApplicationController
     sale = Sale.new(sale_params)
     sale.member_id = current_member_id
     if sale.save
-      redirect_to sale_path(sale.id)
+      redirect_back fallback_location: root
     else
       render 'items/show'
       flash[:error] = ""
@@ -47,7 +47,7 @@ class SaleController < ApplicationController
     sale_items = SaleItem.new(sale_item_params)
     if sale.update
       sale_items.save
-      redirect_to orderplaced_sale_path(sale.id)
+      redirect_back fallback_location: root
     else
       render 'sale/edit'
       flash[:error] = ""
@@ -62,7 +62,7 @@ class SaleController < ApplicationController
       total_price += cart.item.unit_price * cart.quantity
     end
     total_price.update(pdate_total_price)
-    redirect_to sale_path(sale.id)
+    redirect_back fallback_location: root
   end
 
   def proceed_purchase # レジに進むボタン押下

@@ -7,10 +7,11 @@ class SaleShippingsController < ApplicationController
 
   def show # 配送先指定
     # @member = Member.find(session[:member_id])
-    # @member = current_member
+    @member = current_member
     @shippings = current_member.sale_shippings
     @sale = Sale.where(member_id: current_member).last
-    @shippinga = @shippings.find(current_member.id)
+    @shippinga = @shippings.(current_member.id)
+    # @shippinga = Sale.weher(member_id: current_member)
     @shipping = SaleShipping.new
   end
 
