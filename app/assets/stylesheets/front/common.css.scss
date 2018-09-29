@@ -16,17 +16,45 @@
 /*Rights*/
 
 h3{
-  color: black;
+  	color: black;
 }
 
 
 /*TOP画面テキスト*/
 
 h2{
-  color: black;
+    color: black;
 }
 
 p{
-  color: black;
+    color: black;
 }
-
+.error_message {
+	text-align: center;
+	list-style: none;
+}
+.error_message li{
+	list-style: none;
+	color: red;
+}
+.error_message h2{
+	background-color: #f2dede;
+    color: #a94442;
+	font-size: 20px;
+}
+.alert-notice {
+	width: 100%;
+	position: absolute;
+	top: 66px;
+	float: left;
+  	color: #3c763d;
+    background-color: #dff0d8;
+}
+.alert-alert {
+	width: 100%;
+	position: absolute;
+	top: 66px;
+	float: left;
+    background-color: #f2dede;
+    color: #a94442;
+}

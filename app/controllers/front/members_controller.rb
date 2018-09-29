@@ -1,4 +1,5 @@
 class Front::MembersController < ApplicationController
+	# before_action :authentication_member!
 	def index
 	end
 	def show

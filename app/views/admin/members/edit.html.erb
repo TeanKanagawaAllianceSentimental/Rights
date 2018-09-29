@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'admin/members' %>
 <div class="container">
   <div class="row">
     <div class="col-xs-4">
@@ -19,6 +20,8 @@
                <%= f.text_field :contact_person_phonetic, class: "form-control" %>
                <%= f.label :postal_code, "郵便番号" %><br>
                <%= f.text_field :postal_code, class: "form-control" %>
+               <%= f.label :prefecture_id, "都道府県" %><br>
+               <%= f.text_field :prefecture_id, class: "form-control" %>
                <%= f.label :address1, "市区町村/番地" %><br>
                <%= f.text_field :address1, class: "form-control" %>
                <%= f.label :address2, "その他" %><br>

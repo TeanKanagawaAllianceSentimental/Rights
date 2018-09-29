@@ -67,7 +67,6 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'active_hash','~> 1.5.3'
 gem 'kaminari'
-
 gem 'devise'
 gem 'pry-byebug', group: :development
 gem "enum_help"

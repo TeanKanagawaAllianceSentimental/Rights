@@ -30,4 +30,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  enums:
+    item:
+      status:
+        unpublished: 未公開
+        selling: 販売中
+        end_of_sell: 販売中止
+      package:
+        single: シングル
+        album: アルバム
+  activerecord:
+    models:
+      member: メンバー
+    attributes:
+      member:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        email: メールアドレス
+        password: パスワード

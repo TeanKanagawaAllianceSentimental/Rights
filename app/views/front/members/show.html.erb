@@ -31,6 +31,10 @@
 					<td><%= @address.postal_code %></td>
 				</tr>
 				<tr>
+					<th>都道府県</th>
+					<td><%= @address.prefecture.name %></td>
+				</tr>
+				<tr>
 					<th>市区町村/番地</th>
 					<td><%= @address.address1 %></td>
 				</tr>
@@ -44,7 +48,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<%= link_to "会員情報編集", edit_front_member_path %>
+		<%= link_to "会員情報編集", edit_front_member_path, class: "btn btn-default" %>
+		<%= link_to "戻る", front_members_path, class: "btn btn-default" %>
 	  </div>
 	</div>
 </div>

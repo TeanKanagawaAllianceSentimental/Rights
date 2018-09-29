@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'front/members' %>
 <div class="container">
   <div class="row">
     <div class="col-xs-4">
@@ -19,6 +20,8 @@
                <%= f.text_field :contact_person_phonetic, class: "form-control" %>
                <%= f.label :postal_code, "郵便番号" %><br>
                <%= f.text_field :postal_code, class: "form-control" %>
+               <%= f.label :prefecture_id, "都道府県" %><br>
+               <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name,{},{class: "form-control"} %>
                <%= f.label :address1, "市区町村/番地" %><br>
                <%= f.text_field :address1, class: "form-control" %>
                <%= f.label :address2, "その他" %><br>
@@ -32,10 +35,10 @@
 
             <% end %>
             <div class="actions">
-              <%= f.submit "更新する" %>
+              <%= f.submit "更新する", class: "btn btn-default" %>
             </div>
+            <%= link_to "Back", front_member_path, class: "btn btn-default" %>
             <% end %>
-          <%= link_to "Back", :back %>
       </div>
     </div>
 </div>
