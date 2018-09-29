@@ -58,30 +58,32 @@
 				<p>BACK</p>
 			</div>
 		</div>
-		<div class="item-index" style="padding-top: 200px;">
+		<div class="item-body" style="padding-top: 100px; height: 100vh;">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1" style="height: 100vh;">
-						<h2 style="font-weight: bold; padding-bottom: 50px;">商品情報</h2>
-						<table class= "table" style="background-color: rgba(0,0,0,0.1);">
-							<% @item.disks.each do |disk| %>
-								<tr>
-									<th style="border-top: 1px">DISK<%= disk.disk %></th>
-								</tr>
-								<tr>
-									<th>曲名</th>
-									<th>作曲者</th>
-									<th>作詞者</th>
-								</tr>
-								<% disk.musics.each do |music| %>
+					<div class="text-box">
+						<div class="text">
+							<h2 style="padding-bottom: 10px;">商品情報</h2>
+							<table class= "table">
+								<% @item.disks.each do |disk| %>
 									<tr>
-										<td><%= music.music_title %></td>
-										<td><%= music.composer %></td>
-										<td><%= music.songwriter %></td>
+										<th style="border-top: 1px">DISK<%= disk.disk %></th>
 									</tr>
+									<tr>
+										<th>曲名</th>
+										<th>作曲者</th>
+										<th>作詞者</th>
+									</tr>
+									<% disk.musics.each do |music| %>
+										<tr>
+											<td><%= music.music_title %></td>
+											<td><%= music.composer %></td>
+											<td><%= music.songwriter %></td>
+										</tr>
+									<% end %>
 								<% end %>
-							<% end %>
-						</table>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
