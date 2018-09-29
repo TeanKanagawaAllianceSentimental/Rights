@@ -6,8 +6,9 @@ class Admin::SaleItemsController < Admin::AdminBase
     # @sale_items = @sale.sale_items
   end
 
-	def show
-		# @sales = Sale.find(params[:sale_id])
-		# @sale_items = @sales.sale_items
-	end
+  def show
+    @sales = Sale.find(params[:id])
+    @sale_items = @sales.sale_items
+  end
+
 end

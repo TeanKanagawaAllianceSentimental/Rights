@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   namespace :front do
     resources :members
-    resources :sale_items, only:[:index, :create, :show]
+    resources :sale_items, only:[:index, :create, :show, :destroy]
   end
 
   namespace :admin, path: 'admin' do
