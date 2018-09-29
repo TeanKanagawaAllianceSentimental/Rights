@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2018_09_29_031547) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.integer "genre", null: false
+    t.string "genre", null: false
     t.integer "sequence", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -154,11 +154,11 @@ ActiveRecord::Schema.define(version: 2018_09_29_031547) do
     t.string "organisation_name"
     t.string "department"
     t.string "contact_person"
-    t.integer "sale_id"
+    t.integer "sale_id", default: 0
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "total_price"
+    t.integer "total_price", default: 0
     t.integer "member_id"
     t.integer "delivered"
     t.datetime "delivered_at"

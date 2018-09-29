@@ -9,7 +9,7 @@ class SaleController < ApplicationController
     sale = Sale.new(sale_params)
     sale.member_id = current_member_id
     if sale.save
-      redirect_back fallback_location: root
+      redirect_to sale_path(sale.id)
     else
       render 'items/show'
       flash[:error] = ""
@@ -31,7 +31,7 @@ class SaleController < ApplicationController
     @member = current_member
     @sale = Sale.where(member_id: current_member).last
     @shippings = @member.sale_shippings
-    @shipping = @shippings.find(params[:id])
+    @shipping = @shippings.find(@sale.id)
     @credit = @sale.credit_card
     @invoice = @sale.sale_invoice
     @sale_item = SaleItem.new
@@ -54,21 +54,42 @@ class SaleController < ApplicationController
     end
   end
 
-  def update_total_price
+  def amount_show # カートの中身確認　合計金額再計算ボタン押下
     # cart = Cart.where(:member_id session[:member_id])
-    carts = Cart.where(member_id: current_member)
+    carts = Cart.where(member_id: current_member.id)
     total_price = 0
     carts.each do |cart|
       total_price += cart.item.unit_price * cart.quantity
+      #本当はcart.unit_price
     end
-    total_price.update(pdate_total_price)
-    redirect_back fallback_location: root
+    # total_price.update(amount_params)
+    sale = Sale.find(params[:id])
+    sale.total_price = total_price
+    sale.save
+    redirect_to sale_path(sale.id)
+  end
+
+  def amount_edit # 注文確認　合計金額再計算ボタン押下
+    # cart = Cart.where(:member_id session[:member_id])
+    carts = Cart.where(member_id: current_member.id)
+    total_price = 0
+    carts.each do |cart|
+      total_price += cart.item.unit_price * cart.quantity
+      #本当はcart.unit_price
+    end
+    # total_price.update(amount_params)
+    sale = Sale.find(params[:id])
+    sale.total_price = total_price
+    sale.save
+    redirect_to edit_sale_path(sale.id)
   end
 
   def proceed_purchase # レジに進むボタン押下
     sale = Sale.find(params[:id])
     if sale.update(sale_params)
-      redirect_to sale_sale_shipping_path(sale.id)
+
+      ##########
+      redirect_to new_sale_sale_shipping_path(sale_id: sale.id)
     else
       render 'sale/show'
     end
@@ -93,11 +114,11 @@ class SaleController < ApplicationController
     params.require(:sale).permit(:total_price, :sele_invoice_id, :credit_card_id, :shipping_address_id, :Application, :member_id)
   end
 
-  def sele_item_path
+  def sele_item_params
     params.require(:sale_item).permit(:quantity, :unit_price, :sale_id, :items_id, :unit_price)
   end
 
-    def update_total_price
+    def amount_params
       params.require(:sale).permit(:total_price)
     end
 

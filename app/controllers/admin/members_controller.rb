@@ -1,11 +1,12 @@
 class Admin::MembersController < Admin::AdminBase
-before_action :authenticate_admin!
+# before_action :authenticate_admin!
 
 	def after_sign_out_path_for(resource)
     	new_admin_session_path
   	end
 	def index
-		@member = Address.all
+		# @member = Address.all
+		@members = Address.search(params[:search])
 	end
 	def show
 		@address = Address.find(params[:id])

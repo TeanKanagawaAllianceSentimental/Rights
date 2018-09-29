@@ -3,10 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .title h2 {
-	padding-top: 100px;
+	padding-top: 80px;
 	text-align: center;
 }
 .title h3 {
 	padding-top: 100px;
 	text-align: center;
+}
+.search_box p {
+	width: 200px;
+	display: -webkit-box;
+	padding-top: 100px;
+}
+.search-btn {
+	margin-left: 5px;
+}
+.edit-back {
+	margin: -4px 0 40px 10px;
+}
+.edit-submit {
+	float: left;
+	margin-top: 10px;
 }

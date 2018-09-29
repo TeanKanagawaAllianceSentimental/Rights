@@ -10,6 +10,7 @@ class Member < ApplicationRecord
          has_many :sales
          has_many :applicants, dependent: :destroy
          accepts_nested_attributes_for :addresses
+
 	 def soft_delete
 	 	update(deleted_at: Time.now)
 	 end
