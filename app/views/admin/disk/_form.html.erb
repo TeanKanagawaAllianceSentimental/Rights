@@ -6,9 +6,11 @@
 	<%= disk.fields_for :musics do |music| %>
 		<%= render 'admin/musics/form', music: music %>
 	<% end %>
-	<%= link_to_add_fields "追加する", disk, :musics %>
-	<div class="field">
+	<div style="padding-top: 50px;">
+		<%= link_to_add_fields "楽曲フォーム追加", disk, :musics %>
+	</div>
+	<div class="field" style="padding-top: 30px;">
 		<%= disk.hidden_field :_destroy %>
-		<%= link_to "disk削除", '#', class: "remove_disk_fields"%>
+		<%= link_to "disk削除", '#', class: "square_btn remove_disk_fields"%>
 	</div>
 <fieldset>

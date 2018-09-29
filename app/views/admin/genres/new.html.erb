@@ -5,6 +5,9 @@
 			<div class="col-md-3">
 			</div>
 			<div class="col-md-9">
+				<% if @genre.errors.any? %>
+					<%= flash_messages %>
+				<% end %>
 				<h2 class="title" style="padding-bottom: 20px">商品登録</h2>
 				<%= form_for @genre, url: admin_rights_path do |f| %>
 					<%= render 'admin/genres/form', f:f %>

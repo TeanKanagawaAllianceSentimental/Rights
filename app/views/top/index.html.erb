@@ -1,126 +1,16 @@
 <%= stylesheet_link_tag 'front/top' %>
 
-<div class="index-body">
+<div class="main">
 	<div class="container">
 		<div class="row">
-			<div class="top-visual">
-				<div class="menu">
-					<div class="btn trigger"></div>
-					<div class="icons">
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					    <div class="rotater">
-					      <div class="btn btn-icon">
-					      </div>
-					    </div>
-					</div>
-				</div>
+			<div class="main-visual">
+				<%= render 'top/menu' %>
 				<div class="col-md-12" id="scroll">
 					<span>SCROLL</span>
 					<div class="line"></div>
 				</div>
 			</div>
-		</div>
-
-		<div class="main">
-			<div class="blog-right">
-				<%= link_to items_path, :style => 'text-decoration: none;' do %>
-					<h2 class="right">CD All</h2>
-					<p>CD一覧へGo!!</p>
-				<% end %>
-				<div id="horizon1"></div>
-				<div class="container" style="height: 200px;">
-					<div class="row">
-						<%= render 'top/slide', items: @items %>
-					</div>
-				</div>
-			</div>
-			<div class="blog-left">
-				<h2 class="left">J-POP</h2>
-				<p>日本</p>
-				<div id="horizon2"></div>
-				<div class="container" style="height: 200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<%= render 'top/slide', items: @items %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="blog-right">
-				<h2 class="right">Sound tracks</h2>
-				<p>サウンドトラック</p>
-				<div id="horizon3"></div>
-				<div class="container" style="height: 200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<%= render 'top/slide', items: @items %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="blog-left">
-				<h2 class="left">Anime</h2>
-				<p>アニメ</p>
-				<div id="horizon4"></div>
-				<div class="container" style="height: 200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<%= render 'top/slide', items: @items %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="blog-right">
-				<h2 class="right">Classics/Jazz</h2>
-				<p>クラシック・ジャズ</p>
-				<div id="horizon5"></div>
-				<div class="container" style="height: 200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<%= render 'top/slide', items: @items %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="blog-left">
-				<h2 class="left">World</h2>
-				<p>世界</p>
-				<div id="horizon6"></div>
-				<div class="container" style="height: 200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<%= render 'top/slide', items: @items %>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%= render 'top/topic' %>
 		</div>
 	</div>
 </div>
