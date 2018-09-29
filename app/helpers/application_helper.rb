@@ -47,4 +47,5 @@ module ApplicationHelper
 	      content_tag :p, object.errors.full_messages_for(field)[0], class: 'text-danger mt-1 small'
 	    end
 	end
+
 end

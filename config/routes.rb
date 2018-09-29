@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get 'items/index'
-  get 'items/show'
   root 'top#index'
   get 'front/delete' => 'front/members#delete'
 
@@ -33,7 +31,8 @@ Rails.application.routes.draw do
 
 
   resources :search, controller: 'genres', only:[:index]
-  resources :items
+
+  resources :items, only:[:index, :show]
 
   resources :applicants do
     member do
@@ -51,12 +50,11 @@ Rails.application.routes.draw do
 
   resources :list_of_performed_pieces, only:[:new, :create, :show]
 
-  resources :carts, only:[:create, :update, :destroy] do
-    member do
-      delete :destroy_item
-      delete :destroy_cart
-    end
-  end
+  resources :carts
+
+  post '/add_item' => 'carts#add_item'
+  post '/update_item' => 'carts#update_item'
+  delete '/delete_item' => 'carts#delete_item'
 
   resources :sale, except:[:new, :destroy] do
     member do

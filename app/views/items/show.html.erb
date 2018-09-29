@@ -41,12 +41,14 @@
 						<% end %>
 					</tbody>
 				</table>
-				<div class="action">
-					<span><%= link_to carts_path, cart: {:item_id, :quantity, :member_id, :unit_price}, method: :post, class: 'square_btn col-md-12' do %>
-						<i class="fas fa-cart-plus fa-lg"></i>
-						<% end %>
-					</span>
-				</div>
+				<% if member_signed_in? %>
+					<div class="action">
+						<span><%= link_to add_item_path(id: @item.id), method: :post ,class: 'square_btn col-md-12' do %>
+							<i class="fas fa-cart-plus fa-lg my-gray"></i>
+							<% end %>
+						</span>
+					</div>
+				<% end %>
 			</div>
 			<div class="col-md-6 col-md-offset-1">
 				<%= attachment_image_tag @item, :jacket_image, :fill, 500, 440, format: 'jpeg', class: "thumbnail" %>
