@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_09_29_031547) do
 
-
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
     t.string "corporate_name", null: false

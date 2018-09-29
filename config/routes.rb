@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'items/show'
   root 'top#index'
   get 'front/delete' => 'front/members#delete'
-
+  delete 'front/destroy' => 'front/members#destroy'
   devise_for :admins, controllers: {
         sessions: 'admins/sessions',
         registrations: 'admins/registrations',
@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   namespace :front do
     resources :members
     resources :sale_items, only:[:index, :create, :show]
+  end
+
+  namespace :admin do
+    resources :search, controller: 'members'
   end
 
   namespace :admin, path: 'admin' do

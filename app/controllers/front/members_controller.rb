@@ -24,7 +24,7 @@ class Front::MembersController < ApplicationController
 
 	end
 	def destroy
-		@member = current_member.id
+		@member = current_member
 		@member.soft_delete
 		redirect_to new_member_registration_path
 	end
