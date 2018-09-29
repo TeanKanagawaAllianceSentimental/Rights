@@ -1,12 +1,14 @@
 class SaleItemsController < ApplicationController
 
   def create # 購入確定
+    member = current_member
     sale = Sale.where(member_id: current_member).last
-    sale.member = current_member
-    sale_items = SaleItem.new(sale_item_params)
-    sale_items.each do |sale_item|
-      sale_item.save
+    carts = member.carts
+    carts.each do |cart|
+      sale_items = SaleItem.new(sale_item_params)
+      sale_items.save
     end
+    carts.destroy
       redirect_to orderplaced_sale_path(sale.id)
   end
 

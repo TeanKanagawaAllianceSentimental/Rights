@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   }
 
   namespace :front do
-  resources :members
+    resources :members
+    resources :sale_items, only:[:index, :create, :show]
   end
 
   namespace :admin, path: 'admin' do
@@ -54,14 +55,18 @@ Rails.application.routes.draw do
     member do
       delete :destroy_item
       delete :destroy_cart
+      patch :update_edit
+      patch :update_show
     end
   end
 
   resources :sale, except:[:new, :destroy] do
     member do
-      get :update_total_price
-      patch :update_total_price
-      post :update_total_price
+      # put :amount
+      put :amount_show
+      get :amount_show
+      put :amount_edit
+      get :amount_edit
       get :orderplaced
       patch :proceed_purchase
       put :proceed_purchase
@@ -70,14 +75,14 @@ Rails.application.routes.draw do
       put :confirm_purchase
       post :confirm_purchase
     end
-    resources :sale_shippings, except:[:new] do
+    resources :sale_shippings do
       member do
         get :proceed_purchase
         patch :proceed_purchase
         put :proceed_purchase
       end
     end
-    resources :pay_selects, only:[:create, :show] do
+    resource :pay_selects, only:[:create, :show] do
       member do
         get :proceed_purchase
         patch :proceed_purchase

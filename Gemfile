@@ -71,3 +71,4 @@ gem 'kaminari'
 gem 'devise'
 gem 'pry-byebug', group: :development
 gem "enum_help"
+gem 'pry-rails', group: :development

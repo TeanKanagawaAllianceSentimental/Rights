@@ -4,7 +4,7 @@ class PaySelectsController < ApplicationController
     # @member = Member.find(session[:member_id])
     @member = current_member
     @sale = Sale.where(member_id: current_member).last
-    @credits = @member.credit_cards
+    @credits = current_member.credit_cards
     @invoices = @member.sale_invoices
   end
 

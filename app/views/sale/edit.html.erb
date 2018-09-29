@@ -58,7 +58,7 @@
 			        <h4><%= @invoice.billing_address1 %><br>
 			        	<%= @invoice.billing_address2 %></h4>
 			        <h4><%= @invoice.contact_person %>様</h4>
-			        <%= link_to "編集", edit_sele_invoice_path(@invoice.id) %>
+			        <%= link_to "編集", edit_sale_invoice_path(@invoice.id) %>
 						</div>
 					</div>
 				</div>
@@ -70,7 +70,43 @@
 							<th></th>
 						</tr>
 					</thead>
-					<%= render 'sale/cart_items', carts: @carts, sub_total: @sub_total %>
+					<% @carts.each do |cart| %>
+				  <tbody>
+				    <tr>
+				      <td class="col-xs-2"><%= link_to item_path(cart.item_id) do %>
+				        <%= attachment_image_tag cart.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
+				        <% end %>
+				      </td>
+				      <td>
+				        <h4>
+				        <%= link_to item_path(cart.item_id) do %>
+				          <%= cart.item.cd_title %>
+				        <% end %>
+				        </h4><br>
+				        <h5>
+				        <%= cart.item.status %>
+				        <br>
+				        <%= cart.item.artist %>
+				        </h5>
+				      </td>
+				      <td class="col-xs-2">
+				        <h5>単価<%= cart.item.unit_price %>円</h5><br><!-- カートが完成したらitem外す -->
+				        <div class="btn-group col-xs-9">
+				        <%= form_for cart, url: update_edit_cart_path(cart.id) do |i| %>
+				            <%= i.number_field :quantity, class: 'form-control', value: cart.quantity %>
+				        <%= i.submit '再計算', class: "btn btn-link" %>
+				        <% end %>
+				        </div>
+				      </td>
+				      <td class="col-xs-2">
+				        <h4>小計<%= cart.quantity.to_i * cart.item.unit_price.to_i %>円</h4>
+				      </td>
+				      <td class="col-xs-1">
+				        <%= link_to "削除",destroy_item_cart_path(cart.id), method: :delete, class: "btn btn-default" %>
+				      </td>
+				    </tr>
+				  </tbody>
+				<% end %>
 				</table>
 			</div>
 				<div style="padding-top: 125px;">
@@ -78,7 +114,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">ご請求額：<%= @sale.total_price %>円</h4>
-								<%= link_to "再計算", update_total_price_sale_path, class: "btn btn-link" %>
+								<%= link_to "再計算", amount_edit_sale_path(@sale.id), class: "btn btn-link" %>
 							</div>
 							<div class="panel-body">
 				        <h5>楽曲使用申請：</h5>
@@ -88,8 +124,12 @@
 						<%= form_for [@sale,@sale_item] do |f| %>
 								<%= fields_for @sale, url: confirm_purchase_sale_path do |i| %>
 									<%= i.hidden_field :total_price, :value => @sale.total_price %>
+									<% if @sale.credit_card_id != nil %>
 									<%= i.hidden_field :credit_card_id, :value => @credit.id %>
-									<%#= i.hidden_field :sele_invoice_id, :value => @invoice.id %>
+									<% end %>
+									<% if @sale.credit_card_id != nil %>
+									<%= i.hidden_field :sele_invoice_id, :value => @invoice.id %>
+									<% end %>
 							<button type="button" class="btn btn-info">
 									<%= i.submit %>
 									<% end %>

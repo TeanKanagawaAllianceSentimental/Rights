@@ -3,22 +3,55 @@
 		<div class="col-xs-2">
 		</div>
 		<div class="col-xs-10">
-			<h2>購入履歴</h2>
-			  <%# @sale_items.each do |sale.item| %>
+			<h2>購入詳細</h2>
+			  <% @sale_items.each do |sale.item| %>
 				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th colspan="3"><h3>@sale.created_at</h3></th>
+				  <tbody>
+				    <tr>
+				      <td class="col-xs-2"><%= link_to item_path(cart.item_id) do %>
+				        <%= attachment_image_tag cart.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
+				        <% end %>
+				      </td>
+				      <td>
+				        <h4>
+				        <%= link_to item_path(cart.item_id) do %>
+				          <%= cart.item.cd_title %>
+				        <% end %>
+				        </h4><br>
+				        <h5>
+				        <%= cart.item.status %>
+				        <br>
+				        <%= cart.item.artist %>
+				        </h5>
+				      </td>
+				      <td class="col-xs-2">
+				        <h5>単価<%= cart.item.unit_price %>円</h5><br><!-- カートが完成したらitem外す -->
+				        <div class="btn-group col-xs-9">
+				        <%= form_for cart, url: update_show_cart_path(cart.id) do |i| %>
+				            <%= i.number_field :quantity, class: 'form-control', value: cart.quantity %>
+				        <%= i.submit '再計算', class: "btn btn-link" %>
+				        <% end %>
+				        </div>
+				      </td>
+				      <td class="col-xs-2">
+				        <h4>小計<%= cart.quantity.to_i * cart.item.unit_price.to_i %>円</h4>
+				      </td>
+				      <td class="col-xs-1">
+				        <%= link_to "削除",destroy_item_cart_path(cart.id), method: :delete, class: "btn btn-default" %>
+				      </td>
+				    </tr>
+				  </tbody>
+					<% end %>
+					</table>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack01.jpg" width=120 height="120">
+							<td><%#= link_to item_path(sale.item_id) do %>
+				        <%#= attachment_image_tag sa.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
+				        <%# end %>
 							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
+							<td><h4>商品名</h4><br><p>@sale_item.item.artist</p>
 							</td>
 							<td><h4>@sale_item.sub_total</h4>
 								<br>

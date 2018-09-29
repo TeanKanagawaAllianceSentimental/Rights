@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-
 	def create
 		if @cart = Cart.add_item(add_item_params)# ,session_id
       redirect_to item_path(params[:item_id], cart_added: true)
@@ -9,10 +8,11 @@ class CartsController < ApplicationController
 		end
 	end
 
-	def update
+	def update_show
     cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
 		if cart.update(quantity: quantity_params[:quantity].to_i)
+      cart.update(quantity: quantity_params[:quantity].to_i)
       redirect_to sale_path(sale.id)
     else
       @member = current_member
@@ -24,6 +24,23 @@ class CartsController < ApplicationController
       render "sales/show"
     end
 	end
+
+  def update_edit
+    cart = Cart.find(params[:id])
+    sale = Sale.where(member_id: current_member).last
+    if cart.update(quantity: quantity_params[:quantity].to_i)
+      cart.update(quantity: quantity_params[:quantity].to_i)
+      redirect_to edit_sale_path(sale.id)
+    else
+      @member = current_member
+      @sale = Sale.where(member_id: current_member).last
+      @carts = @member.carts
+      @cart = Cart.find(params[:id])
+      @item = @cart.item
+      @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
+      render "sales/show"
+    end
+  end
 
 	def destroy_item
     cart = Cart.find(params[:id])

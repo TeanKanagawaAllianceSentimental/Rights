@@ -1,5 +1,13 @@
-<div class="container">
-  <div class="row">
+<div class="show-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
+      <div class="w-100"></div>
+      <div class="col-md-12">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" style="width: 50%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+      </div>
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <!-- <div class="progress">
@@ -8,12 +16,11 @@
       <h2 class="text-center">お支払方法の選択</h2><br>
         <h3>クレジットカード</h3><br>
           <%= form_for @sale, url: {controller: :pay_selects, action: :proceed_purchase} do |f| %>
-          <% if @cresit.present? %>
+          <% if @credits != nil %>
           <% @credits.each do |credit| %>
             <table class="table">
               <thead class="bg-info">
                 <tr>
-                  <tr>
                   <th scope="col">
                     <label><%= f.radio_button :credit_card_id, credit.id %>  このクレジットカードで支払う</label>
                   </th>
@@ -44,7 +51,7 @@
               <%#= f.submit 'このクレジットカードで支払う', class: "btn btn-info" %>
             <%# end %>
         <br><br><br>
-        <% if @invoice.present? %>
+        <% if @invoices != nil %>
         <h3>請求書</h3><br>
           <%#= link_to "新しい請求書の送付先をを登録する", new_sele_invoice_path %>
             <% @invoices.each do |invoice| %>
@@ -62,25 +69,25 @@
                 </thead>
                 <tbody>
                   <tr>
-                  <th scope="row" class="col-md-3">請求書の宛名</th>
-                  <td class="col-md-5"><%= invoice.bill_to %></td>
-                </tr>
-                 <tr>
-                  <th scope="row" class="col-md-3">郵便番号</th>
-                  <td class="col-md-5"><%= invoice.billing_postal_code %></td>
-                </tr>
-                 <tr>
-                  <th scope="row" class="col-md-3">住所</th>
-                  <td class="col-md-5"><%= invoice.billing_address1 %> <%= invoice.billing_address2 %></td>
-                </tr>
-                 <tr>
-                  <th scope="row" class="col-md-3">ご担当者名</th>
-                  <td class="col-md-5"><%= invoice.contact_person %></td>
-                </tr>
-                 <tr>
-                  <th scope="row" class="col-md-3">ご担当部署</th>
-                  <td class="col-md-5"><%= invoice.department %></td>
-                </tr>
+                    <th scope="row" class="col-md-3">請求書の宛名</th>
+                    <td class="col-md-5"><%= invoice.bill_to %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-md-3">郵便番号</th>
+                    <td class="col-md-5"><%= invoice.billing_postal_code %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-md-3">住所</th>
+                    <td class="col-md-5"><%= invoice.billing_address1 %> <%= invoice.billing_address2 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-md-3">ご担当者名</th>
+                    <td class="col-md-5"><%= invoice.contact_person %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-md-3">ご担当部署</th>
+                    <td class="col-md-5"><%= invoice.department %></td>
+                  </tr>
                 </tbody>
               </table>
             <% end %>
@@ -92,4 +99,5 @@
     </div>
     <div class="col-md-2"></div>
   </div>
+</div>
 </div>

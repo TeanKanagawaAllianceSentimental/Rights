@@ -15,11 +15,6 @@ class Cart < ApplicationRecord
     end
   end
 
-  def update_quantity(quantity)
-    self.quantity = quantity
-    self.update
-  end
-
   private
 
   def add_item_params

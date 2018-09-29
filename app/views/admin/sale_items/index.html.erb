@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h2>販売一覧</h2>
-			  <%# @sale_items.each do |sale.item| %>
+			  <% @sales.each do |sale| %>
 				<table class="table table-hover">
 				  <thead>
 				    <tr>
@@ -16,9 +16,9 @@
 				  </thead>
 				  <tbody>
 				    <tr>
-				      <td>@sales.created_at</td>
-				      <td>@sales.sales_id</td>
-				      <td>@sales.memver_id</td>
+				      <td><%= japan_time(sale.updated_at) %></td>
+				      <td><%= sale.id %></td>
+				      <td><%= sale.member_id %></td>
 				      <td>
 				      	<div class="btn-group">
 						  <select class="form-control">
@@ -29,151 +29,23 @@
 						  </select>
 						</div>
 				      </td>
-				      <td><div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>準備中</option>
-							  <option>出荷済み</option>
-							  <option>確認中</option>
-							  <option>出荷準備済</option>
-						  </select>
-						</div></td>
-				      <td><button type="button" class="btn btn-primary btn-sm">詳細</button></td>
-				      <td><button type="button" class="btn btn-light btn-sm">削除</button></td>
-				    </tr>
-				     <tr>
-				      <td>@sales.created_at</td>
-				      <td>@sales.sales_id</td>
-				      <td>@sales.memver_id</td>
 				      <td>
 				      	<div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>入金待ち</option>
-							  <option>入金済</option>
-							  <option>確認中</option>
-						  </select>
-						</div>
-				      </td>
-				      <td><div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>準備中</option>
-							  <option>出荷済み</option>
-							  <option>確認中</option>
-							  <option>出荷準備済</option>
-						  </select>
-						</div></td>
-				      <td><button type="button" class="btn btn-primary btn-sm">詳細</button></td>
-				      <td><button type="button" class="btn btn-light btn-sm">削除</button></td>
-				    </tr>
-				     <tr>
-				      <td>@sales.created_at</td>
-				      <td>@sales.sales_id</td>
-				      <td>@sales.memver_id</td>
-				      <td>
-				      	<div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>入金待ち</option>
-							  <option>入金済</option>
-							  <option>確認中</option>
-						  </select>
-						</div>
-				      </td>
-				      <td><div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>準備中</option>
-							  <option>出荷済み</option>
-							  <option>確認中</option>
-							  <option>出荷準備済</option>
-						  </select>
-						</div></td>
-				      <td><button type="button" class="btn btn-primary btn-sm">詳細</button></td>
-				      <td><button type="button" class="btn btn-light btn-sm">削除</button></td>
-				    </tr>
-				     <tr>
-				      <td>@sales.created_at</td>
-				      <td>@sales.sales_id</td>
-				      <td>@sales.memver_id</td>
-				      <td>
-				      	<div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>入金待ち</option>
-							  <option>入金済</option>
-							  <option>確認中</option>
-						  </select>
-						</div>
-				      </td>
-				      <td><div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>準備中</option>
-							  <option>出荷済み</option>
-							  <option>確認中</option>
-							  <option>出荷準備済</option>
-						  </select>
-						</div></td>
-				      <td><button type="button" class="btn btn-primary btn-sm">詳細</button></td>
-				      <td><button type="button" class="btn btn-light btn-sm">削除</button></td>
-				    </tr>
-				     <tr>
-				      <td>@sales.created_at</td>
-				      <td>@sales.sales_id</td>
-				      <td>@sales.memver_id</td>
-				      <td>
-				      	<div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>入金待ち</option>
-							  <option>入金済</option>
-							  <option>確認中</option>
-						  </select>
-						</div>
-				      </td>
-				      <td><div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>準備中</option>
-							  <option>出荷済み</option>
-							  <option>確認中</option>
-							  <option>出荷準備済</option>
-						  </select>
-						</div></td>
-				      <td><button type="button" class="btn btn-primary btn-sm">詳細</button></td>
-				      <td><button type="button" class="btn btn-light btn-sm">削除</button></td>
-				    </tr>
-				     <tr>
-				      <td>@sales.created_at</td>
-				      <td>@sales.sales_id</td>
-				      <td>@sales.memver_id</td>
-				      <td>
-				      	<div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>入金待ち</option>
-							  <option>入金済</option>
-							  <option>確認中</option>
-						  </select>
-						</div>
-				      </td>
-				      <td><div class="btn-group">
-						  <select class="form-control">
-						  	  <option selected>選択</option>
-							  <option>準備中</option>
-							  <option>出荷済み</option>
-							  <option>確認中</option>
-							  <option>出荷準備済</option>
-						  </select>
-						</div></td>
-				      <td><button type="button" class="btn btn-primary btn-sm">詳細</button></td>
-				      <td><button type="button" class="btn btn-light btn-sm">削除</button></td>
+								  <select class="form-control">
+								  	  <option selected>選択</option>
+									  <option>準備中</option>
+									  <option>出荷済み</option>
+									  <option>確認中</option>
+									  <option>出荷準備済</option>
+								  </select>
+								</div>
+							</td>
+				      <td><%= link_to "詳細", admin_sale_item_path(sale.id), class: "btn btn-secondary" %></td>
+				      <td><%= link_to "削除", admin_sale_item_path(sale.id), method: :delete, class: "btn btn-light" %></td>
 				    </tr>
 				  </tbody>
 				</table>
-			  <%# end %>
+			  <% end %>
 		</div>
 	</div>
 </div>
