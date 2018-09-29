@@ -3,9 +3,8 @@
 	<div class="row">
 		<div class="col-xs-12">
 				<div class="title", style="text-align: center;">
-				<h2>本気で退会する？</h2>
-				<%= link_to "退会する",  data: {confirm: "本当に退会しますか？"} %>
-				</div>
+				<h2>退会画面</h2>
+				<%= link_to "退会する", { :controller => :members, :action => :destroy }, method: :delete, class: "btn btn-danger destroy_member_#{@member}", data: {confirm: "本当に退会しますか？"} %>
 		</div>
 	</div>
 </div>

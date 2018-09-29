@@ -11,21 +11,13 @@
   </head>
 
   <body>
-    <i class="fas fa-angle-up" id="page_arrow"></i>
-    <div class = "header">
-      <nav class="nav navbar-default navbar-fixed-top">
-        <div class="container">
-          <ul class="pull-left">
-            <%= link_to root_path, :style => "text-decoration: none;" do %>
-              <h3 id="rights">Rights</h3>
-            <% end %>
-          </ul>
-          <div class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
-              <%= form_tag search_index_path, method: :get do %>
-                <%= text_field_tag :search %>
-                <%= submit_tag "Search", :genre => nil, class: 'btn btn-default' %>
+      <div class = "header">
+        <nav class="nav navbar-default navbar-fixed-top">
+          <div class="container">
+            <ul class="pull-left">
+              <%= link_to root_path, :style => "text-decoration: none;" do %>
+                <h3>Rights</h3>
               <% end %>
-
             </ul>
             <div class="navbar-form navbar-left" role="search" style="padding-top: 10px;">
                 <%= form_tag search_index_path, method: :get do %>
@@ -85,32 +77,14 @@
               <% end %>
             </ul>
         </nav>
-      </div>
-      <% flash.each do |key, value| %>
+        <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>">
             <div class="container">
               <%= value %>
             </div>
           </div>
         <% end %>
-
-          </div>
-          <ul class="nav navbar-nav navbar-right" style="padding-top: 5px;">
-              <li id="fat-menu" class="dropdown">
-                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                   商品情報 <b class="caret"></b>
-                 <ul class = "dropdown-menu">
-                    <li><%= link_to "管理者　商品一覧", admin_rights_path %></li>
-                    <li><%= link_to "商品登録", new_admin_right_path %></li>
-                    <li><%= link_to "ジャンル一覧", admin_rights_path %></li>
-                    <li><%= link_to "会員 商品一覧", items_index_path %></li>
-                    <li><%= link_to "会員 商品詳細", items_show_path %></li>
-                 </ul>
-              </li>
-          </ul>
-      </nav>
-    </div>
-
+      </div>
     <%= yield %>
   </body>
 </html>
