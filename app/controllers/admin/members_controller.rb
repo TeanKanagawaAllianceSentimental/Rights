@@ -28,4 +28,5 @@ before_action :authenticate_admin!
 		@member.soft_delete
 		redirect_to admin_members_path
 	end
+
 end

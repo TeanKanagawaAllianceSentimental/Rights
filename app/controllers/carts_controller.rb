@@ -1,14 +1,31 @@
 class CartsController < ApplicationController
-	def create
-		if @cart = Cart.add_item(add_item_params)# ,session_id
-      redirect_to item_path(params[:item_id], cart_added: true)
-    else
-      flash[:error] = 'カートに商品を追加することができませんでした。'
-      render "items/show"
-		end
-	end
 
-	def update_show
+	def add_item
+    # if current_member.carts Item.find(param[:id]).carts.where()
+    i = 1
+    current_member.carts.each do |cart|
+      if cart.item_id == params[:id]
+        # ある場合
+        @cart = cart
+        @cart.quantity += 1
+        i += 1
+      else
+        if i == 1
+          @cart = Cart.new
+          # @cart.member_id = current_member.id
+          @cart.item_id = params[:id]
+          @cart.quantity = 1
+          @cart.unit_price = Item.find(params[:id]).unit_price
+        end
+        i += 1
+      end
+    end
+        # @cart = Cart.find(params[:id])
+    @cart.save
+    redirect_to item_path(params[:id])
+  end
+
+	def update_new
     cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
 		if cart.update(quantity: quantity_params[:quantity].to_i)
@@ -58,24 +75,12 @@ class CartsController < ApplicationController
 
   private
 
-  def add_item_params
-    params.require(:cart).permit(:session_id, :item_id, :quantity, :member_id, :unit_price)
-  end
+  # def add_item_params
+  #   params.require(:cart).permit(:item_id, :unit_price, :quantity, :member_id)
+  # end
 
   def quantity_params
     params.require(:cart).permit(:quantity)
   end
 
 end
-
-# # カート詳細画面から、「更新」を押した時のアクション
-#   def update_item
-#     @cart_item.update(quantity: params[:quantity].to_i)
-#     redirect_to current_cart
-#   end
-
-# 　# カート詳細画面から、「削除」を押した時のアクション
-#   def delete_item
-#     @cart_item.destroy
-#     redirect_to current_cart
-#   end

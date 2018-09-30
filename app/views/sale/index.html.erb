@@ -1,0 +1,53 @@
+<!-- admin memberの販売履歴：詳細 -->
+<div class="show-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
+      <div class="col-xs-2">
+      </div>
+      <div class="col-xs-10">
+        <h2>購入詳細</h2>
+          <% @sale_items.each do |sale_item| %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th colspan="5" scope="col">
+                  <h4 class="text-right"><%= sale_item.sale.total_price %>円</h4>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-xs-2"><%= link_to item_path(sale_item.item_id) do %>
+                  <%= attachment_image_tag sale_item.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
+                  <% end %>
+                </td>
+                <td>
+                  <h4>
+                  <%= link_to item_path(sale_item.id) do %>
+                    <%= sale_item.item.cd_title %>
+                  <% end %>
+                  </h4><br>
+                  <h5>
+                  <%= sale_item.item.status %>
+                  <br>
+                  <%= sale_item.item.artist %>
+                  </h5>
+                </td>
+                <td class="col-xs-2">
+                  <h5>単価：<%= sale_item.unit_price %>円</h5><br>
+                  <h5>枚数：<%= sale_item.quantity %>枚</h5>
+                </td>
+                <td class="col-xs-2">
+                  <h4>小計<%= sale_item.quantity.to_i * sale_item.unit_price.to_i %>円</h4>
+                </td>
+                <td class="col-xs-1">
+                  <%= link_to "削除", admin_sale_item_path(sale_item.id), method: :delete, class: "btn btn-default" %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
