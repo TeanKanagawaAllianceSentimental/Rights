@@ -7,7 +7,7 @@
 			<div class="search_box">
 				<%= form_tag admin_search_index_path, :method => 'get' do %>
 				  <p>
-				    <%= text_field_tag :search, params[:search], class: "form-control" %>
+				    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "会社名 or 担当者名" %>
 				    <%= submit_tag "検索する", :name => nil, class: "search-btn btn btn-default" %>
 				  </p>
 				<% end %>
@@ -32,7 +32,7 @@
 <!--       どっちだったか要検討       -->
 						<td><%= link_to "Show", admin_member_path(address) %>
 						<td><%= link_to "購入履歴", admin_member_sale_path(address.id) %></td>
-            <td><%= link_to "Show", admin_member_path(address) %></td>
+          			    <td><%= link_to "Show", admin_member_path(address) %></td>
 						<td><%= link_to "購入履歴", admin_sale_item_path(address) %></td>
 <!--       以上      -->
 					</tr>

@@ -64,7 +64,7 @@
               <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control",placeholder:"もう一度入力して下さい。" %>
             </div>
             <%= f.check_box :agreement, :as => :boolean, checked:false %>
-            利用規約とプライバシーポリシーに同意する
+            <%= link_to "利用規約とプライバシーポリシーに同意する", top_show_path %>
             <div class="actions">
               <%= f.submit "登録する", class: "btn btn-block" %>
             </div>

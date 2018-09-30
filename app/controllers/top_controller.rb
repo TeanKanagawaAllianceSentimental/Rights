@@ -1,6 +1,8 @@
 class TopController < ApplicationController
   def index
   end
+  def show
+  end
 
  #  def show
 	# @jpop = Genre.find(genre: 'J-POP')
