@@ -5,6 +5,7 @@ class Item < ApplicationRecord
 	accepts_nested_attributes_for :disks, allow_destroy: true
 	attachment :jacket_image
 	has_many :carts
+	has_many :sale_items
 
 	enum package: {single: 0, album: 1}
 	enum status: {unpublished: 0, selling: 1, end_of_sell: 2}

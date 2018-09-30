@@ -1,10 +1,5 @@
 class SaleShippingsController < ApplicationController
 
-  def index # マイページ
-    @member = Member.find(params[:id])
-    @addresses = @member.sale_shipping
-  end
-
   def new # 配送先指定
     # @member = Member.find(session[:member_id])
     # @member = current_member
@@ -16,38 +11,7 @@ class SaleShippingsController < ApplicationController
     @shipping = SaleShipping.new
   end
 
-  # def proceed_purchase # showのsubmitボタン（配送先確定）押下
-  #   sale = Sale.where(member_id: current_member).last
-  #   shippings = sale.sale_shipngs
-  #   if shippings.id.present?
-  #     # sale.update(sale_params)
-  #     redirect_to sale_pay_selects_path(sale.id)
-  #   elsif shippings.id.nil?
-  #     shipping = SaleShipping.new
-  #     shipping.save(sale_shipping_params)
-  #     # sale.update(sale_params)
-  #     redirect_to sale_pay_select_path(sale.id)
-  #   else
-  #     render 'sale_shipping/show'
-  #   end
-  # end
-
-  # def create
-  #   shipping = SaleShipping.new
-  #   sale = Sale.where(member_id: current_member).last
-  #   if
-  #   else
-  #     @member = current_member
-  #     @shippings = @member.sale_shippings
-  #     render 'sale_shipping/show'
-  #   end
-  # end
-
-  def edit # 編集
-    @shipping = SaleShipping.find(params[:id])
-  end
-
-  def create
+  def create # 配送先確定ボタン押下
     member = current_member
     sale = Sale.where(member_id: current_member).last
     shippings = member.sale_shippings
@@ -65,6 +29,15 @@ class SaleShippingsController < ApplicationController
       @shippinga = @shippings.find(current_member.id)
       render 'sale_shipping/show'
     end
+  end
+
+  def show  # マイページ 配送先一覧
+    @member = current_member
+    @addresses = @member.sale_shipping
+  end
+
+  def edit # 編集
+    @shipping = SaleShipping.find(params[:id])
   end
 
   def destroy

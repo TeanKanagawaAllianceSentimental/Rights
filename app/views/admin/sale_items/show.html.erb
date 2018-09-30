@@ -1,114 +1,154 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-2">
-		</div>
-		<div class="col-xs-10">
-			<h2>購入詳細</h2>
-			  <% @sale_items.each do |sale.item| %>
-				<table class="table table-hover">
-				  <tbody>
-				    <tr>
-				      <td class="col-xs-2"><%= link_to item_path(cart.item_id) do %>
-				        <%= attachment_image_tag cart.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
-				        <% end %>
-				      </td>
-				      <td>
-				        <h4>
-				        <%= link_to item_path(cart.item_id) do %>
-				          <%= cart.item.cd_title %>
-				        <% end %>
-				        </h4><br>
-				        <h5>
-				        <%= cart.item.status %>
-				        <br>
-				        <%= cart.item.artist %>
-				        </h5>
-				      </td>
-				      <td class="col-xs-2">
-				        <h5>単価<%= cart.item.unit_price %>円</h5><br><!-- カートが完成したらitem外す -->
-				        <div class="btn-group col-xs-9">
-				        <%= form_for cart, url: update_show_cart_path(cart.id) do |i| %>
-				            <%= i.number_field :quantity, class: 'form-control', value: cart.quantity %>
-				        <%= i.submit '再計算', class: "btn btn-link" %>
-				        <% end %>
-				        </div>
-				      </td>
-				      <td class="col-xs-2">
-				        <h4>小計<%= cart.quantity.to_i * cart.item.unit_price.to_i %>円</h4>
-				      </td>
-				      <td class="col-xs-1">
-				        <%= link_to "削除",destroy_item_cart_path(cart.id), method: :delete, class: "btn btn-default" %>
-				      </td>
-				    </tr>
-				  </tbody>
-					<% end %>
-					</table>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><%#= link_to item_path(sale.item_id) do %>
-				        <%#= attachment_image_tag sa.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
-				        <%# end %>
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-							</td>
-						</tr>
-						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack05.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th colspan="3"><h3>@sale.created_at</h3></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack01.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-							</td>
-						</tr>
-						<tr>
-							<td><%#= link_to user_path(book.user_id) do %>
-								<%#= attachment_image_tag @sale_items.item.jacket_image, :image, :fill, 60, 60, class: "img-thumbnail" %>
-								<%# end %>
-								<img src="assets/soundtrack05.jpg" width=120 height="120">
-							</td>
-							<td><h4>商品名</h4><br><p>@sale_item.item.status</p><br><p>@sale_item.item.artist</p>
-							</td>
-							<td><h4>@sale_item.sub_total</h4>
-								<br>
-								<p>@sale_item.number_of_piece</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			  <%# end %>
-		</div>
+<!-- admin 全体の販売履歴：詳細 -->
+<div class="show-content" style="padding-top: 100px;">
+	<div class="container">
+		<div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
+	    <div class="col-xs-2">
+	    </div>
+	    <div class="col-xs-10">
+	      <h2>購入詳細</h2>
+	        <% @sale_items.each do |sale_item| %>
+	        <table class="table">
+	        	<thead>
+	            <tr>
+	              <th colspan="4" scope="col">
+	              	<h4 class="text-right"><%= sale_item.sale.total_price %>円</h4>
+	              </th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr>
+	              <td class="col-xs-2"><%= link_to item_path(sale_item.item_id) do %>
+	                <%= attachment_image_tag sale_item.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
+	                <% end %>
+	              </td>
+	              <td>
+	                <h4>
+	                <%= link_to item_path(sale_item.id) do %>
+	                  <%= sale_item.item.cd_title %>
+	                <% end %>
+	                </h4><br>
+	                <h5>
+	                <%= sale_item.item.status %>
+	                <br>
+	                <%= sale_item.item.artist %>
+	                </h5>
+	              </td>
+	              <td class="col-xs-2">
+	                <h5>単価：<%= sale_item.unit_price %>円</h5><br>
+	                <h5>枚数：<%= sale_item.quantity %>枚</h5>
+	              </td>
+	              <td class="col-xs-2">
+	                <h4>小計<%= sale_item.quantity.to_i * sale_item.unit_price.to_i %>円</h4>
+	              </td>
+	              <td class="col-xs-1">
+	                <%= link_to "削除", admin_sale_item_path(sale_item.id), method: :delete, class: "btn btn-default" %>
+	              </td>
+	            </tr>
+	          </tbody>
+	        </table>
+	        <% end %>
+	        <table class="table"><thead>
+	            <tr>
+	              <th colspan="2" scope="col">
+	              	<h4>配送先</h4>
+	              </th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr>
+	            	<% if @sale.sale_shipping.organisation_name != nil? %>
+	              <th class="col-md-2">法人・団体名</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping. %></td>
+	              <% end %>
+	            </tr>
+	            <tr>
+	              <% if @sale.sale_shipping.department != nil? %>
+	              <th class="col-md-2">部署名</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping.department %></td>
+	              <% end %>
+	            </tr>
+	            <tr>
+	              <th class="col-md-2">担当者名</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping.contact_person %></td>
+	            </tr>
+	            <tr>
+	              <th class="col-md-2">郵便番号</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping.shipping_postal_code %></td>
+	            </tr>
+	            <tr>
+	              <th class="col-md-2">住所</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping.shipping_address1 %></td>
+	            </tr>
+	            <% if @sale.sale_shipping.shipping_address2 != nil? %>
+	            <tr>
+	              <th class="col-md-2">ビル・マンション名</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping.shipping_address2 %></td>
+	            </tr>
+	            <% end %>
+	            <tr>
+	              <th class="col-md-2">電話番号</th>
+	              <td class="col-md-6"><%= @sale.sale_shipping.user_telephone %></td>
+	            </tr>
+	          </tbody>
+	        </table>
+	          <thead class="table"><thead>
+	            <tr>
+	              <th scope="col"><h4>支払方法</h4></th>
+	              <td class="col-md-6">
+	              	<% if @sale.cresit_card_id != nil? %>
+	              	<h4>クレジットカード</h4>
+	              	<% else %>
+	              	<h4>請求書</h4>
+	              	<% end %>
+	              </td>
+	            </tr>
+	          </thead>
+	          <% if @sale.cresit_card_id != nil? %>
+	          <tbody>
+              <tr>
+                <th scope="row" class="col-md-3">クレジットカード名義人</th>
+                <td class="col-md-5"><%= @sale.credit.credit_card_holder %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="col-md-3">クレジットカード番号（下4桁）</th>
+                <td class="col-md-5"><%= @sale.credit.credit_card_number.to_s %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="col-md-3">有効期限</th>
+                <td class="col-md-5"><%= @sale.credit.exp_month.to_s + "/" + @sale.credit.exp_year.to_s %></td>
+              </tr>
+            </tbody>
+            <% else %>
+            <tbody>
+              <tr>
+                <th scope="row" class="col-md-3">請求書の宛名</th>
+                <td class="col-md-5"><%= @sale.invoice.bill_to %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="col-md-3">郵便番号</th>
+                <td class="col-md-5"><%= @sale.invoice.billing_postal_code %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="col-md-3">住所</th>
+                <td class="col-md-5"><%= @sale.invoice.billing_address1 %></td>
+              </tr>
+              <% if @sale.invoice.billing_address2 != nil? %>
+              <tr>
+                <th scope="row" class="col-md-3">ビル・マンション名</th>
+                <td class="col-md-5"><%= @sale.invoice.billing_address2 %></td>
+              </tr>
+              <% end %>
+              <tr>
+                <th scope="row" class="col-md-3">担当者名</th>
+                <td class="col-md-5"><%= @sale.invoice.contact_person %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="col-md-3">担当部署</th>
+                <td class="col-md-5"><%= @sale.invoice.department %></td>
+              </tr>
+            </tbody>
+            <% end %>
+	    </div>
+	  </div>
 	</div>
 </div>

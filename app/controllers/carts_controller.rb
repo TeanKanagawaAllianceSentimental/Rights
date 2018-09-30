@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
 	def add_item
-    # if current_member.carts Item.find(params[:id]).carts.where()
+    # if current_member.carts Item.find(param[:id]).carts.where()
     i = 1
     current_member.carts.each do |cart|
       if cart.item_id == params[:id]
@@ -12,7 +12,7 @@ class CartsController < ApplicationController
       else
         if i == 1
           @cart = Cart.new
-          @cart.member_id = current_member.id
+          # @cart.member_id = current_member.id
           @cart.item_id = params[:id]
           @cart.quantity = 1
           @cart.unit_price = Item.find(params[:id]).unit_price
@@ -20,13 +20,12 @@ class CartsController < ApplicationController
         i += 1
       end
     end
-    # end
-    # @cart = Cart.find(params[:id])
+        # @cart = Cart.find(params[:id])
     @cart.save
     redirect_to item_path(params[:id])
-	end
+  end
 
-	def update_show
+	def update_new
     cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
 		if cart.update(quantity: quantity_params[:quantity].to_i)
@@ -73,16 +72,4 @@ class CartsController < ApplicationController
     carts.destroy
     redirect_to edit_sale_path(sale.id)
   end
-end
 
-# # カート詳細画面から、「更新」を押した時のアクション
-#   def update_item
-#     @cart_item.update(quantity: params[:quantity].to_i)
-#     redirect_to current_cart
-#   end
-
-# 　# カート詳細画面から、「削除」を押した時のアクション
-#   def delete_item
-#     @cart_item.destroy
-#     redirect_to current_cart
-#   end

@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
 
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
         registrations: 'admins/registrations',
         passwords: 'admins/passwords'
       }
-
   devise_for :members, controllers: {
       sessions: 'members/sessions',
       registrations: 'members/registrations',
@@ -17,14 +17,19 @@ Rails.application.routes.draw do
   }
 
   namespace :front do
-    resources :members
-    resources :sale_items, only:[:index, :create, :show]
+    resources :members do
+      resources :sale_items, only:[:index, :create, :show]
+      collection do
+        get :orderhistory
+        get :credit_cards
+        get :invoices
+        get :shipping
+        get :applicationhistory
+        get :applications
+      end
+    end
   end
-
-  namespace :admin do
-    resources :search, controller: 'members'
-  end
-
+  !
   namespace :admin, path: 'admin' do
     resources :members
   	resources :items
@@ -33,11 +38,25 @@ Rails.application.routes.draw do
     resources :musics
     resources :sale_items
   end
-
+  !
+  namespace :admin do
+    resources :search, controller: 'members'
+  end
+  
+  namespace :admin, path: 'admin' do
+    resources :members do
+      get :sale
+    end
+  	resources :items
+    resources :disk
+    resources :rights, controller: 'genres'
+    resources :musics
+    resources :sale_items
+  end
 
   resources :search, controller: 'genres', only:[:index]
-
-  resources :items, only:[:index, :show]
+  
+  resources :items
 
   resources :applicants do
     member do
@@ -55,8 +74,6 @@ Rails.application.routes.draw do
 
   resources :list_of_performed_pieces, only:[:new, :create, :show]
 
-  resources :carts
-
   post '/add_item' => 'carts#add_item'
 
   resources :carts, only:[:create, :update, :destroy] do
@@ -68,11 +85,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sale, except:[:new, :destroy] do
+  resources :sale, except:[:index, :destroy] do
     member do
       # put :amount
-      put :amount_show
-      get :amount_show
+      put :amount_new
+      get :amount_new
       put :amount_edit
       get :amount_edit
       get :orderplaced
@@ -104,4 +121,3 @@ Rails.application.routes.draw do
   resources :sale_invoices
 
 end
-
