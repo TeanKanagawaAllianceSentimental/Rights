@@ -12,7 +12,7 @@ class CartsController < ApplicationController
       else
         if i == 1
           @cart = Cart.new
-          # @cart.member_id = current_member.id
+          @cart.member_id = current_member.id
           @cart.item_id = params[:id]
           @cart.quantity = 1
           @cart.unit_price = Item.find(params[:id]).unit_price
@@ -25,21 +25,25 @@ class CartsController < ApplicationController
     redirect_to item_path(params[:id])
   end
 
-	def update_new
-    cart = Cart.find(params[:id])
-    sale = Sale.where(member_id: current_member).last
-		if cart.update(quantity: quantity_params[:quantity].to_i)
-      cart.update(quantity: quantity_params[:quantity].to_i)
-      redirect_to sale_path(sale.id)
-    else
-      @member = current_member
-      @sale = Sale.where(member_id: current_member).last
-      @carts = @member.carts
-      @cart = Cart.find(params[:id])
-      @item = @cart.item
-      @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
-      render "sales/show"
-    end
+	def update_show
+    @cart = Cart.find(params[:id])
+    @cart.update(cart_params)
+    redirect_to sale_path(@cart)
+
+  #   cart = Cart.find(params[:id])
+  #   sale = Sale.where(member_id: current_member).last
+		# if cart.update(quantity: quantity_params[:quantity].to_i)
+  #     cart.update(quantity: quantity_params[:quantity].to_i)
+  #     redirect_to sale_path(sale.id)
+  #   else
+  #     @member = current_member
+  #     @sale = Sale.where(member_id: current_member).last
+  #     @carts = @member.carts
+  #     @cart = Cart.find(params[:id])
+  #     @item = @cart.item
+  #     @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
+  #     render "sales/show"
+  #   end
 	end
 
   def update_edit
@@ -72,4 +76,9 @@ class CartsController < ApplicationController
     carts.destroy
     redirect_to edit_sale_path(sale.id)
   end
+   private
 
+  def cart_params
+    params.require(:cart).permit(:quantity)
+  end
+end

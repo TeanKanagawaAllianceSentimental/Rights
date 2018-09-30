@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_29_031547) do
+ActiveRecord::Schema.define(version: 2018_09_30_032317) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -45,13 +45,13 @@ ActiveRecord::Schema.define(version: 2018_09_29_031547) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.string "session_id"
+    t.integer "member_id"
     t.integer "item_id"
     t.integer "quantity"
+    t.integer "unit_price"
+    t.string "session"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "unit_price"
   end
 
   create_table "credit_cards", force: :cascade do |t|
