@@ -10,14 +10,17 @@ class SaleController < ApplicationController
     @carts = @member.carts
   end
 
-  def proceed_purchase # レジに進むボタン押下
-    sale = Sale.new(sale_params)
+  def create # 購入するボタン
+    sale = Sale.new
+    sale.member_id = current_member.id
+
     if sale.save
       redirect_to new_sale_sale_shipping_path(sale_id: sale.id)
     else
       render 'sale/show'
     end
   end
+
 
   def amount_new # カートの中身確認 合計金額再計算ボタン押下
     carts = Cart.where(member_id: current_member.id)
@@ -29,6 +32,15 @@ class SaleController < ApplicationController
     sale.total_price = total_price
     sale.save
     redirect_to sale_path(sale.id)
+
+  def show # カートの中身
+    # @member = Member.find(session[:member_id])
+    @member = current_member.id
+    @sale = Sale.where(member_id: current_member).last
+    @carts = @member.carts
+    @cart = Cart.find(params[:id])
+    @item = @cart.item
+    @sub_total = @cart.unit_price.to_i * @cart.quantity.to_i
   end
 
   def edit # 購入内容の確認

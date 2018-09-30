@@ -73,14 +73,3 @@ class CartsController < ApplicationController
     redirect_to edit_sale_path(sale.id)
   end
 
-  private
-
-  # def add_item_params
-  #   params.require(:cart).permit(:item_id, :unit_price, :quantity, :member_id)
-  # end
-
-  def quantity_params
-    params.require(:cart).permit(:quantity)
-  end
-
-end

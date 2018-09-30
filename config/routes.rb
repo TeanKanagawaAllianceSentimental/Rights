@@ -1,17 +1,15 @@
+
 Rails.application.routes.draw do
 
 
-  get 'items/index'
-  get 'items/show'
   root 'top#index'
   get 'front/delete' => 'front/members#delete'
-
+  delete 'front/destroy' => 'front/members#destroy'
   devise_for :admins, controllers: {
         sessions: 'admins/sessions',
         registrations: 'admins/registrations',
         passwords: 'admins/passwords'
       }
-
   devise_for :members, controllers: {
       sessions: 'members/sessions',
       registrations: 'members/registrations',
@@ -20,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :front do
     resources :members do
+      resources :sale_items, only:[:index, :create, :show]
       collection do
         get :orderhistory
         get :credit_cards
@@ -30,7 +29,20 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  !
+  namespace :admin, path: 'admin' do
+    resources :members
+  	resources :items
+    resources :disk
+    resources :rights, controller: 'genres'
+    resources :musics
+    resources :sale_items
+  end
+  !
+  namespace :admin do
+    resources :search, controller: 'members'
+  end
+  
   namespace :admin, path: 'admin' do
     resources :members do
       get :sale
@@ -42,8 +54,8 @@ Rails.application.routes.draw do
     resources :sale_items
   end
 
-
   resources :search, controller: 'genres', only:[:index]
+  
   resources :items
 
   resources :applicants do
@@ -62,13 +74,14 @@ Rails.application.routes.draw do
 
   resources :list_of_performed_pieces, only:[:new, :create, :show]
 
-  resources :carts, only:[:update, :destroy] do
+  post '/add_item' => 'carts#add_item'
+
+  resources :carts, only:[:create, :update, :destroy] do
     member do
-      post :add_item
       delete :destroy_item
       delete :destroy_cart
       patch :update_edit
-      patch :update_new
+      patch :update_show
     end
   end
 
@@ -108,4 +121,3 @@ Rails.application.routes.draw do
   resources :sale_invoices
 
 end
-

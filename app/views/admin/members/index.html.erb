@@ -4,28 +4,37 @@
 		<div class="col-xs-2">
 		</div>
 		<div class="col-xs-10">
-			<div class="title"><h2>memberAll</h2>
+			<div class="search_box">
+				<%= form_tag admin_search_index_path, :method => 'get' do %>
+				  <p>
+				    <%= text_field_tag :search, params[:search], class: "form-control" %>
+				    <%= submit_tag "検索する", :name => nil, class: "search-btn btn btn-default" %>
+				  </p>
+				<% end %>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>address_id</th>
 						<th>member_id</th>
 						<th>会社名</th>
 						<th>担当者名</th>
 						<th>電話番号</th>
 					</tr>
 				</thead>
-				<% @member.each do |address| %>
+				<% @members.each do |address| %>
 				<tbody>
 					<tr>
-						<td><%= address.id %></td>
 						<td><%= address.member_id %></td>
 						<td><%= address.corporate_name %></td>
 						<td><%= address.contact_person_name %></td>
 						<td><%= address.phone %></td>
 						<td><%= address.member.deleted_at.nil? ? "利用中" : "退会済" %></td>
+
+<!--       どっちだったか要検討       -->
 						<td><%= link_to "Show", admin_member_path(address) %>
 						<td><%= link_to "購入履歴", admin_member_sale_path(address.id) %></td>
+            <td><%= link_to "Show", admin_member_path(address) %></td>
+						<td><%= link_to "購入履歴", admin_sale_item_path(address) %></td>
+<!--       以上      -->
 					</tr>
 				</tbody>
 			</div>

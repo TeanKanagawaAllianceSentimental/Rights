@@ -43,7 +43,7 @@
 				</table>
 				<% if member_signed_in? %>
 					<div class="action">
-						<span><%= link_to add_item_cart_path(id: @item.id), method: :post ,class: 'square_btn col-md-12' do %>
+						<span><%= link_to add_item_path(id: @item.id), method: :post ,class: 'square_btn col-md-12' do %>
 							<i class="fas fa-cart-plus fa-lg my-gray"></i>
 							<% end %>
 						</span>

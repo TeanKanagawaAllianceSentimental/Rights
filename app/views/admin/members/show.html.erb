@@ -6,7 +6,7 @@
 		<div class="col-xs-4">
 		<table class="table">
 			<div class="title">
-				<h2>会員情報詳細画面</h2>
+				<h2>会員情報詳細</h2>
 			</div>
 			<tbody>
 				<tr>
@@ -34,6 +34,10 @@
 					<td><%= @address.postal_code %></td>
 				</tr>
 				<tr>
+					<th>都道府県</th>
+					<td><%= @address.prefecture.name %></td>
+				</tr>
+				<tr>
 					<th>市区町村/番地</th>
 					<td><%= @address.address1 %></td>
 				</tr>
@@ -47,7 +51,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<%= link_to "Back", admin_members_path %>
+		<%= link_to "Back", admin_members_path, class: "btn btn-default" %>
 		<%= link_to "会員情報編集", edit_admin_member_path, class: "btn btn-info" %>
 		<%= link_to "強制退会", { :controller => :members, :action => :destroy }, method: :delete, class: "btn btn-danger destroy_member_#{@member.id}", data: {confirm: "本当に強制退会させますか？"} %>
 	  </div>

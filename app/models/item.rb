@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 	belongs_to :genre, optional: true
 	accepts_nested_attributes_for :disks, allow_destroy: true
 	attachment :jacket_image
-	has_many :cart
+	has_many :carts
 	has_many :sale_items
 
 	enum package: {single: 0, album: 1}
