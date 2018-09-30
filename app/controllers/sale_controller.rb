@@ -18,12 +18,16 @@ class SaleController < ApplicationController
 
   def show # カートの中身
     # @member = Member.find(session[:member_id])
-    @member = current_member.id
+    @member = current_member
     @sale = Sale.where(member_id: current_member).last
     @carts = @member.carts
-    @cart = Cart.find(params[:id])
-    @item = @cart.item
-    @sub_total = @cart.unit_price.to_i * @cart.quantity.to_i
+    # @cart = Cart.find(4)
+    # @item = @cart.item
+    @sub_total = 0
+    @carts.each do |cart|
+      @sub_total += cart.unit_price.to_i * cart.quantity.to_i
+    end
+    # @sub_total = @cart.unit_price.to_i * @cart.quantity.to_i
   end
 
   def edit # 購入内容の確認
