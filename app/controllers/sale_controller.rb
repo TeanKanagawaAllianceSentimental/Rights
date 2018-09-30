@@ -6,8 +6,8 @@ class SaleController < ApplicationController
   end
 
   def create # 購入するボタン
-    sale = Sale.new(sale_params)
-    sale.member_id = current_member_id
+    sale = Sale.new
+    sale.member_id = current_member.id
     if sale.save
       redirect_to sale_path(sale.id)
     else
@@ -18,12 +18,12 @@ class SaleController < ApplicationController
 
   def show # カートの中身
     # @member = Member.find(session[:member_id])
-    @member = current_member
+    @member = current_member.id
     @sale = Sale.where(member_id: current_member).last
     @carts = @member.carts
     @cart = Cart.find(params[:id])
     @item = @cart.item
-    @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
+    @sub_total = @cart.unit_price.to_i * @cart.quantity.to_i
   end
 
   def edit # 購入内容の確認

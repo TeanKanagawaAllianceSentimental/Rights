@@ -22,7 +22,7 @@
           </ul>
           <% if member_signed_in? %>
             <ul class="pull-right" style="padding-top: 20px;">
-              <%= link_to sale_index_path do %>
+              <%= link_to sale_index_path, method: :post do %>
                   <i class="fas fa-shopping-cart fa-2x my-black"></i>
               <% end %>
             </ul>
