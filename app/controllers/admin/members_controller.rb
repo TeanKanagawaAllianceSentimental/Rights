@@ -5,7 +5,6 @@ class Admin::MembersController < Admin::AdminBase
     	new_admin_session_path
   	end
 	def index
-		# @member = Address.all
 		@members = Address.search(params[:search])
 	end
 	def show
