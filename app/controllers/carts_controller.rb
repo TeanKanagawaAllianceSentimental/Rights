@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
 	def add_item
-    # if current_member.carts Item.find(param[:id]).carts.where()
+    # if current_member.carts Item.find(params[:id]).carts.where()
     i = 1
     current_member.carts.each do |cart|
       if cart.item_id == params[:id]
@@ -12,7 +12,7 @@ class CartsController < ApplicationController
       else
         if i == 1
           @cart = Cart.new
-          # @cart.member_id = current_member.id
+          @cart.member_id = current_member.id
           @cart.item_id = params[:id]
           @cart.quantity = 1
           @cart.unit_price = Item.find(params[:id]).unit_price
@@ -20,7 +20,8 @@ class CartsController < ApplicationController
         i += 1
       end
     end
-        # @cart = Cart.find(params[:id])
+    # end
+    # @cart = Cart.find(params[:id])
     @cart.save
     redirect_to item_path(params[:id])
 	end
