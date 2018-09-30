@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  !
+
   namespace :admin, path: 'admin' do
     resources :members
   	resources :items
@@ -38,11 +38,11 @@ Rails.application.routes.draw do
     resources :musics
     resources :sale_items
   end
-  !
+
   namespace :admin do
     resources :search, controller: 'members'
   end
-  
+
   namespace :admin, path: 'admin' do
     resources :members do
       get :sale
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   end
 
   resources :search, controller: 'genres', only:[:index]
-  
+
   resources :items
 
   resources :applicants do
