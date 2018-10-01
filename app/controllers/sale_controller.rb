@@ -1,7 +1,5 @@
 class SaleController < ApplicationController
 
-# カートの中身をnewにするか、showにするか
-
   def new # カートの中身
     # @member = Member.find(session[:member_id])
     @member = current_member
@@ -110,7 +108,7 @@ class SaleController < ApplicationController
     end
   end
 
-  def amount_new # カートの中身確認 合計金額再計算ボタン押下 see my github cartcoding 
+  def amount_new # カートの中身確認 合計金額再計算ボタン押下 see my github cartcoding
     carts = Cart.where(member_id: current_member.id)
     total_price = 0
     carts.each do |cart|
@@ -131,6 +129,10 @@ class SaleController < ApplicationController
 
   def sele_item_params
     params.require(:sale_item).permit(:quantity, :unit_price, :sale_id, :items_id, :unit_price)
+  end
+
+  def shipping_params
+      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :member_id)
   end
 
 end

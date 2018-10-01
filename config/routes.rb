@@ -18,20 +18,20 @@ Rails.application.routes.draw do
 
   namespace :front do
     resources :members do
-      resources :sale_items, only:[:index, :create, :show]
-      collection do
-        get :orderhistory
-        get :credit_cards
-        get :invoices
-        get :shipping
-        get :applicationhistory
-        get :applications
-      end
+        member do
+          get :orderhistory
+          get :shipping
+          post :generate
+        end
     end
   end
 
   namespace :admin, path: 'admin' do
-    resources :members
+    resources :members do
+      resources :sale, only:[:index, :show] do
+        resources :sale_items, only:[:index, :show]
+      end
+    end
   	resources :items
     resources :disk
     resources :rights, controller: 'genres'
@@ -117,7 +117,15 @@ Rails.application.routes.draw do
     resources :sale_items, only:[:index, :create, :show]
   end
 
-  resources :credit_cards
-  resources :sale_invoices
+  resources :credit_cards do
+    collection do
+      post :generate
+    end
+  end
+  resources :sale_invoices do
+    collection do
+      post :generate
+    end
+  end
 
 end

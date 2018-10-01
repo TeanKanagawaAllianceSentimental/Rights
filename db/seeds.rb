@@ -7,25 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # coding: utf-8
 
-# Cart.create(member_id: 1, item_id: 1, quantity: 1)
-# Cart.create(member_id: 1, item_id: 2, quantity: 1)
-# Cart.create(member_id: 1, item_id: 3, quantity: 1)
-# Cart.create(member_id: 1, item_id: 4, quantity: 1)
-# Cart.create(member_id: 2, item_id: 5, quantity: 1)
-# Cart.create(member_id: 2, item_id: 6, quantity: 1)
-# Cart.create(member_id: 2, item_id: 7, quantity: 1)
-# Cart.create(member_id: 2, item_id: 8, quantity: 1)
-# Cart.create(member_id: 2, item_id: 9, quantity: 1)
-# Cart.create(member_id: 2, item_id: 10, quantity: 1)
-# Sale.create(member_id: 1, total_price: 1000)
-# Sale.create(member_id: 2, total_price: 1000)
-# total_price"
-#     t.integer "member_id"
-#     t.integer "delivered"
-#     t.datetime "delivered_at"
-#     t.datetime "created_at", null: false
-#     t.datetime "updated_at", null: false
-#     t.string "Application"
-#     t.integer "credit_card_id"
-#     t.integer "sale_invoice_id
-# Sale.create(member.id: 1, deliverd: )
+
+Sale.create(member_id: 1, total_price: 1000, delivered: "準備中", Application: "楽曲申請を行います", credit_card_id: 2)
+Sale.create(member_id: 1, total_price: 1000, delivered: "準備中", Application: "楽曲申請を行います", sale_invoice_id: 2)
+Sale.create(member_id: 2, total_price: 1000, delivered: "準備中", Application: "楽曲申請を行います", credit_card_id: 1)
+Sale.create(member_id: 2, total_price: 1000, delivered: "準備中", Application: "楽曲申請を行います", sale_invoice_id: 1)
+SaleItem.create(quantity: 2, sale_id: 7, unit_price: 4000, item_id: 1)
+SaleItem.create(quantity: 2, sale_id: 7, unit_price: 3000, item_id: 2)
+SaleItem.create(quantity: 2, sale_id: 8, unit_price: 1000, item_id: 3)
+SaleItem.create(quantity: 2, sale_id: 8, unit_price: 2400, item_id: 4)
+SaleItem.create(quantity: 2, sale_id: 9, unit_price: 2000, item_id: 5)
+SaleItem.create(quantity: 2, sale_id: 9, unit_price: 2400, item_id: 6)
+SaleItem.create(quantity: 2, sale_id: 10, unit_price: 2600, item_id: 7)
+SaleItem.create(quantity: 2, sale_id: 10, unit_price: 2000, item_id: 8)
+SaleItem.create(quantity: 2, sale_id: 10, unit_price: 4000, item_id: 9)
+
+
+

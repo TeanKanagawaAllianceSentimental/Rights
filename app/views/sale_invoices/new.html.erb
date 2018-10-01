@@ -1,0 +1,70 @@
+<div class="show-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
+      <div class="col-md-12">
+        <h2>請求書送付先 新規登録</h2><br>
+        <%= form_for @invoice, url: generate_sale_invoices_path do |f| %>
+        <div class="form-body">
+            <div class="form-group">
+              <h5>請求書の宛名</h5>
+              <%= f.text_field :bill_to, class: "form-control col-ms-7" %>
+            </div>
+            <div class="form-group">
+              <h5>ご担当者名</h5>
+              <%= f.text_field :contact_person, class: "form-control col-ms-7" %>
+            </div>
+            <div class="form-group">
+              <h5>部署名</h5>
+              <%= f.text_field :department, class: "form-control col-ms-7" %>
+            </div>
+            <div class="form-group">
+              <h5>郵便番号</h5>
+              <%= f.text_field :billing_postal_code, class: "form-control col-ms-7" %>
+            </div>
+            <div class="form-group">
+              <h5>住所</h5>
+              <%= f.text_field :billing_address1, class: "form-control col-ms-7" %>
+            </div>
+            <div class="form-group">
+              <h5>ビル・マンション名</h5>
+              <%= f.text_field :billing_address2, class: "form-control col-ms-7" %>
+            </div>
+            <div class="form-group text-center">
+              <%= f.submit "登録", class: "btn btn-md btn-info" %>
+              <%= f.hidden_field :member_id, :value => @member.id %>
+            </div>
+          <% end %>
+          <br>
+          <% if @member.sale_invoices != nil? %>
+          <% @invoices.each do |invoice| %>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row" class="col-md-2">請求書宛名</th>
+                  <td class="col-md-7"><%= invoice.bill_to %></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="col-md-2">ご担当者</th>
+                  <td class="col-md-7"><%= invoice.contact_person %>様</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="col-md-2">ご担当部署</th>
+                  <td class="col-md-7"><%= invoice.department %></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="col-md-2">請求書送付住所</th>
+                  <td class="col-md-7"><%= invoice.billing_postal_code %><br><%= invoice.billing_address1 %><br>
+                    <% if invoice.billing_address2 != nil? %>
+                    <%= invoice.billing_address2 %></td>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

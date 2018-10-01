@@ -3,9 +3,9 @@
     <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 100px;">
       <div class="col-md-2"></div>
         <div class="col-md-8">
-          <h3>クレジットカード情報登録フォーム</h3><br>
-           <div class="form-body">
-            <%= form_for (@credit) do |f| %>
+          <h3>配送先新規登録</h3><br>
+            <%= form_for @credit, url: generate_sale_path do |f| %>
+            <div class="form-body">
               <div class="form-group">
                 <h5>クレジットカード番号</h5>
                 <%= f.text_field :credit_card_number, class: "form-control" %>
@@ -24,13 +24,34 @@
               </div>
               <div class="form-group text-center">
                 <%= f.submit "Register", class:"btn btn-md btn-info btn-lg" %>
+                <%= f.hidden_field :member_id, :value => @member.id %>
               </div>
+              <% end %>
+            </div>
+          <br>
+          <% if @member.credit_cards.present? %>
+          <h3>配送先一覧</h3><br>
+            <% @credits.each do |credit| %>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row" class="col-md-2">クレジットカード番号</th>
+                    <td class="col-md-7"><%= credit.credit_card_number %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-md-2">クレジットカード名義人</th>
+                    <td class="col-md-7"><%= credit.credit_card_holder %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-md-2">有効期限</th>
+                    <td class="col-md-7"><%= credit.exp_month %>/<%= credit.exp_year %></td>
+                  </tr>
+                </tbody>
+              </table>
             <% end %>
-            <br>
-          </div>
+          <% end %>
         </div>
-        <div class="col-md-2"></div>
-      </div>
+      <div class="col-md-2"></div>
     </div>
   </div>
 </div>

@@ -37,9 +37,9 @@ class Front::MembersController < ApplicationController
 	end
 
 	def orderhistory
-    @sales = Sale.find(params[:id])
-    # @sale = @sales.find(params[:member_id])
-    # @sale_items = @sale.sale_items
+		@member = current_member
+		@sales = @member.sales
+		@shippings =SaleShipping.find(params[:id])
 	end
 
 	def creditcards
@@ -66,5 +66,24 @@ class Front::MembersController < ApplicationController
 		@member = current_member
 		@applicants = @member.applicants
 	end
+
+	def shipping
+    @member = current_member
+    @shipping = SaleShipping.new
+    @shippings = @member.sale_shippings
+  end
+
+  def generate
+    member = current_member
+    shipping = SaleShipping.new(shipping_params)
+    shipping.save
+    redirect_to shipping_front_member_path(member.id)
+  end
+
+   private
+
+  def shipping_params
+      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :member_id)
+  end
 
 end

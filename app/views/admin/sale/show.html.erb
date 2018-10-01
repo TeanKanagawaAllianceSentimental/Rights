@@ -1,0 +1,55 @@
+<!-- admin member　購入履歴 詳細 -->
+<div class="show-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <h2>購入履歴</h2>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td>購入日</td>
+                    <td>配送先</td>
+                    <td>お支払い方法</td>
+                    <td colspan="2">合計</td>
+                  </tr>
+                  <tr>
+                    <td><%= japan_time(@sale.updated_at) %></td>
+                    <td><%= link_to sale_sale_shipping_path(@sale.id) do %>
+                          <%#= @shipping.contact_person %>
+                        <% end %>
+                    </td>
+                    <td>
+                      <% if @sale.credit_card_id != nil? %>
+                      クレジットカード
+                      <% else %>
+                      請求書
+                      <% end %>
+                    </td>
+                    <td><h4><%= @sale.total_price %>円</h4></td>
+                    <td>配送準備中</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-body">
+            <table>
+              <tbody>
+                <% @sale.sale_items.each do |sale_item| %>
+                <tr>
+                  <td class="col-xs-1"><%= attachment_image_tag sale_item.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %></td>
+                  <td class="col-xs-3"><h4><%= sale_item.item.cd_title %></h4><br><h5><%= sale_item.item.artist %></h5></td>
+                  <td class="col-xs-1"><h5>単価<%= sale_item.unit_price %>円<br><br>数量<%= sale_item.quantity %></h5></td>
+                  <td class="col-xs-1">小計<%= sale_item.quantity.to_i * sale_item.unit_price.to_i %>円</td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
