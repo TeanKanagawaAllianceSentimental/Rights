@@ -1,0 +1,34 @@
+<!-- newに挿入使わず -->
+<div class="show-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 100px;">
+      <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <h2>クレジットカード登録情報</h2>
+              <% @credits.each do |credit| %>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td colspan="2" class="text-right"><%= link_to "編集", edhit_credit_card_path(credit.id) class: "btn btn-light" %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">クレジットカード番号</th>
+                      <td><%= credit.credit_card_number%></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">クレジットカード名義人</th>
+                      <td><%= credit.credit_card_number%></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">有効期限</th>
+                      <td><<%= credit.exp_month %>/<%= @credit.exp_year %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              <% end %>
+          </div>
+        </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

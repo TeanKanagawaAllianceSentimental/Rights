@@ -1,59 +1,54 @@
 <!-- admin memberの販売履歴 -->
+
 <div class="show-content" style="padding-top: 100px;">
   <div class="container">
     <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
       <div class="col-md-2"></div>
       <div class="col-md-10">
-        <h2>販売一覧</h2>
+        <h2>メンバー販売履歴</h2>
           <% @sales.each do |sale| %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td>注文日</td>
-                    <td colspan="2"  class="text-right">合計</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td><%= japan_time(sale.updated_at) %></td>
-                    <td colspan="2"  class="text-right"><%= sale.total_price %>円</td>
-                    <td>配送準備中</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="panel-body">
-              <tbody>
-                <tr>
-                  <td class="col-xs-2"><%= link_to item_path(sale.sale_item.item_id) do %>
-                    <%= attachment_image_tag sale.sale_item.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <h4>
-                    <%= link_to item_path(cart.item_id) do %>
-                      <%= sale.sale_item.item.cd_title %>
-                    <% end %>
-                    </h4><br>
-                    <h5>
-                    <%= sale.sale_item.item.status %>
-                    <br>
-                    <%= sale.sale_item.item.artist %>
-                    </h5>
-                  </td>
-                  <td class="col-xs-2">
-                    <h5>単価<%= sale.sale_item.item.unit_price %>円<br>
-                      <%= sale.sale_item.quantity %>
-                    </h5>
-                  </td>
-                  <td class="col-xs-2">
-                    <h4>小計<%= sale.sale_item.quantity.to_i * sale.sale_item.item.unit_price.to_i %>円</h4>
-                  </td>
-                </tr>
-              </tbody>
-            </div>
-          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">販売日時</th>
+                <th scope="col">購入id</th>
+                <th scope="col">購入者id</th>
+                <th scope="col">入金状況</th>
+                <th scope="col">配送状況</th>
+                <th scope="col" colspan="2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= japan_time(sale.updated_at) %></td>
+                <td><%= sale.total_price %>円</td>
+                <td><%= sale.member_id %></td>
+                <td>
+                  <div class="btn-group">
+                <select class="form-control">
+                    <option selected>選択</option>
+                  <option>入金待ち</option>
+                  <option>入金済</option>
+                  <option>確認中</option>
+                </select>
+              </div>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <select class="form-control">
+                        <option selected>選択</option>
+                      <option>準備中</option>
+                      <option>出荷済み</option>
+                      <option>確認中</option>
+                      <option>出荷準備済</option>
+                    </select>
+                  </div>
+                </td>
+                <td><%= link_to "詳細", admin_member_sale_path(@member_id, sale.id), class: "btn btn-secondary" %></td>
+                <td><%= link_to "削除", admin_sale_item_path(sale.id), method: :delete, class: "btn btn-light" %></td>
+              </tr>
+            </tbody>
+          </table>
           <% end %>
       </div>
     </div>

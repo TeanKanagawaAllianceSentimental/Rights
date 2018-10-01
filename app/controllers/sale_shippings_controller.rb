@@ -31,9 +31,20 @@ class SaleShippingsController < ApplicationController
     end
   end
 
-  def show  # マイページ 配送先一覧
+  def new
+    @shipping = SaleShipping.new
+  end
+
+  def show
     @member = current_member
-    @addresses = @member.sale_shipping
+    @addresses = @member.addressess
+    @shippings = @member.sale_shippings
+    @shipping = @shippings.find(params[:sale_id])
+  end
+
+  def index
+    @member = current_member
+    @shippings = @member.sale_shippings
   end
 
   def edit # 編集

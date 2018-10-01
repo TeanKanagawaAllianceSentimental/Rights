@@ -1,45 +1,85 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>登録住所</h2><br>
-        <table class="table">
-          <% @addresses.each do |member| %>
-          <tbody>
-            <tr>
-              <th scope="row">法人名 団体名</th>
-              <td><% member.corporate_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">郵便番号</th>
-              <td><% member.postal_code %></td>
-            </tr>
-            <tr>
-              <th scope="row">都道府県</th>
-              <td><% member.prefecture.name %></td>
-            </tr>
-            <tr>
-              <th scope="row">住所1</th>
-              <td><% member.address1 %></td>
-            </tr>
-            <tr>
-              <th scope="row">ビル・マンション名</th>
-              <td><% member.address2 %></td>
-            </tr>
-            <tr>
-              <th scope="row">ご担当部署</th>
-              <td><% member.department %></td>
-            </tr>
-            <tr>
-              <th scope="row">ご担当者名</th>
-              <td><% member.contact_person_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">電話番号</th>
-              <td><% member.phone %></td>
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
+<div class="show-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
+      <div class="col-md-12">
+        <h2>登録住所</h2><br>
+          <table class="table">
+            <%# @addresses.each do |member| %>
+            <!-- <tbody>
+              <tr>
+                <th scope="row">法人名 団体名</th>
+                <td><%# member.corporate_name %></td>
+              </tr>
+              <tr>
+                <th scope="row">郵便番号</th>
+                <td><%# member.postal_code %></td>
+              </tr>
+              <tr>
+                <th scope="row">都道府県</th>
+                <td><%# member.prefecture.name %></td>
+              </tr>
+              <tr>
+                <th scope="row">住所1</th>
+                <td><%# member.address1 %></td>
+              </tr>
+              <tr>
+                <th scope="row">ビル・マンション名</th>
+                <td><%# member.address2 %></td>
+              </tr>
+              <tr>
+                <th scope="row">ご担当部署</th>
+                <td><%# member.department %></td>
+              </tr>
+              <tr>
+                <th scope="row">ご担当者名</th>
+                <td><%# member.contact_person_name %></td>
+              </tr>
+              <tr>
+                <th scope="row">電話番号</th>
+                <td><%# member.phone %></td>
+              </tr>
+            </tbody> -->
+            <%# end %>
+          </table>
+          <table class="table">
+            <%= link_to "配送先 新規登録", new_sale_sale_shipping_path %>
+            <% @shippings.each do |shipping| %>
+            <tbody>
+              <tr>
+                <td colspan="2" class="text-right"><%= link_to "編集", edit_sale_sale_shipping_path(shipping.id), class: "btn btn-light" %></td>
+              </tr>
+              <tr>
+                <th scope="row">法人名 団体名</th>
+                <td><% shipping.organisation_name %></td>
+              </tr>
+              <tr>
+                <th scope="row">郵便番号</th>
+                <td><% shipping.shipping_postal_code %></td>
+              </tr>
+              <tr>
+                <th scope="row">住所1</th>
+                <td><% shipping.shipping_address1 %></td>
+              </tr>
+              <tr>
+                <th scope="row">ビル・マンション名</th>
+                <td><% shipping.shipping_address2 %></td>
+              </tr>
+              <tr>
+                <th scope="row">ご担当部署</th>
+                <td><% shipping.department %></td>
+              </tr>
+              <tr>
+                <th scope="row">ご担当者名</th>
+                <td><% shipping.contact_person %></td>
+              </tr>
+              <tr>
+                <th scope="row">電話番号</th>
+                <td><% shipping.user_telephone %></td>
+              </tr>
+            </tbody>
+            <% end %>
+          </table>
+      </div>
     </div>
   </div>
 </div>
