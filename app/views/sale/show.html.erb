@@ -23,8 +23,6 @@
                     <% end %>
                     </h4><br>
                     <h5>
-                    <%= cart.item.status %>
-                    <br>
                     <%= cart.item.artist %>
                     </h5>
                   </td>
@@ -55,7 +53,6 @@
                 <h4 class="panel-title">
                   合計：<%= @sub_total %>円
                 </h4>
-                <%= link_to "再計算", amount_new_sale_path(@sale), method: :post, class: "btn btn-link" %>
               </div>
               <div class="panel-body">
                 <h5>楽曲使用申請：</h5>

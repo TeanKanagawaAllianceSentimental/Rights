@@ -16,7 +16,7 @@ class SaleShippingsController < ApplicationController
     sale = Sale.where(member_id: current_member).last
     shippings = member.sale_shippings
     shipping = shippings.find_by(sale_id: sale)
-    if shipping>0
+    if shippingz>0
       shipping.update(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
     elsif shipping = 0

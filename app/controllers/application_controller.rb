@@ -25,4 +25,5 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     params.require(:address).permit(:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic,:department, :phone, :postal_code, :prefecture_id, :address1, :address2, members_attributes: [:email, :_destroy, :id])
   end
 
+
 end

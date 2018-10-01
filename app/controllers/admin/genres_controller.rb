@@ -43,14 +43,9 @@ class Admin::GenresController < Admin::AdminBase
   end
 
   def destroy
-    if @genre.items.end_of_sell?
-      @genre.destroy
-      flash[:success] = '削除が完了いたしました'
-      redirect_to admin_rights_path
-    else
-      flash[:error] = '選択された商品は現在公開中です。ステータスを販売終了にしてください'
-      redirect_to admin_rights_path
-    end
+    @genre.destroy
+    flash[:success] = '削除が完了いたしました'
+    redirect_to admin_rights_path
   end
 
   private

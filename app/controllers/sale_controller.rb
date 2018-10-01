@@ -59,20 +59,20 @@ class SaleController < ApplicationController
     end
   end
 
-  def amount_show # カートの中身確認　合計金額再計算ボタン押下
-    # cart = Cart.where(:member_id session[:member_id])
-    carts = Cart.where(member_id: current_member.id)
-    total_price = 0
-    carts.each do |cart|
-      total_price += cart.item.unit_price * cart.quantity
-      #本当はcart.unit_price
-    end
-    # total_price.update(amount_params)
-    sale = Sale.find(params[:id])
-    sale.total_price = total_price
-    sale.save
-    redirect_to sale_path(sale.id)
-  end
+  # def amount_show # カートの中身確認　合計金額再計算ボタン押下
+  #   # cart = Cart.where(:member_id session[:member_id])
+  #   carts = Cart.where(member_id: current_member.id)
+  #   total_price = 0
+  #   carts.each do |cart|
+  #     total_price += cart.item.unit_price * cart.quantity
+  #     #本当はcart.unit_price
+  #   end
+  #   # total_price.update(amount_params)
+  #   sale = Sale.find(params[:id])
+  #   sale.total_price = total_price
+  #   sale.save
+  #   redirect_to sale_path(sale.id)
+  # end
 
   def amount_edit # 注文確認　合計金額再計算ボタン押下
     # cart = Cart.where(:member_id session[:member_id])
