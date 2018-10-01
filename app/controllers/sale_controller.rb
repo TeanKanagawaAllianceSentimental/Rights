@@ -96,7 +96,7 @@ class SaleController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def proceed_purchase # レジに進むボタン押下 see my github cartcoding

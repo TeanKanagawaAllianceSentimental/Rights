@@ -24,7 +24,7 @@
 							<td><%= genre.id %></td>
 							<% genre.items.each do |item| %>
 								<td><%= item.cd_title %></td>
-								<td><%= attachment_image_tag item, :jacket_image, :fill, 40, 40, format: 'jpeg'%></td>
+								<td><%= attachment_image_tag(item, :jacket_image, :fill, 40, 40, format: 'jpeg')%></td>
 								<td><%= item.stock_quantity %></td>
 								<td><%= item.status_i18n %></td>
 							<% end %>

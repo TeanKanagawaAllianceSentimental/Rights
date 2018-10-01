@@ -14,7 +14,7 @@ class Front::MembersController < ApplicationController
 
 	def edit
 		@member = Member.find(params[:id])
-		@address = Address.find(params[:id])
+		@address = Address.find_by(member_id: @member.id)
 	end
 
 	def update
@@ -22,12 +22,11 @@ class Front::MembersController < ApplicationController
 	    if @address.update(update_address_params)
 	 	  redirect_to front_member_path(current_member.id)
 	    else
-		  render :edit
+		  render :action => "edit"
 		end
 	end
 
 	def delete
-
 	end
 
 	def destroy
@@ -84,6 +83,9 @@ class Front::MembersController < ApplicationController
 
   def shipping_params
       params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :member_id)
+  end
+  def update_address_params
+    params.require(:member).permit(:email, :_destroy, :id, addresses_attributes: [:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :department, :phone, :postal_code, :prefecture_id, :address1, :address2])
   end
 
 end

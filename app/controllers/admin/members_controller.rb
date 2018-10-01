@@ -17,10 +17,12 @@ class Admin::MembersController < Admin::AdminBase
 	end
 	def update
 		@address = Address.find(params[:id])
-	    if @address.update(update_address_params)
-	 	  redirect_to admin_member_path
+	    if
+	   	@address.update(update_address_params)
+	 	 redirect_to admin_member_path
 	    else
-		  render :edit
+	 	@member = Member.find(@address.member.id)
+	    render "admin/members/edit"
 		end
 	end
 	def destroy
@@ -28,5 +30,10 @@ class Admin::MembersController < Admin::AdminBase
 		@member.soft_delete
 		redirect_to admin_members_path
 	end
+
+	private
+	def update_address_params
+    params.require(:address).permit(:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :department, :phone, :postal_code, :prefecture_id, :address1, :address2)
+  end
 
 end

@@ -1,8 +1,7 @@
 
 Rails.application.routes.draw do
-
-
   root 'top#index'
+  get 'top/show'
   get 'front/delete' => 'front/members#delete'
   delete 'front/destroy' => 'front/members#destroy'
   devise_for :admins, controllers: {
@@ -117,6 +116,9 @@ Rails.application.routes.draw do
     resources :sale_items, only:[:index, :create, :show]
   end
 
+
+  
+  resources :addresses
   resources :credit_cards do
     collection do
       post :generate

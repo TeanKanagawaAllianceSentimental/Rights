@@ -1,6 +1,6 @@
 <div class="form-group">
 	<div class="field" style="padding-bottom: 20px">
-		<%= f.label :genre %>
+		<%= f.label :ジャンル %>
 		<%= f.select :genre, Genre.genres.keys.to_a, {prompt: "選択してください"}, class: 'form-control' %>
 		<%= hidden_label_tag(f.object, :genre)%>
 	</div>
@@ -8,69 +8,69 @@
 <%= f.fields_for :items do |item| %>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :cd_title %>
+			<%= item.label "CDタイトル" %>
 			<%= item.text_field :cd_title, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :cd_title)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :jacket_image %>
+			<%= item.label :ジャケット写真 %>
 			<%= item.attachment_field :jacket_image %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :package %>
+			<%= item.label "シングル/アルバム" %>
 			<%= item.select :package, Item.packages_i18n.keys.map{|k| [Item.packages_i18n[k],k]},{prompt: "選択してください"}, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :package)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :artist %>
+			<%= item.label :アーティスト %>
 			<%= item.text_field :artist, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :artist)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :label %>
+			<%= item.label :レーベル %>
 			<%= item.text_field :label, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :label)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :unit_price %>
+			<%= item.label :価格 %>
 			<%= item.number_field :unit_price, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :unit_price)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :stock_quantity %>
+			<%= item.label :在庫数 %>
 			<%= item.number_field :stock_quantity, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :stock_quantity)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :caption %>
+			<%= item.label :見出し %>
 			<%= item.text_field :caption, class: 'form-control'  %>
 			<%= hidden_label_tag(item.object, :caption)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :about %>
+			<%= item.label :詳細情報 %>
 			<%= item.text_area :about, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :about)%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="field" style="padding-bottom: 20px">
-			<%= item.label :status %>
+			<%= item.label :販売ステータス %>
 			<%= item.select :status, Item.statuses_i18n.keys.map{|k| [Item.statuses_i18n[k],k]}, class: 'form-control' %>
 			<%= hidden_label_tag(item.object, :status)%>
 		</div>
