@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do
   root 'top#index'
   get 'top/show'
@@ -40,17 +39,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :search, controller: 'members'
-  end
-
-  namespace :admin, path: 'admin' do
-    resources :members do
-      get :sale
-    end
-  	resources :items
-    resources :disk
-    resources :rights, controller: 'genres'
-    resources :musics
-    resources :sale_items
   end
 
   resources :search, controller: 'genres', only:[:index]

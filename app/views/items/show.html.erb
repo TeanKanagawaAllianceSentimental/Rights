@@ -21,8 +21,8 @@
 							<td>¥<%= @item.unit_price %></td>
 						</tr>
 						<tr>
-							<th>Release</th>
-							<td><%= japan_time(@item.created_at) %></td>
+							<th>Genre</th>
+							<td><%= @genre.genre %></td>
 						</tr>
 						<tr>
 							<th>Single/Albam</th>
@@ -31,17 +31,17 @@
 						<% if @item.end_of_sell? %>
 						<tr>
 							<th>販売状況</th>
-							<td>現在販売されていません</td>
+							<td class="alert">現在販売されていません</td>
 						</tr>
 						<% elsif @item.stock_quantity == 0 %>
 						<tr>
 							<th>販売状況</th>
-							<td>在庫無し</td>
+							<td class="alert">在庫無し</td>
 						</tr>
 						<% end %>
 					</tbody>
 				</table>
-				<% if member_signed_in? %>
+				<% if member_signed_in? && @item.selling? %>
 					<div class="action">
 						<span><%= link_to add_item_path(id: @item.id), method: :post ,class: 'square_btn col-md-12' do %>
 							<i class="fas fa-cart-plus fa-lg my-gray"></i>

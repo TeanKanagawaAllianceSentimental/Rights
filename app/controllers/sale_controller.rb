@@ -3,33 +3,19 @@ class SaleController < ApplicationController
   def new # カートの中身
     # @member = Member.find(session[:member_id])
     @member = current_member
-    # @sale = Sale.where(member_id: current_member).last
-    @sale = Sale.new
-    @carts = @member.carts
+    @sales = @member.all
   end
 
   def create # 購入するボタン
     sale = Sale.new
     sale.member_id = current_member.id
-
     if sale.save
-      redirect_to new_sale_sale_shipping_path(sale_id: sale.id)
+      redirect_to sale_path(sale.id)
     else
-      render 'sale/show'
+      render 'items/show'
+      flash[:error] = ""
     end
   end
-
-
-  def amount_new # カートの中身確認 合計金額再計算ボタン押下
-    carts = Cart.where(member_id: current_member.id)
-    total_price = 0
-    carts.each do |cart|
-      total_price += cart.unit_price * cart.quantity
-    end
-    sale = Sale.find(params[:id])
-    sale.total_price = total_price
-    sale.save
-    redirect_to sale_path(sale.id)
 
   def show # カートの中身
     # @member = Member.find(session[:member_id])
@@ -39,6 +25,7 @@ class SaleController < ApplicationController
     # @cart = Cart.find(4)
     # @item = @cart.item
     @sub_total = 0
+    @total = 0
     @carts.each do |cart|
       @sub_total += cart.unit_price.to_i * cart.quantity.to_i
     end
@@ -60,43 +47,47 @@ class SaleController < ApplicationController
     @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
   end
 
-  def amount_edit # 注文確認 合計金額再計算ボタン押下
-    carts = Cart.where(member_id: current_member.id)
-    total_price = 0
-    carts.each do |cart|
-      total_price += cart.unit_price * cart.quantity
-    end
-    sale = Sale.find(params[:id])
-    sale.total_price = total_price
-    sale.save
-    redirect_to edit_sale_path(sale.id)
-  end
-
-  def confirm_purchase # 購入確定ボタン押下 sale_item controllerからorderplacedへredirect設定済
-    sale = Sale.find(params[:id])
-    if sale.Application < 1
-      sale.update(sale_params)
-    else
-      sale.update(sale_params)
-      redirect_to orderplaced_sale_path(sale.id)
-    end
-  end
-
-
-  def update # これなんだ?もういらない?
+  def update
     sale = Sale.where(member_id: current_member).last(sale_params)
     sale.member_id = current_member_id
+    sale_items = SaleItem.new(sale_item_params)
     if sale.update
-      # sale_items.save
-      # redirect_back fallback_location: root
+      sale_items.save
+      redirect_back fallback_location: root
     else
       render 'sale/edit'
       flash[:error] = ""
     end
   end
 
-  def show
+  # def amount_show # カートの中身確認　合計金額再計算ボタン押下
+  #   # cart = Cart.where(:member_id session[:member_id])
+  #   carts = Cart.where(member_id: current_member.id)
+  #   total_price = 0
+  #   carts.each do |cart|
+  #     total_price += cart.item.unit_price * cart.quantity
+  #     #本当はcart.unit_price
+  #   end
+  #   # total_price.update(amount_params)
+  #   sale = Sale.find(params[:id])
+  #   sale.total_price = total_price
+  #   sale.save
+  #   redirect_to sale_path(sale.id)
+  # end
 
+  def amount_edit # 注文確認　合計金額再計算ボタン押下
+    # cart = Cart.where(:member_id session[:member_id])
+    carts = Cart.where(member_id: current_member.id)
+    total_price = 0
+    carts.each do |cart|
+      total_price += cart.item.unit_price * cart.quantity
+      #本当はcart.unit_price
+    end
+    # total_price.update(amount_params)
+    sale = Sale.find(params[:id])
+    sale.total_price = total_price
+    sale.save
+    redirect_to edit_sale_path(sale.id)
   end
 
   def proceed_purchase # レジに進むボタン押下 see my github cartcoding
@@ -108,18 +99,18 @@ class SaleController < ApplicationController
     end
   end
 
-  def amount_new # カートの中身確認 合計金額再計算ボタン押下 see my github cartcoding
-    carts = Cart.where(member_id: current_member.id)
-    total_price = 0
-    carts.each do |cart|
-      total_price += cart.unit_price * cart.quantity
-    end
+  def confirm_purchase # 購入確定ボタン押下
     sale = Sale.find(params[:id])
-    sale.total_price = total_price
-    sale.save
-    redirect_to sale_path(sale.id)
+    if sale.Application < 1
+      sale.update(sale_params)
+    else
+      sale.update(sale_params)
+      redirect_to orderplaced_sale_path(sale.id)
+    end
   end
 
+  def orderplaced
+  end
 
   private
 
@@ -134,5 +125,6 @@ class SaleController < ApplicationController
   def shipping_params
       params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :member_id)
   end
+
 
 end
