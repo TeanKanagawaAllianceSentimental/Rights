@@ -229,7 +229,6 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-
   enums:
     item:
       status:
@@ -239,7 +238,6 @@ ja:
       package:
         single: シングル
         album: アルバム
-
   activerecord:
     models:
       member: メンバー
@@ -251,10 +249,8 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         agreement: "規約"
-        corporate_phonetic: "ふりがな"
       addresses:
         prefecture_id: "都道府県"
-        address1: "住所"
       admin:
         email: "メールアドレス"
         password: "パスワード"

@@ -94,7 +94,7 @@ class SaleController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def proceed_purchase # レジに進むボタン押下 see my github cartcoding
@@ -106,7 +106,7 @@ class SaleController < ApplicationController
     end
   end
 
-  def amount_new # カートの中身確認 合計金額再計算ボタン押下 see my github cartcoding 
+  def amount_new # カートの中身確認 合計金額再計算ボタン押下 see my github cartcoding
     carts = Cart.where(member_id: current_member.id)
     total_price = 0
     carts.each do |cart|

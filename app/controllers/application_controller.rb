@@ -17,12 +17,13 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     new_member_session_path
   end
 
+  protected
+
   def configure_permitted_parameters
     added_attrs = [addresses_attributes: [:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic,:department, :phone, :postal_code, :prefecture_id, :address1, :address2, :email, :password, :password_confirmation]]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit(:account_update, keys: [:corporate_name])
   end
-  def update_address_params
-    params.require(:address).permit(:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic,:department, :phone, :postal_code, :prefecture_id, :address1, :address2, members_attributes: [:email, :_destroy, :id])
-  end
+
 
 end

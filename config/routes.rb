@@ -1,7 +1,5 @@
 
 Rails.application.routes.draw do
-
-
   root 'top#index'
   get 'top/show'
   get 'front/delete' => 'front/members#delete'
@@ -120,5 +118,5 @@ Rails.application.routes.draw do
 
   resources :credit_cards
   resources :sale_invoices
-
+  resources :addresses
 end

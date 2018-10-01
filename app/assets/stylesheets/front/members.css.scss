@@ -5,8 +5,14 @@
   box-sizing: border-box;
 }
 .title h2 {
-  padding-top: 100px;
+  padding-top: 80px;
   text-align: center;
+  background: -webkit-linear-gradient(to right, #e5033e, #b701b5, #4a02c2);
+  background: linear-gradient(to right, #e5033e, #b701b5, #4a02c2);
+  mix-blend-mode: screen;
+  color: #ffffff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .title h3 {
   padding-top: 100px;
@@ -46,7 +52,20 @@
 .menu1:hover {
   transform: rotateY(360deg);
 }
-
+.edit-submit {
+  margin: 5px 0 20px 0;
+  float: left;
+}
+.edit-back-btn {
+  margin: 5px 0 0 5px;
+}
+.edit-btn {
+  margin: 5px 0 20px 0;
+  float: left;
+}
+.show-back-btn {
+  margin: 5px 0 0 5px;
+}
 
 // Place all the styles related to the front::members controller here.
 // They will automatically be included in application.css.
