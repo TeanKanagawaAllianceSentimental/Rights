@@ -1,4 +1,4 @@
-<!-- admin 全体の販売履歴：詳細 -->
+<!-- admin メンバーの販売履歴：詳細 -->
 <div class="show-content" style="padding-top: 100px;">
 	<div class="container">
 		<div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
@@ -58,7 +58,7 @@
 	            <tr>
 	            	<% if @sale.sale_shipping.organisation_name != nil? %>
 	              <th class="col-md-2">法人・団体名</th>
-	              <td class="col-md-6"><%= @sale.sale_shipping. %></td>
+	              <td class="col-md-6"><%= @sale.sale_shipping %></td>
 	              <% end %>
 	            </tr>
 	            <tr>

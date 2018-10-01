@@ -1,6 +1,7 @@
 class SaleController < ApplicationController
 
-  def index # 購入一覧(マイページ)
+  def new # カートの中身
+    # @member = Member.find(session[:member_id])
     @member = current_member
     @sales = @member.all
   end
@@ -89,11 +90,9 @@ class SaleController < ApplicationController
     redirect_to edit_sale_path(sale.id)
   end
 
-  def proceed_purchase # レジに進むボタン押下
-    sale = Sale.find(params[:id])
-    if sale.update(sale_params)
-
-      ##########
+  def proceed_purchase # レジに進むボタン押下 see my github cartcoding
+    sale = Sale.new(sale_params)
+    if sale.save
       redirect_to new_sale_sale_shipping_path(sale_id: sale.id)
     else
       render 'sale/show'
@@ -123,8 +122,9 @@ class SaleController < ApplicationController
     params.require(:sale_item).permit(:quantity, :unit_price, :sale_id, :items_id, :unit_price)
   end
 
-    def amount_params
-      params.require(:sale).permit(:total_price)
-    end
+  def shipping_params
+      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :member_id)
+  end
+
 
 end

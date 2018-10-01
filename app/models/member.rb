@@ -1,15 +1,15 @@
 class Member < ApplicationRecord
- devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
- validates_acceptance_of :agreement, allow_nil: false, on: :create
-         has_many :addresses
-         has_many :sale_shippings
-         has_many :sale_invoices
-         has_many :credit_cards
-         has_many :carts
-         has_many :sales
-         has_many :applicants, dependent: :destroy
-         accepts_nested_attributes_for :addresses
+	 devise :database_authenticatable, :registerable,
+	         :recoverable, :rememberable, :validatable
+	 validates_acceptance_of :agreement, allow_nil: false, on: :create
+	         has_many :addresses
+	         has_many :sale_shippings
+	         has_many :sale_invoices
+	         has_many :credit_cards
+	         has_many :carts
+	         has_many :sales
+	         has_many :applicants, dependent: :destroy
+	 accepts_nested_attributes_for :addresses
 
 	 def soft_delete
 	 	update(deleted_at: Time.now)

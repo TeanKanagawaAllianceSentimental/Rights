@@ -7,6 +7,7 @@ class Address < ApplicationRecord
   validates :contact_person_name, presence: true
   validates :contact_person_phonetic, format: {with: /^[ぁ-ん]+$/, multiline: true }
   validates :phone, format: {with: /^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/, multiline: true }
+  validates :postal_code, presence: true
   validates :prefecture_id, presence: true
   validates :address1, presence: true
   def self.search(search)

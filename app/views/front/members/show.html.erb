@@ -1,10 +1,11 @@
-<div class="container" style="padding-top: 100px;">
+<%= stylesheet_link_tag 'front/members' %>
+<div class="container">
 	<div class="row">
 		<div class="col-xs-4">
 		</div>
 		<div class="col-xs-4">
+			<div class="title"><h2>お客様情報</h2></div>
 		<table class="table">
-			<h1 class="title">会員情報詳細画面</h1>
 			<tbody>
 				<tr>
 					<th>会社名</th>
@@ -23,10 +24,6 @@
 					<td><%= @address.contact_person_phonetic %></td>
 				</tr>
 				<tr>
-					<th>電話番号</th>
-					<td><%= @address.phone %></td>
-				</tr>
-				<tr>
 					<th>郵便番号</th>
 					<td><%= @address.postal_code %></td>
 				</tr>
@@ -43,13 +40,17 @@
 					<td><%= @address.address2 %></td>
 				</tr>
 				<tr>
+					<th>電話番号</th>
+					<td><%= @address.phone %></td>
+				</tr>
+				<tr>
 					<th>メールアドレス</th>
 					<td><%= @member.email %></td>
 				</tr>
 			</tbody>
 		</table>
-		<%= link_to "会員情報編集", edit_front_member_path, class: "btn btn-default" %>
-		<%= link_to "戻る", front_members_path, class: "btn btn-default" %>
+		<%= link_to "会員情報編集", edit_front_member_path, class: "edit-btn btn btn-info" %>
+		<%= link_to "戻る", front_members_path, class: "show-back-btn btn btn-default" %>
 	  </div>
 	</div>
 </div>

@@ -8,37 +8,43 @@
         <div class="title">
           <h2>会員情報編集</h2>
         </div>
-          <%= form_for(@address, url: front_member_path(current_member.id)) do |f| %>
-            <div class="field">
-               <%= f.label :corporate_name, "会社名" %><br>
-               <%= f.text_field :corporate_name, class: "form-control" %>
-               <%= f.label :corporate_phonetic, "ふりがな(会社名)" %><br>
-               <%= f.text_field :corporate_phonetic, class: "form-control" %>
-               <%= f.label :contact_person_name, "ご担当者様" %><br>
-               <%= f.text_field :contact_person_name, class: "form-control" %>
-               <%= f.label :contact_person_phonetic, "ふりがな(ご担当者様)" %><br>
-               <%= f.text_field :contact_person_phonetic, class: "form-control" %>
-               <%= f.label :postal_code, "郵便番号" %><br>
-               <%= f.text_field :postal_code, class: "form-control" %>
-               <%= f.label :prefecture_id, "都道府県" %><br>
-               <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name,{},{class: "form-control"} %>
-               <%= f.label :address1, "市区町村/番地" %><br>
-               <%= f.text_field :address1, class: "form-control" %>
-               <%= f.label :address2, "その他" %><br>
-               <%= f.text_field :address2, class: "form-control" %>
-               <%= f.label :phone, "電話番号" %><br>
-               <%= f.text_field :phone, class: "form-control" %>
-             </div>
-                <%= f.fields_for(@member) do |t| %>
-                <%= t.label :メールアドレス %><br />
-                <%= t.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
-
-            <% end %>
-            <div class="actions">
-              <%= f.submit "更新する", class: "btn btn-default" %>
-            </div>
-            <%= link_to "Back", front_member_path, class: "btn btn-default" %>
-            <% end %>
+          <%= form_for(@address) do |f| %>
+                <div class="field">
+                   <%= f.label :corporate_name, "会社名" %>
+                   <%= f.text_field :corporate_name, class: "form-control" %>
+                      <%= hidden_label_tag(f.object, :corporate_name)%>
+                   <%= f.label :corporate_phonetic, "ふりがな(会社名)" %>
+                   <%= f.text_field :corporate_phonetic, class: "form-control" %>
+                      <%= hidden_label_tag(f.object, :corporate_phonetic)%>
+                   <%= f.label :contact_person_name, "ご担当者様" %>
+                   <%= f.text_field :contact_person_name, class: "form-control" %>
+                      <%= hidden_label_tag(f.object, :contact_person_name)%>
+                   <%= f.label :contact_person_phonetic, "ふりがな(ご担当者様)" %>
+                   <%= f.text_field :contact_person_phonetic, class: "form-control" %>
+                      <%= hidden_label_tag(f.object, :contact_person_phonetic)%>
+                   <%= f.label :postal_code, "郵便番号" %>
+                   <%= f.text_field :postal_code, class: "form-control" %>
+                      <%= hidden_label_tag(f.object, :postal_code)%>
+                   <%= f.label :prefecture_id, "都道府県" %>
+                   <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name,{},{class: "form-control"} %>
+                   <%= f.label :address1, "市区町村/番地" %>
+                   <%= f.text_field :address1, class: "form-control" %>
+                   <%= hidden_label_tag(f.object, :address1)%>
+                   <%= f.label :address2, "その他" %>
+                   <%= f.text_field :address2, class: "form-control" %>
+                   <%= f.label :phone, "電話番号" %>
+                   <%= f.text_field :phone, class: "form-control" %>
+                   <%= hidden_label_tag(f.object, :phone)%>
+                </div>
+                  <%#= f.fields_for(@member) do |t| %>
+                  <%#= t.label :メールアドレス %>
+                  <%#= t.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
+                  <%# end %>
+              <div class="actions">
+                <%= f.submit "更新する", class: "edit-submit btn btn-success" %>
+              </div>
+              <%= link_to "Back", front_member_path, class: "edit-back-btn btn btn-default" %>
+          <% end %>
       </div>
     </div>
 </div>
