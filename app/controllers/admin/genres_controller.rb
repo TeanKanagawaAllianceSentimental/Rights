@@ -5,9 +5,9 @@ class Admin::GenresController < Admin::AdminBase
     @genres = Genre.all
   end
 
-  def show
-    @genre = Genre.find(params[:id])
-  end
+  # def show
+  #   @genre = Genre.find(params[:id])
+  # end
 
   def new
   	@genre = Genre.new
