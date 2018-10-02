@@ -122,24 +122,25 @@
 							</div>
 						</div>
 						<%= form_for [@sale,@sale_item] do |f| %>
-								<%= fields_for @sale, url: confirm_purchase_sale_path do |i| %>
-									<%= i.hidden_field :total_price, :value => @sale.total_price %>
-									<% if @sale.credit_card_id != nil %>
-										<%= i.hidden_field :credit_card_id, :value => @credit.id %>
-									<% else %>
-										<%= i.hidden_field :sele_invoice_id, :value => @invoice.id %>
-									<% end %>
-							<button type="button" class="btn btn-info btn-block">
-									<%= i.submit "注文", class: "btn btn-info" %>
-									<% end %>
+								<%#= fields_for @sale, url: confirm_purchase_sale_path do |i| %>
+									<%#= i.hidden_field :total_price, :value => @sale.total_price %>
+									<%# if @sale.credit_card_id != nil %>
+										<%#= i.hidden_field :credit_card_id, :value => @credit.id %>
+									<%# else %>
+										<%#= i.hidden_field :sele_invoice_id, :value => @invoice.id %>
+									<%# end %>
+							<!-- <button type="button" class="btn btn-info btn-block"> -->
+									<%#= i.submit "注文", class: "btn btn-info" %>
+									<%# end %>
 								<%= f.hidden_field :sale_id, :value => @sale.id %>
 								<%= f.hidden_field :item_id, :value => @item.id %>
 								<%= f.hidden_field :quantity, :value => @cart.quantity %>
 								<%= f.hidden_field :unit_price, :value => @cart.item.unit_price %>
-								<%= f.submit "確定", class: "btn btn-info" %>
-								<% end %>
-							</button>
-							<%#= f.submit "注文確定", class: "btn btn-info btn-block" %>
+								<%#= f.submit "確定", class: "btn btn-info" %>
+								<%# end %>
+							<!-- </button> -->
+							<%= f.submit "注文確定", url: sale_pay_selects_path(@sale.id), class: "btn btn-info btn-block" %>
+							<% end %>
 					</div>
 				</div>
 			</div>

@@ -13,6 +13,7 @@ layout 'admin'
     member_id = params[:member_id]
     @sales = Sale.where(member_id: member_id)
     @sale = @sales.find(params[:id])
+    @shipping = SaleShipping.find(params[:id])
 
     # @shippings = SaleShipping.where(member_id: member_id)
     # @shipping = @shippings.find(params[:id])
