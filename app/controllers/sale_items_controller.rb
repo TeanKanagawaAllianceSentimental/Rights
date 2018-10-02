@@ -6,11 +6,12 @@ class SaleItemsController < ApplicationController
     sale = Sale.where(member_id: current_member).last
     carts = member.carts
     carts.each do |cart|
-      sale_items = SaleItem.new(sale_item_params)
-      sale_items.save
+      sale_item = SaleItem.new(quantity: cart.quantity, unit_price: cart.unit_price, item_id: cart.item_id,sale_id: sale.id)
+      sale_item.save
+      cart.destroy
     end
-    carts.destroy
       redirect_to orderplaced_sale_path(sale.id)
+      # redirect_to confirm_purchase_sale_path # (sali.id)いる？
   end
   def index
     @sales = current_member.sales

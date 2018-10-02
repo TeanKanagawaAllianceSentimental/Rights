@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_051028) do
     t.string "organisation_name"
     t.string "department"
     t.string "contact_person"
-    t.integer "sale_id", default: 0
+    t.integer "sale_id"
   end
 
   create_table "sales", force: :cascade do |t|

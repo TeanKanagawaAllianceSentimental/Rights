@@ -98,11 +98,13 @@ class SaleController < ApplicationController
     end
   end
 
-  def confirm_purchase # 購入確定ボタン押下→sale_item#createへ
-    sale = Sale.find(params[:id])
-    sale.update(sale_params)
-    # redirect_to orderplaced_sale_path(sale.id)
-  end
+  # 不要か？
+  # def confirm_purchase # 購入確定ボタン押下→sale_item#createへ
+  #   sale = Sale.find(params[:id])
+  #   sale.update(sale_params)
+  #   redirect_to sale_sale_items_path
+  #   # redirect_to orderplaced_sale_path(sale.id)
+  # end
 
   def orderplaced
   end
