@@ -1,7 +1,7 @@
 <div class="form-group">
 	<div class="field" style="padding-bottom: 20px">
 		<%= f.label :ジャンル %>
-		<%= f.select :genre, Genre.genres.keys.to_a, class: 'form-control' %>
+		<%= f.select :genre, Genre.genres.keys.to_a, {prompt: "選択してください"}, class: 'form-control' %>
 		<%= hidden_label_tag(f.object, :genre)%>
 	</div>
 </div>
