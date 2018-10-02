@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   	resources :items
     resources :disk
-    resources :rights, controller: 'genres'
+    resources :rights, controller: 'genres', except:[:show]
     resources :musics
     resources :sale_items
   end
