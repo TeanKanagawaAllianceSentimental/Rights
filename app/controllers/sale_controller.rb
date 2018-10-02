@@ -79,7 +79,7 @@ class SaleController < ApplicationController
     carts = Cart.where(member_id: current_member.id)
     total_price = 0
     carts.each do |cart|
-      total_price += cart.item.unit_price * cart.quantity
+      total_price += cart.unit_price * cart.quantity
       #本当はcart.unit_price
     end
     # total_price.update(amount_params)

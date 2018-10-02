@@ -7,9 +7,9 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   def after_sign_in_path_for(resource)
   	case resource
 	  when Member
-	    front_members_path(resource)
+	    front_members_path
 	  when Admin
-	  	admin_members_path(resource)
+	  	admin_members_path
 	  end
   end
 
