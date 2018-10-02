@@ -37,33 +37,9 @@ class Front::MembersController < ApplicationController
 
 	def orderhistory
 		@member = current_member
-		@sales = @member.sales
-		@shippings =SaleShipping.find(params[:id])
-	end
-
-	def creditcards
-		@member = current_member
-		@credits = @member.credit_cards
-	end
-
-	def invoices
-		@member = current_member
-		@invoices = @member,invoices
-	end
-
-	def shippings
-		@member = current_member
-		@shippings = @member.shippings
-	end
-
-	def applicactionhistory
-		@member = current_member
-		@application = @member.application
-	end
-
-	def applicants
-		@member = current_member
-		@applicants = @member.applicants
+		@sales = @member.sales.order(updated_at: :desc)
+		@shippings = @member.sale_shippings
+		@shipping = @shippings.find_by(sale_id: @sale)
 	end
 
 	def shipping

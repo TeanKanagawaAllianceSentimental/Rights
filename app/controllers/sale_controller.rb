@@ -37,14 +37,13 @@ class SaleController < ApplicationController
     @member = current_member
     @sale = Sale.where(member_id: current_member).last
     @shippings = @member.sale_shippings
-    @shipping = @shippings.find(@sale.id)
+    @shipping = SaleShipping.find_by(sale_id: @sale.id)
     @credit = @sale.credit_card
     @invoice = @sale.sale_invoice
     @sale_item = SaleItem.new
     @carts = @member.carts
-    @cart = Cart.find(params[:id])
+    @cart = Cart.find_by(member_id: @member.id)
     @item = @cart.item
-    @sub_total = @item.unit_price.to_i * @cart.quantity.to_i
   end
 
   def update
@@ -91,22 +90,18 @@ class SaleController < ApplicationController
   end
 
   def proceed_purchase # レジに進むボタン押下 see my github cartcoding
-    sale = Sale.new(sale_params)
-    if sale.save
+    sale = Sale.where(member_id: current_member).last
+    if sale.update(sale_params)
       redirect_to new_sale_sale_shipping_path(sale_id: sale.id)
     else
       render 'sale/show'
     end
   end
 
-  def confirm_purchase # 購入確定ボタン押下
+  def confirm_purchase # 購入確定ボタン押下→sale_item#createへ
     sale = Sale.find(params[:id])
-    if sale.Application < 1
-      sale.update(sale_params)
-    else
-      sale.update(sale_params)
-      redirect_to orderplaced_sale_path(sale.id)
-    end
+    sale.update(sale_params)
+    # redirect_to orderplaced_sale_path(sale.id)
   end
 
   def orderplaced
