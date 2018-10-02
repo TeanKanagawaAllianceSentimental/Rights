@@ -13,29 +13,39 @@ class SaleShippingsController < ApplicationController
 
   def create # 配送先確定ボタン押下（案）
     member = current_member
-    sale = Sale.where(member_id: current_member).last
-    shipping = shippings.find_by(sale_id: sale, member_id: member.id)
-    if shipping == 0
-      shipping = SaleShipping.new(sale_shipping_params)
-      shipping.save!
-      redirect_to sale_pay_selects_path(sale.id)
-    elsif shipping != 0
-      if Saleshipping.exists?(member_id: current_member.id, shipping_address1: shipping.addresses1 , shipping_address2: shipping.addresses2)
-        #ここにはupdateいらないかもしれない。検証して下さい。
-        shipping.update(sale_shipping_params)
-        redirect_to sale_pay_selects_path(sale.id)
-      else
-        shipping = SaleShipping.new(sale_shipping_params)
-        shipping.save!
-        redirect_to sale_pay_selects_path(sale.id)
-      end
-    else
-      @shippings = current_member.sale_shippings
-      @sale = Sale.where(member_id: current_member).last
-      @shippinga = @shippings.find(current_member.id)
-      render 'sale_shipping/show'
-    end
+    sale = Sale.where(member_id: member.id).last
+    shipping = SaleShipping.find_by(sale_id: sale.id, member_id: sale.member_id)
+    shipping = SaleShipping.new(sale_shipping_params)
+    shipping.save!
+    redirect_to sale_pay_selects_path(sale.id)
   end
+
+
+
+
+  # createの残骸
+  #   if Saleshipping.exists?(member_id: current_member.id, shipping_address1: shipping.shipping_addresses1 , shipping_address2: shipping.shipping_addresses2)
+  #     elsif Saleshipping.exists?(member_id: current_member.id)
+  #       shipping = SaleShipping.new(sale_shipping_params)
+  #       shipping.save!
+  #       redirect_to sale_pay_selects_path(sale.id)
+  #     else shipping == nil?
+  #     shipping = SaleShipping.new(sale_shipping_params)
+  #     shipping.save!
+  #     redirect_to sale_pay_selects_path(sale.id)
+  #   elsif shipping != 0
+  #     else
+  #       shipping = SaleShipping.new(sale_shipping_params)
+  #       shipping.save!
+  #       redirect_to sale_pay_selects_path(sale.id)
+  #     end
+  #   else
+  #     @shippings = current_member.sale_shippings
+  #     @sale = Sale.where(member_id: current_member).last
+  #     @shippinga = @shippings.find(current_member.id)
+  #     render 'sale_shipping/show'
+  #   end
+  # end
 
   # def create # 配送先確定ボタン押下
   #   member = current_member
