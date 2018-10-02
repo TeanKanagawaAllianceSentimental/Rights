@@ -27,10 +27,10 @@
                     </h5>
                   </td>
                   <td class="col-xs-2">
-                    <h5>単価<%= cart.unit_price.to_i * cart.quantity.to_i %>円</h5><br><!-- カートが完成したらitem外す -->
+                    <h5>単価<%= cart.item.unit_price %>円</h5><br>
                     <div class="btn-group col-xs-9">
                     <%= form_for cart, url: update_show_cart_path(cart.id) do |i| %>
-                        <%= i.number_field :quantity, class: 'form-control', value: cart.quantity %>
+                        <%= i.number_field :quantity, class: 'form-control', value: cart.quantity, min:"0" %>
                     <%= i.submit '再計算', class: "btn btn-link" %>
                     <% end %>
                     </div>

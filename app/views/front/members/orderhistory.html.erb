@@ -19,9 +19,9 @@
                   <tr>
                     <td><%= japan_time(sale.updated_at) %></td>
                     <td>
-                      <%= link_to sale_sale_shipping_path(sale.id) do %>
-                        <%=  %>
-                      <% end %>
+                      <%#= link_to sale_sale_shipping_path(sale.id) do %>
+                        <%= @shipping.contact_person %> 様
+                      <%# end %>
                     </td>
                     <td>
                       <% if sale.credit_card_id != nil? %>

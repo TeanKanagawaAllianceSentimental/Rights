@@ -63,8 +63,7 @@ class CartsController < ApplicationController
   def update_edit
     cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
-    if cart.update(quantity: quantity_params[:quantity].to_i)
-      cart.update(quantity: quantity_params[:quantity].to_i)
+    if cart.update(cart_params)
       redirect_to edit_sale_path(sale.id)
     else
       @member = current_member
@@ -77,17 +76,17 @@ class CartsController < ApplicationController
     end
   end
 
-	def destroy_item
+	def destroy_item # ショッピングカート画面での商品削除
     cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
 		cart.destroy
     redirect_to sale_path(sale.id)
 	end
 
-  def destroy_cart
+  def destroy_cart # 購入確認画面での商品削除
+    cart = Cart.find(params[:id])
     sale = Sale.where(member_id: current_member).last
-    carts = Cart.where(sale_id: sale).all
-    carts.destroy
+    cart.destroy
     redirect_to edit_sale_path(sale.id)
   end
 
