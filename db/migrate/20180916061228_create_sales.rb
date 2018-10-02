@@ -3,7 +3,7 @@ class CreateSales < ActiveRecord::Migration[5.2]
     create_table :sales do |t|
       t.integer :total_price
       t.integer :member_id
-      t.integer :delivered
+      t.string :delivered
       t.datetime :delivered_at
 
       t.timestamps
