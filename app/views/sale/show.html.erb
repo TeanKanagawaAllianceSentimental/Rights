@@ -23,14 +23,16 @@
                     <% end %>
                     </h4><br>
                     <h5>
+                    <%= cart.item.status %>
+                    <br>
                     <%= cart.item.artist %>
                     </h5>
                   </td>
                   <td class="col-xs-2">
-                    <h5>単価<%= cart.item.unit_price %>円</h5><br>
+                    <h5>単価<%= cart.item.unit_price %>円</h5><br><!-- カートが完成したらitem外す -->
                     <div class="btn-group col-xs-9">
-                    <%= form_for cart, url: update_show_cart_path(cart.id) do |i| %>
-                        <%= i.number_field :quantity, class: 'form-control', value: cart.quantity, min:"0" %>
+                    <%= form_for cart, url: update_new_cart_path(cart.id) do |i| %>
+                        <%= i.number_field :quantity, class: 'form-control', value: cart.quantity %>
                     <%= i.submit '再計算', class: "btn btn-link" %>
                     <% end %>
                     </div>
@@ -51,8 +53,9 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  合計：<%= @sub_total %>円
+                  合計：<%= @sale.total_price %>円
                 </h4>
+                <%= link_to "再計算", amount_new_sale_path(@sale), method: :post, class: "btn btn-link" %>
               </div>
               <div class="panel-body">
                 <h5>楽曲使用申請：</h5>

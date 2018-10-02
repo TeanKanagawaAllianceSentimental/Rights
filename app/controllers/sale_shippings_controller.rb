@@ -2,12 +2,12 @@ class SaleShippingsController < ApplicationController
 
   def new # 配送先指定
     # @member = Member.find(session[:member_id])
-    @member = current_member
+    # @member = current_member
     @shippings = current_member.sale_shippings
     @sale = Sale.where(member_id: current_member).last
-    # @shippinga = @shippings.(member_id: current_member)
+    # # @shippinga = @shippings.(current_member.id)
     # @shippinga = SaleShipping.find(params[:id])
-    @shippinga = SaleShipping.where(member_id: current_member).first
+    # @shippinga = SaleShipping.where(id: :member_id).first
     @shipping = SaleShipping.new
   end
 
@@ -16,12 +16,12 @@ class SaleShippingsController < ApplicationController
     sale = Sale.where(member_id: current_member).last
     shippings = member.sale_shippings
     shipping = shippings.find_by(sale_id: sale)
-    if shipping.present?
+    if shipping>0
       shipping.update(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
     elsif shipping = 0
-      shipping = SaleShipping.new(sale_shipping_params)
-      shipping.save!
+      shipping = SaleShipping.new
+      shipping.save(sale_shipping_params)
       redirect_to sale_pay_selects_path(sale.id)
     else
       @shippings = current_member.sale_shippings
@@ -31,32 +31,9 @@ class SaleShippingsController < ApplicationController
     end
   end
 
-  # def create
-  #   member = current_member
-  #   sale = Sale.where(member_id: current_member).last
-  #   # shippings = SaleShipping.where(member_id: current_member)
-  #   shippings = member.sale_shippings
-  #   shipping = shippings.find_by(sale_id: sale)
-  #   if shipping.present?
-  #     shipping.update(sale_shipping_params)
-  #     redirect_to sale_pay_selects_path(sale.id)
-  #   elsif shipping.nil?
-  #     shipping = SaleShipping.new
-  #     shipping.save(sale_shipping_params)
-  #     redirect_to sale_pay_selects_path(sale.id)
-  #   end
-  # end
-
-  def show
+  def show  # マイページ 配送先一覧
     @member = current_member
-    @addresses = @member.addressess
-    @shippings = @member.sale_shippings
-    @shipping = @shippings.find(params[:sale_id])
-  end
-
-  def index
-    @member = current_member
-    @shippings = @member.sale_shippings
+    @addresses = @member.sale_shipping
   end
 
   def edit # 編集

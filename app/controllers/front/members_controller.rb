@@ -36,32 +36,37 @@ class Front::MembersController < ApplicationController
 	end
 
 	def orderhistory
-		@member = current_member
-		@sales = @member.sales.order(updated_at: :desc)
-		@shippings = @member.sale_shippings
-		@shipping = @shippings.find_by(sale_id: @sale)
+    @sales = Sale.find(params[:id])
+    # @sale = @sales.find(params[:member_id])
+    # @sale_items = @sale.sale_items
 	end
 
-	def shipping
-    @member = current_member
-    @shipping = SaleShipping.new
-    @shippings = @member.sale_shippings
-  end
+	def creditcards
+		@member = current_member
+		@credits = @member.credit_cards
+	end
 
-  def generate
-    member = current_member
-    shipping = SaleShipping.new(shipping_params)
-    shipping.save
-    redirect_to shipping_front_member_path(member.id)
-  end
+	def invoices
+		@member = current_member
+		@invoices = @member,invoices
+	end
 
-   private
+	def shippings
+		@member = current_member
+		@shippings = @member.shippings
+	end
 
-  def shipping_params
-      params.require(:sale_shipping).permit(:organisation_name, :shipping_postal_code, :shipping_address1, :shipping_address2, :department, :contact_person, :user_telephone, :member_id)
-  end
-  def update_address_params
+	def applicactionhistory
+		@member = current_member
+		@application = @member.application
+	end
+
+	def applicants
+		@member = current_member
+		@applicants = @member.applicants
+	end
+	private
+def update_address_params
     params.require(:member).permit(:email, :_destroy, :id, addresses_attributes: [:corporate_name, :corporate_phonetic, :contact_person_name, :contact_person_phonetic, :department, :phone, :postal_code, :prefecture_id, :address1, :address2])
   end
-
 end

@@ -7,30 +7,28 @@
             <div class="menu-box">
               <div class="menu1">
                 <!-- 以下memberにroutingネストした方がいいと思い、urlお引越し -hori -->
-                <%= link_to "購入履歴",  orderhistory_front_member_path(current_member.id) %>
+                <%= link_to "購入履歴", orderhistory_front_members_path %>
                 </div>
               <div class="menu1">
                 <%= link_to "会員情報詳細＆編集", front_member_path(current_member.id) %>
                 </div>
               <div class="menu1">
-                <p>楽曲利用申請履歴</p>
-                <%#= link_to "楽曲利用申請履歴", applicationhistory_front_members_path(current_member.id) %>
+                <%#= link_to "楽曲利用申請履歴", applicationhistory_front_members_path %>
                 </div>
               <div class="menu1">
-                <p>楽曲利用申請・申請者情報</p>
-                <%#= link_to "楽曲利用申請・申請者情報", applications_front_members_path(current_member.id) %>
+                <%#= link_to "楽曲利用申請・申請者情報", applications_front_members_path %>
                 </div>
             </div>
             <div class="menu-box">
               <div class="menu1">
-                <%= link_to "請求送付先", new_sale_invoice_path %>
+                <%#= link_to "請求送付先", invoices_front_members_path %>
                 </div>
               <div class="menu1">
-                <%= link_to "クレジットカード情報", new_credit_card_path %>
+                <%#= link_to "クレジットカード情報", credit_cards_front_members_path %>
                 </div>
               <div class="menu1">
 
-                <%= link_to "配送先", shipping_front_member_path(current_member.id) %>
+                <%#= link_to "配送先一覧", shipping_front_members_path %>
                 </div>
               <div class="menu1">
                 <%= link_to "退会", front_delete_path %>

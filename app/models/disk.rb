@@ -5,14 +5,14 @@ class Disk < ApplicationRecord
 
 	validates :disk, presence: true
 
-	# def self.create_with_auto_sequence(params)
-	# 	disk = Disk.new(params)
-	#     disk.set_auto_sequence
-	#     disk.save
-	#     disk
-	# end
+	def self.create_with_auto_sequence(params)
+		disk = Disk.new(params)
+	    disk.set_auto_sequence
+	    disk.save
+	    disk
+	end
 
-	# def set_auto_sequence
-	# 	self.sequence = Disk.where(disk_id: disk_id).maximum(:sequence).to_i + 1
- #    end
+	def set_auto_sequence
+		self.sequence = Disk.where(disk_id: disk_id).maximum(:sequence).to_i + 1
+    end
 end

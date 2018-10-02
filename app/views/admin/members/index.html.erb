@@ -28,8 +28,13 @@
 						<td><%= address.contact_person_name %></td>
 						<td><%= address.phone %></td>
 						<td><%= address.member.deleted_at.nil? ? "利用中" : "退会済" %></td>
+
+<!--       どっちだったか要検討       -->
 						<td><%= link_to "Show", admin_member_path(address) %>
-						<td><%= link_to "購入履歴", admin_member_sale_index_path(address.member.id) %></td>
+						<td><%= link_to "購入履歴", admin_member_sale_path(address.id) %></td>
+          			    <td><%= link_to "Show", admin_member_path(address) %></td>
+						<td><%= link_to "購入履歴", admin_sale_item_path(address) %></td>
+<!--       以上      -->
 					</tr>
 				</tbody>
 			</div>

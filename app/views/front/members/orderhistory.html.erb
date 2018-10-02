@@ -2,8 +2,9 @@
 <div class="show-content" style="padding-top: 100px;">
   <div class="container">
     <div class="row" style="border-bottom: 1px solid #e6e6e6; padding-bottom: 80px;">
-      <div class="col-md-12">
-        <h2>購入履歴</h2>
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <h2>販売一覧</h2>
           <% @sales.each do |sale| %>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -13,42 +14,49 @@
                     <td>購入日</td>
                     <td>送付先</td>
                     <td>お支払い方法</td>
-                    <td>合計</td>
-                    <td></td>
+                    <td  colspan="2">合計</td>
                   </tr>
                   <tr>
                     <td><%= japan_time(sale.updated_at) %></td>
-                    <td>
-                      <%#= link_to sale_sale_shipping_path(sale.id) do %>
-                        <%= @shipping.contact_person %> 様
-                      <%# end %>
-                    </td>
+                    <td>@shipping.sale_id</td><!-- controllerに書く -->
                     <td>
                       <% if sale.credit_card_id != nil? %>
                       <%= link_to "クレジットカード", '#' %>
                       <% else %>
                       <%= link_to "請求書", '#' %>
-                      <% end %>
                     </td>
-                    <td><h4><%= sale.total_price %>円</h4></td>
+                    <td><%= sale.total_price %>円</td>
                     <td>配送準備中</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="panel-body">
-            <table>
               <tbody>
-                <% sale.sale_items.each do |sale_item| %>
                 <tr>
-                  <td class="col-xs-1"><%= attachment_image_tag sale_item.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %></td>
-                  <td class="col-xs-3 texr-left" colspan="2"><h4><%= sale_item.item.cd_title %></h4><br><h5><%= sale_item.item.artist %></h5></td>
-                  <td class="col-xs-1"><h5>単価<%= sale_item.unit_price %>円<br><br>数量<%= sale_item.quantity %></h5></td>
-                  <td class="col-xs-1">小計<%= sale_item.quantity.to_i * sale_item.unit_price.to_i %>円</td>
+                  <td class="col-xs-2"><%= link_to item_path(sale.sale_item.item_id) do %>
+                    <%= attachment_image_tag sale.sale_item.item, :jacket_image, :fill, 100,100, format:'jpeg', class: "thumbnail" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <h4>
+                    <%= link_to item_path(sale.sale_item.item_id) do %>
+                      <%= sale.sale_item.item.cd_title %>
+                    <% end %>
+                    </h4><br>
+                    <%= sale.sale_item.item.artist %>
+                    </h5>
+                  </td>
+                  <td class="col-xs-2">
+                    <h5>単価<%= sale.sale_item.item.unit_price %>円<br>
+                      <%= sale.sale_item.quantity %>
+                    </h5>
+                  </td>
+                  <td class="col-xs-2">
+                    <h4>小計<%= sale.sale_item.quantity.to_i * sale.sale_item.item.unit_price.to_i %>円</h4>
+                  </td>
                 </tr>
-                <% end %>
               </tbody>
-            </table>
             </div>
           </div>
           <% end %>

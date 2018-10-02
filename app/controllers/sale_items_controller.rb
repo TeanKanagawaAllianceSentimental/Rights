@@ -1,5 +1,4 @@
 class SaleItemsController < ApplicationController
-  layout 'admin'
 
   def create # 購入確定
     member = current_member
@@ -18,6 +17,9 @@ class SaleItemsController < ApplicationController
 
     @sale_items = @sales.where(sale_id: a)
     # sale = Sale#.create(total_price: 1000,# member_id: 7, delivered: "配送済", delivered_at: "2018/09/29", Application: "aaa", credit_card_id: 1, sale_invoice_id: 1 )
+  end
+  def method_name
+
   end
 
   private

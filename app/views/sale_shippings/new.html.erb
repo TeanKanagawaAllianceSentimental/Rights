@@ -11,7 +11,7 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <h2 class="text-center">お届け先住所の選択</h2><br>
-          <%= form_for [@sale, @shippinga], url: sale_sale_shippings_path, method: :post do |f| %>
+          <%= form_for [@sale, @shipping] do |f| %>
           <% @shippings.each do |shipping| %>
           <table class="table">
             <thead class="bg-info">
@@ -19,9 +19,9 @@
                 <th class="col-md-2" scope="col">
                   <label><%= f.radio_button :sale_id, @sale.id, class: "form-check" %>   この住所に配送する</label>
                 </th>
-                <th class="col-md-6 text-right">
+                <th class="col-md-6">
                   <%= link_to "編集", edit_sale_sale_shipping_path(id: shipping.id, sale_id: @sale.id), class: "btn btn-link" %>
-                  <%#= link_to "削除", sale_sale_shipping_path, class: "btn btn-link", method: :delete, "data-confirm" => "" %>
+                  <%= link_to "削除", '#', class: "btn btn-link", method: :delete, "data-confirm" => "" %>
                 </th>
               </tr>
             </thead>
@@ -94,8 +94,6 @@
             </div>
           <% end %>
             <div class="form-group text-center">
-              <%= f.hidden_field :sale_id, :value => @sale.id %>
-              <%= f.hidden_field :member_id, :value => @member.id %>
               <%= f.submit "配送先確定", class:"btn btn-md btn-info btn-lg" %>
             </div>
           <% end %>

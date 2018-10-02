@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   root 'top#index'
   get 'top/show'
@@ -16,29 +17,40 @@ Rails.application.routes.draw do
 
   namespace :front do
     resources :members do
-        member do
-          get :orderhistory
-          get :shipping
-          post :generate
-        end
+      resources :sale_items, only:[:index, :create, :show]
+      collection do
+        get :orderhistory
+        get :credit_cards
+        get :invoices
+        get :shipping
+        get :applicationhistory
+        get :applications
+      end
     end
   end
 
   namespace :admin, path: 'admin' do
-    resources :members do
-      resources :sale, only:[:index, :show] do
-        resources :sale_items, only:[:index, :show]
-      end
-    end
+    resources :members
   	resources :items
     resources :disk
-    resources :rights, controller: 'genres', except:[:show]
+    resources :rights, controller: 'genres'
     resources :musics
     resources :sale_items
   end
 
   namespace :admin do
     resources :search, controller: 'members'
+  end
+
+  namespace :admin, path: 'admin' do
+    resources :members do
+      get :sale
+    end
+  	resources :items
+    resources :disk
+    resources :rights, controller: 'genres'
+    resources :musics
+    resources :sale_items
   end
 
   resources :search, controller: 'genres', only:[:index]
@@ -104,18 +116,7 @@ Rails.application.routes.draw do
     resources :sale_items, only:[:index, :create, :show]
   end
 
-
-  
+  resources :credit_cards
+  resources :sale_invoices
   resources :addresses
-  resources :credit_cards do
-    collection do
-      post :generate
-    end
-  end
-  resources :sale_invoices do
-    collection do
-      post :generate
-    end
-  end
-
 end

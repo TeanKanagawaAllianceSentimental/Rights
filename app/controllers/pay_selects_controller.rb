@@ -10,15 +10,9 @@ class PaySelectsController < ApplicationController
 
   def proceed_purchase # お支払い方法選択 確定 => 注文確認画面へ
     @sale = Sale.where(member_id: current_member).last
-    credits = current_member.credit_cards
-    invoices = current_member.sale_invoices
-    if credits != nil
-      credit_card_id = params[:credit_card_id]
-      @sale.update(sale_params)
-      redirect_to edit_sale_path(@sale.id)
-    elsif invoices != nil
-      sele_invoice_id = params[:credit_card_id]
-      @sale.update(sale_params)
+    # credit_card = CreditCard.find(params[:id])
+    # invoice = SaleInvoice.find(params[:id])
+    if @sale.update(sale_params)
       redirect_to edit_sale_path(@sale.id)
     else
       @member = current_member

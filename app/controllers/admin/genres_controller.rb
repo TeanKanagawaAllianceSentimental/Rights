@@ -5,9 +5,9 @@ class Admin::GenresController < Admin::AdminBase
     @genres = Genre.all
   end
 
-  # def show
-  #   @genre = Genre.find(params[:id])
-  # end
+  def show
+    @genre = Genre.find(params[:id])
+  end
 
   def new
   	@genre = Genre.new
@@ -18,12 +18,13 @@ class Admin::GenresController < Admin::AdminBase
 
   def create
   	@genre = Genre.new(genre_params)
-    if @genre.save(genre_params)
-      flash[:success] = 'ご登録ありがとうございます'
-      redirect_to admin_rights_path
-    else
+    if @genre.invalid?
       flash.now[:error] = '入力内容を再度ご確認ください'
       render :new
+    else
+      @genre.save(genre_params)
+      flash[:success] = 'ご登録ありがとうございます'
+      redirect_to admin_rights_path
     end
   end
 
@@ -31,19 +32,25 @@ class Admin::GenresController < Admin::AdminBase
   end
 
   def update
-    if @genre.update(update_genre_params)
-      flash[:success] = '編集が完了いたしました'
-      redirect_to admin_rights_path
-    else
+    if @genre.invalid?
       flash.now[:error] = '入力内容を再度ご確認ください'
       render :edit
+    else
+      @genre.update(update_genre_params)
+      flash[:success] = '編集が完了いたしました'
+      redirect_to admin_rights_path
     end
   end
 
   def destroy
-    @genre.destroy
-    flash[:success] = '削除が完了いたしました'
-    redirect_to admin_rights_path
+    if @genre.items.end_of_sell?
+      @genre.destroy
+      flash[:success] = '削除が完了いたしました'
+      redirect_to admin_rights_path
+    else
+      flash[:error] = '選択された商品は現在公開中です。ステータスを販売終了にしてください'
+      redirect_to admin_rights_path
+    end
   end
 
   private
@@ -57,6 +64,6 @@ class Admin::GenresController < Admin::AdminBase
   end
 
   def update_genre_params
-    params.require(:genre).permit(:id, :genre, items_attributes:[:cd_title, :genre_id, :package, :artist, :jacket_image, :label, :unit_price, :caption, :about, :stock_quantity, :status, :_destroy, :id, disks_attributes:[:disk, :item_id, :_destroy, :id, musics_attributes:[:disk_id, :muscic_title, :songwriter, :composer,:_destroy, :id]]])
+    params.require(:genre).permit(:id, :genre, items_attributes:[:cd_title, :genre_id, :package, :artist, :jacket_image, :label, :unit_price, :caption, :about, :stock_quantity, :status, :_destroy, :id], disks_attributes:[:disk, :item_id, :_destroy, :id], musics_attributes:[:disk_id, :muscic_title, :songwriter, :composer,:_destroy, :id])
   end
 end
