@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .title h2 {
 	padding-top: 80px;
 	text-align: center;
@@ -24,4 +25,44 @@
 .edit-submit {
 	float: left;
 	margin-top: 10px;
+}
+.admin-logout {
+	float: left;
+	position: absolute;
+	top: 15px;
+	right: 100px;
+}
+.admin-back {
+	margin-bottom: 20px;
+}
+.admin-edit {
+	margin-bottom: 20px;
+}
+.admin-delete {
+	margin-bottom: 20px;
+}
+.postal {
+	width: 100px;
+	float: left;
+	margin-right: 10px;
+}
+.prefecture {
+	width: 100px;
+	float: left;
+}
+.address1 {
+	display: block;
+	clear:both;
+}
+.phone {
+	width: 150px;
+}
+.contact-person-name {
+	width: 180px;
+	float: left;
+	margin-right: 10px;
+}
+.contact-person-phonetic {
+	width: 170px;
+	float: left;
 }

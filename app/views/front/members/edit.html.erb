@@ -36,10 +36,7 @@
                    <%= f.text_field :phone, class: "form-control" %>
                    <%= hidden_label_tag(f.object, :phone)%>
                 </div>
-                  <%#= f.fields_for(@member) do |t| %>
-                  <%#= t.label :メールアドレス %>
-                  <%#= t.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
-                  <%# end %>
+
               <div class="actions">
                 <%= f.submit "更新する", class: "edit-submit btn btn-success" %>
               </div>

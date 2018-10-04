@@ -8,27 +8,27 @@
 				<%= form_tag admin_search_index_path, :method => 'get' do %>
 				  <p>
 				    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "会社名 or 担当者名" %>
-				    <%= submit_tag "検索する", :name => nil, class: "search-btn btn btn-default" %>
+				    <%= submit_tag "検索する", :name => nil, class: "search-btn btn btn-primary" %>
 				  </p>
 				<% end %>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>member_id</th>
+						<th>No.</th>
 						<th>会社名</th>
 						<th>担当者名</th>
 						<th>電話番号</th>
 					</tr>
 				</thead>
 				<% @members.each do |address| %>
-				<tbody>
+				<div class= "tbody">
 					<tr>
 						<td><%= address.member_id %></td>
 						<td><%= address.corporate_name %></td>
 						<td><%= address.contact_person_name %></td>
 						<td><%= address.phone %></td>
 						<td><%= address.member.deleted_at.nil? ? "利用中" : "退会済" %></td>
-						<td><%= link_to "Show", admin_member_path(address) %>
+						<td><%= link_to "詳細", admin_member_path(address) %>
 						<td><%= link_to "購入履歴", admin_member_sale_index_path(address.member.id) %></td>
 					</tr>
 				</tbody>

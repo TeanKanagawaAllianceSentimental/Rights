@@ -5,7 +5,9 @@ class Members::SessionsController < Devise::SessionsController
   # def after_sign_in_path_for(resource)
   #   front_member_path(resource)
   # end
-
+  def after_sign_out_path_for(resource)
+      new_member_session_path
+  end
   # def after_sign_out_path_for(resource)
   #   new_member_session_path
   # end
